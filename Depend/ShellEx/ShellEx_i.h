@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 7.00.0555 */
-/* at Fri Apr 10 11:01:44 2015
+/* at Fri Apr 10 15:09:19 2015
  */
 /* Compiler settings for ShellEx.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 7.00.0555 
@@ -51,6 +51,12 @@ typedef interface IOverlayIcon IOverlayIcon;
 #endif 	/* __IOverlayIcon_FWD_DEFINED__ */
 
 
+#ifndef __IContextMenuEx_FWD_DEFINED__
+#define __IContextMenuEx_FWD_DEFINED__
+typedef interface IContextMenuEx IContextMenuEx;
+#endif 	/* __IContextMenuEx_FWD_DEFINED__ */
+
+
 #ifndef __OverlayIcon_FWD_DEFINED__
 #define __OverlayIcon_FWD_DEFINED__
 
@@ -61,6 +67,18 @@ typedef struct OverlayIcon OverlayIcon;
 #endif /* __cplusplus */
 
 #endif 	/* __OverlayIcon_FWD_DEFINED__ */
+
+
+#ifndef __ContextMenuEx_FWD_DEFINED__
+#define __ContextMenuEx_FWD_DEFINED__
+
+#ifdef __cplusplus
+typedef class ContextMenuEx ContextMenuEx;
+#else
+typedef struct ContextMenuEx ContextMenuEx;
+#endif /* __cplusplus */
+
+#endif 	/* __ContextMenuEx_FWD_DEFINED__ */
 
 
 /* header files for imported files */
@@ -183,6 +201,117 @@ EXTERN_C const IID IID_IOverlayIcon;
 #endif 	/* __IOverlayIcon_INTERFACE_DEFINED__ */
 
 
+#ifndef __IContextMenuEx_INTERFACE_DEFINED__
+#define __IContextMenuEx_INTERFACE_DEFINED__
+
+/* interface IContextMenuEx */
+/* [unique][nonextensible][dual][uuid][object] */ 
+
+
+EXTERN_C const IID IID_IContextMenuEx;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("68C6FAD9-8EF3-4D40-8F66-73FF3FFE3134")
+    IContextMenuEx : public IDispatch
+    {
+    public:
+    };
+    
+#else 	/* C style interface */
+
+    typedef struct IContextMenuExVtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
+            IContextMenuEx * This,
+            /* [in] */ REFIID riid,
+            /* [annotation][iid_is][out] */ 
+            __RPC__deref_out  void **ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE *AddRef )( 
+            IContextMenuEx * This);
+        
+        ULONG ( STDMETHODCALLTYPE *Release )( 
+            IContextMenuEx * This);
+        
+        HRESULT ( STDMETHODCALLTYPE *GetTypeInfoCount )( 
+            IContextMenuEx * This,
+            /* [out] */ UINT *pctinfo);
+        
+        HRESULT ( STDMETHODCALLTYPE *GetTypeInfo )( 
+            IContextMenuEx * This,
+            /* [in] */ UINT iTInfo,
+            /* [in] */ LCID lcid,
+            /* [out] */ ITypeInfo **ppTInfo);
+        
+        HRESULT ( STDMETHODCALLTYPE *GetIDsOfNames )( 
+            IContextMenuEx * This,
+            /* [in] */ REFIID riid,
+            /* [size_is][in] */ LPOLESTR *rgszNames,
+            /* [range][in] */ UINT cNames,
+            /* [in] */ LCID lcid,
+            /* [size_is][out] */ DISPID *rgDispId);
+        
+        /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
+            IContextMenuEx * This,
+            /* [in] */ DISPID dispIdMember,
+            /* [in] */ REFIID riid,
+            /* [in] */ LCID lcid,
+            /* [in] */ WORD wFlags,
+            /* [out][in] */ DISPPARAMS *pDispParams,
+            /* [out] */ VARIANT *pVarResult,
+            /* [out] */ EXCEPINFO *pExcepInfo,
+            /* [out] */ UINT *puArgErr);
+        
+        END_INTERFACE
+    } IContextMenuExVtbl;
+
+    interface IContextMenuEx
+    {
+        CONST_VTBL struct IContextMenuExVtbl *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IContextMenuEx_QueryInterface(This,riid,ppvObject)	\
+    ( (This)->lpVtbl -> QueryInterface(This,riid,ppvObject) ) 
+
+#define IContextMenuEx_AddRef(This)	\
+    ( (This)->lpVtbl -> AddRef(This) ) 
+
+#define IContextMenuEx_Release(This)	\
+    ( (This)->lpVtbl -> Release(This) ) 
+
+
+#define IContextMenuEx_GetTypeInfoCount(This,pctinfo)	\
+    ( (This)->lpVtbl -> GetTypeInfoCount(This,pctinfo) ) 
+
+#define IContextMenuEx_GetTypeInfo(This,iTInfo,lcid,ppTInfo)	\
+    ( (This)->lpVtbl -> GetTypeInfo(This,iTInfo,lcid,ppTInfo) ) 
+
+#define IContextMenuEx_GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)	\
+    ( (This)->lpVtbl -> GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId) ) 
+
+#define IContextMenuEx_Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)	\
+    ( (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr) ) 
+
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+
+#endif 	/* __IContextMenuEx_INTERFACE_DEFINED__ */
+
+
 
 #ifndef __ShellExLib_LIBRARY_DEFINED__
 #define __ShellExLib_LIBRARY_DEFINED__
@@ -199,6 +328,14 @@ EXTERN_C const CLSID CLSID_OverlayIcon;
 
 class DECLSPEC_UUID("C339E6B5-55AF-41E1-91C6-FF5B669D244E")
 OverlayIcon;
+#endif
+
+EXTERN_C const CLSID CLSID_ContextMenuEx;
+
+#ifdef __cplusplus
+
+class DECLSPEC_UUID("A4250BAE-CDC3-48F9-A25B-9CFEAFEED05A")
+ContextMenuEx;
 #endif
 #endif /* __ShellExLib_LIBRARY_DEFINED__ */
 

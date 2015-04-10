@@ -34,6 +34,9 @@
     <ClCompile Include="OverlayIcon.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="ContextMenuEx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -54,6 +57,9 @@
     <ClInclude Include="OverlayIcon.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ContextMenuEx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ShellEx.rc">
@@ -72,6 +78,12 @@
       <Filter>资源文件</Filter>
     </None>
     <None Include="Calender.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="ContextMenuEx.rgs">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="menuicon.bmp">
       <Filter>资源文件</Filter>
     </None>
   </ItemGroup>

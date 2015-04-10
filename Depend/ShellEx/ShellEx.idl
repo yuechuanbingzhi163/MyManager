@@ -17,6 +17,15 @@ import "ocidl.idl";
 interface IOverlayIcon : IDispatch{
 };
 [
+	object,
+	uuid(68C6FAD9-8EF3-4D40-8F66-73FF3FFE3134),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IContextMenuEx : IDispatch{
+};
+[
 	uuid(1AD8F1E0-94CA-4F4E-8086-A138EFAD6497),
 	version(1.0),
 ]
@@ -29,6 +38,13 @@ library ShellExLib
 	coclass OverlayIcon
 	{
 		[default] interface IOverlayIcon;
+	};
+	[		
+		uuid(A4250BAE-CDC3-48F9-A25B-9CFEAFEED05A)		
+	]
+	coclass ContextMenuEx
+	{
+		[default] interface IContextMenuEx;
 	};
 };
 

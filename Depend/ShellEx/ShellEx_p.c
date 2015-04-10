@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 7.00.0555 */
-/* at Fri Apr 10 11:01:44 2015
+/* at Fri Apr 10 15:09:19 2015
  */
 /* Compiler settings for ShellEx.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 7.00.0555 
@@ -88,6 +88,13 @@ extern const MIDL_STUB_DESC Object_StubDesc;
 
 extern const MIDL_SERVER_INFO IOverlayIcon_ServerInfo;
 extern const MIDL_STUBLESS_PROXY_INFO IOverlayIcon_ProxyInfo;
+
+
+extern const MIDL_STUB_DESC Object_StubDesc;
+
+
+extern const MIDL_SERVER_INFO IContextMenuEx_ServerInfo;
+extern const MIDL_STUBLESS_PROXY_INFO IContextMenuEx_ProxyInfo;
 
 
 
@@ -196,6 +203,72 @@ CInterfaceStubVtbl _IOverlayIconStubVtbl =
     CStdStubBuffer_DELEGATING_METHODS
 };
 
+
+/* Object interface: IContextMenuEx, ver. 0.0,
+   GUID={0x68C6FAD9,0x8EF3,0x4D40,{0x8F,0x66,0x73,0xFF,0x3F,0xFE,0x31,0x34}} */
+
+#pragma code_seg(".orpc")
+static const unsigned short IContextMenuEx_FormatStringOffsetTable[] =
+    {
+    (unsigned short) -1,
+    (unsigned short) -1,
+    (unsigned short) -1,
+    (unsigned short) -1,
+    0
+    };
+
+static const MIDL_STUBLESS_PROXY_INFO IContextMenuEx_ProxyInfo =
+    {
+    &Object_StubDesc,
+    ShellEx__MIDL_ProcFormatString.Format,
+    &IContextMenuEx_FormatStringOffsetTable[-3],
+    0,
+    0,
+    0
+    };
+
+
+static const MIDL_SERVER_INFO IContextMenuEx_ServerInfo = 
+    {
+    &Object_StubDesc,
+    0,
+    ShellEx__MIDL_ProcFormatString.Format,
+    &IContextMenuEx_FormatStringOffsetTable[-3],
+    0,
+    0,
+    0,
+    0};
+CINTERFACE_PROXY_VTABLE(7) _IContextMenuExProxyVtbl = 
+{
+    0,
+    &IID_IContextMenuEx,
+    IUnknown_QueryInterface_Proxy,
+    IUnknown_AddRef_Proxy,
+    IUnknown_Release_Proxy ,
+    0 /* IDispatch::GetTypeInfoCount */ ,
+    0 /* IDispatch::GetTypeInfo */ ,
+    0 /* IDispatch::GetIDsOfNames */ ,
+    0 /* IDispatch_Invoke_Proxy */
+};
+
+
+static const PRPC_STUB_FUNCTION IContextMenuEx_table[] =
+{
+    STUB_FORWARDING_FUNCTION,
+    STUB_FORWARDING_FUNCTION,
+    STUB_FORWARDING_FUNCTION,
+    STUB_FORWARDING_FUNCTION
+};
+
+CInterfaceStubVtbl _IContextMenuExStubVtbl =
+{
+    &IID_IContextMenuEx,
+    &IContextMenuEx_ServerInfo,
+    7,
+    &IContextMenuEx_table[-3],
+    CStdStubBuffer_DELEGATING_METHODS
+};
+
 static const MIDL_STUB_DESC Object_StubDesc = 
     {
     0,
@@ -223,23 +296,27 @@ static const MIDL_STUB_DESC Object_StubDesc =
 const CInterfaceProxyVtbl * const _ShellEx_ProxyVtblList[] = 
 {
     ( CInterfaceProxyVtbl *) &_IOverlayIconProxyVtbl,
+    ( CInterfaceProxyVtbl *) &_IContextMenuExProxyVtbl,
     0
 };
 
 const CInterfaceStubVtbl * const _ShellEx_StubVtblList[] = 
 {
     ( CInterfaceStubVtbl *) &_IOverlayIconStubVtbl,
+    ( CInterfaceStubVtbl *) &_IContextMenuExStubVtbl,
     0
 };
 
 PCInterfaceName const _ShellEx_InterfaceNamesList[] = 
 {
     "IOverlayIcon",
+    "IContextMenuEx",
     0
 };
 
 const IID *  const _ShellEx_BaseIIDList[] = 
 {
+    &IID_IDispatch,
     &IID_IDispatch,
     0
 };
@@ -249,14 +326,11 @@ const IID *  const _ShellEx_BaseIIDList[] =
 
 int __stdcall _ShellEx_IID_Lookup( const IID * pIID, int * pIndex )
 {
-    
-    if(!_ShellEx_CHECK_IID(0))
-        {
-        *pIndex = 0;
-        return 1;
-        }
+    IID_BS_LOOKUP_SETUP
 
-    return 0;
+    IID_BS_LOOKUP_INITIAL_TEST( _ShellEx, 2, 1 )
+    IID_BS_LOOKUP_RETURN_RESULT( _ShellEx, 2, *pIndex )
+    
 }
 
 const ExtendedProxyFileInfo ShellEx_ProxyFileInfo = 
@@ -266,7 +340,7 @@ const ExtendedProxyFileInfo ShellEx_ProxyFileInfo =
     (const PCInterfaceName * ) & _ShellEx_InterfaceNamesList,
     (const IID ** ) & _ShellEx_BaseIIDList,
     & _ShellEx_IID_Lookup, 
-    1,
+    2,
     2,
     0, /* table of [async_uuid] interfaces */
     0, /* Filler1 */
