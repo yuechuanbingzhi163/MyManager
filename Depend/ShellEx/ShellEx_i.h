@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 7.00.0555 */
-/* at Fri Apr 10 15:09:19 2015
+/* at Fri Apr 10 16:51:16 2015
  */
 /* Compiler settings for ShellEx.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 7.00.0555 
@@ -57,6 +57,12 @@ typedef interface IContextMenuEx IContextMenuEx;
 #endif 	/* __IContextMenuEx_FWD_DEFINED__ */
 
 
+#ifndef __IPropPageEx_FWD_DEFINED__
+#define __IPropPageEx_FWD_DEFINED__
+typedef interface IPropPageEx IPropPageEx;
+#endif 	/* __IPropPageEx_FWD_DEFINED__ */
+
+
 #ifndef __OverlayIcon_FWD_DEFINED__
 #define __OverlayIcon_FWD_DEFINED__
 
@@ -79,6 +85,18 @@ typedef struct ContextMenuEx ContextMenuEx;
 #endif /* __cplusplus */
 
 #endif 	/* __ContextMenuEx_FWD_DEFINED__ */
+
+
+#ifndef __PropPageEx_FWD_DEFINED__
+#define __PropPageEx_FWD_DEFINED__
+
+#ifdef __cplusplus
+typedef class PropPageEx PropPageEx;
+#else
+typedef struct PropPageEx PropPageEx;
+#endif /* __cplusplus */
+
+#endif 	/* __PropPageEx_FWD_DEFINED__ */
 
 
 /* header files for imported files */
@@ -312,6 +330,117 @@ EXTERN_C const IID IID_IContextMenuEx;
 #endif 	/* __IContextMenuEx_INTERFACE_DEFINED__ */
 
 
+#ifndef __IPropPageEx_INTERFACE_DEFINED__
+#define __IPropPageEx_INTERFACE_DEFINED__
+
+/* interface IPropPageEx */
+/* [unique][nonextensible][dual][uuid][object] */ 
+
+
+EXTERN_C const IID IID_IPropPageEx;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("707999AD-02F0-497A-AC71-3AB957347EC2")
+    IPropPageEx : public IDispatch
+    {
+    public:
+    };
+    
+#else 	/* C style interface */
+
+    typedef struct IPropPageExVtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
+            IPropPageEx * This,
+            /* [in] */ REFIID riid,
+            /* [annotation][iid_is][out] */ 
+            __RPC__deref_out  void **ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE *AddRef )( 
+            IPropPageEx * This);
+        
+        ULONG ( STDMETHODCALLTYPE *Release )( 
+            IPropPageEx * This);
+        
+        HRESULT ( STDMETHODCALLTYPE *GetTypeInfoCount )( 
+            IPropPageEx * This,
+            /* [out] */ UINT *pctinfo);
+        
+        HRESULT ( STDMETHODCALLTYPE *GetTypeInfo )( 
+            IPropPageEx * This,
+            /* [in] */ UINT iTInfo,
+            /* [in] */ LCID lcid,
+            /* [out] */ ITypeInfo **ppTInfo);
+        
+        HRESULT ( STDMETHODCALLTYPE *GetIDsOfNames )( 
+            IPropPageEx * This,
+            /* [in] */ REFIID riid,
+            /* [size_is][in] */ LPOLESTR *rgszNames,
+            /* [range][in] */ UINT cNames,
+            /* [in] */ LCID lcid,
+            /* [size_is][out] */ DISPID *rgDispId);
+        
+        /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
+            IPropPageEx * This,
+            /* [in] */ DISPID dispIdMember,
+            /* [in] */ REFIID riid,
+            /* [in] */ LCID lcid,
+            /* [in] */ WORD wFlags,
+            /* [out][in] */ DISPPARAMS *pDispParams,
+            /* [out] */ VARIANT *pVarResult,
+            /* [out] */ EXCEPINFO *pExcepInfo,
+            /* [out] */ UINT *puArgErr);
+        
+        END_INTERFACE
+    } IPropPageExVtbl;
+
+    interface IPropPageEx
+    {
+        CONST_VTBL struct IPropPageExVtbl *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IPropPageEx_QueryInterface(This,riid,ppvObject)	\
+    ( (This)->lpVtbl -> QueryInterface(This,riid,ppvObject) ) 
+
+#define IPropPageEx_AddRef(This)	\
+    ( (This)->lpVtbl -> AddRef(This) ) 
+
+#define IPropPageEx_Release(This)	\
+    ( (This)->lpVtbl -> Release(This) ) 
+
+
+#define IPropPageEx_GetTypeInfoCount(This,pctinfo)	\
+    ( (This)->lpVtbl -> GetTypeInfoCount(This,pctinfo) ) 
+
+#define IPropPageEx_GetTypeInfo(This,iTInfo,lcid,ppTInfo)	\
+    ( (This)->lpVtbl -> GetTypeInfo(This,iTInfo,lcid,ppTInfo) ) 
+
+#define IPropPageEx_GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)	\
+    ( (This)->lpVtbl -> GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId) ) 
+
+#define IPropPageEx_Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)	\
+    ( (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr) ) 
+
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+
+#endif 	/* __IPropPageEx_INTERFACE_DEFINED__ */
+
+
 
 #ifndef __ShellExLib_LIBRARY_DEFINED__
 #define __ShellExLib_LIBRARY_DEFINED__
@@ -336,6 +465,14 @@ EXTERN_C const CLSID CLSID_ContextMenuEx;
 
 class DECLSPEC_UUID("A4250BAE-CDC3-48F9-A25B-9CFEAFEED05A")
 ContextMenuEx;
+#endif
+
+EXTERN_C const CLSID CLSID_PropPageEx;
+
+#ifdef __cplusplus
+
+class DECLSPEC_UUID("E3D874A1-F261-48F5-9DE6-9E12D50C9BB4")
+PropPageEx;
 #endif
 #endif /* __ShellExLib_LIBRARY_DEFINED__ */
 

@@ -37,6 +37,9 @@
     <ClCompile Include="ContextMenuEx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="PropPageEx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -58,6 +61,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="ContextMenuEx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PropPageEx.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -84,6 +90,9 @@
       <Filter>资源文件</Filter>
     </None>
     <None Include="menuicon.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="PropPageEx.rgs">
       <Filter>资源文件</Filter>
     </None>
   </ItemGroup>

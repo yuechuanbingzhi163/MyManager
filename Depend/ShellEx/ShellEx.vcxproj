@@ -234,6 +234,7 @@
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="OverlayIcon.cpp" />
+    <ClCompile Include="PropPageEx.cpp" />
     <ClCompile Include="ShellEx.cpp" />
     <ClCompile Include="ShellEx_i.c">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
@@ -260,6 +261,7 @@
     <ClInclude Include="ContextMenuEx.h" />
     <ClInclude Include="dllmain.h" />
     <ClInclude Include="OverlayIcon.h" />
+    <ClInclude Include="PropPageEx.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ShellEx_i.h" />
     <ClInclude Include="stdafx.h" />
@@ -273,6 +275,7 @@
     <None Include="ContextMenuEx.rgs" />
     <None Include="menuicon.bmp" />
     <None Include="OverlayIcon.rgs" />
+    <None Include="PropPageEx.rgs" />
     <None Include="ReadMe.txt" />
     <None Include="ShellEx.def" />
     <None Include="ShellEx.rgs" />

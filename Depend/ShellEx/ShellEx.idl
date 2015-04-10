@@ -26,6 +26,15 @@ interface IOverlayIcon : IDispatch{
 interface IContextMenuEx : IDispatch{
 };
 [
+	object,
+	uuid(707999AD-02F0-497A-AC71-3AB957347EC2),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IPropPageEx : IDispatch{
+};
+[
 	uuid(1AD8F1E0-94CA-4F4E-8086-A138EFAD6497),
 	version(1.0),
 ]
@@ -45,6 +54,13 @@ library ShellExLib
 	coclass ContextMenuEx
 	{
 		[default] interface IContextMenuEx;
+	};
+	[		
+		uuid(E3D874A1-F261-48F5-9DE6-9E12D50C9BB4)		
+	]
+	coclass PropPageEx
+	{
+		[default] interface IPropPageEx;
 	};
 };
 
