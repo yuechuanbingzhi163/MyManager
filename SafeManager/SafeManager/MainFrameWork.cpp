@@ -4,7 +4,6 @@
 #include "WndScanQRCodeAndBind.h"
 #include "WndScanQRCodeOpen.h"
 #include "WndMainFrame.h"
-#include "HttpsRequest.h"
 #include "CryptoLayer.h"
 #include "SplitLayer.h"
 #include "DatabaseManager.h"
@@ -24,8 +23,6 @@ CMainFrameWork::CMainFrameWork(void):m_pWndMainFrame(NULL),m_nHotKeyID(-1)
 
 void CMainFrameWork::Init()
 {
-	CHttpsRequest::Curl_Global_Init();
-
 	if (Init_CryptoLayer())
 	{
 		LOG(_T("导入加密算法成功!"));
@@ -47,7 +44,7 @@ void CMainFrameWork::Init()
 
 CMainFrameWork::~CMainFrameWork(void)
 {
-	CHttpsRequest::Curl_global_cleanup();
+	
 }
 
 CMainFrameWork * CMainFrameWork::SingleInstance()
@@ -572,21 +569,7 @@ UINT CMainFrameWork::GetValidTime()
 
 void CMainFrameWork::RunMainAppWnd()
 {
-	if (!IsHaveRegisterApp())
-	{
-		ShowWndScanQRCodeBind();
-	}
-	else
-	{
-		if (m_nValidTime <= 0)
-		{
-			ShowWndScanQRCodeOpen(NULL, 0, _T("http:\\www.baidu.com"));
-		}	
-		else
-		{
-			ShowWndMainFrame();
-		}
-	}
+	ShowWndMainFrame();
 }
 
 void CMainFrameWork::UpdateValidTime()

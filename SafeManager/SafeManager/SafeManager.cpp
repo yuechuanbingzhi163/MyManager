@@ -4,7 +4,6 @@
 #include "stdafx.h"
 #include "SafeManager.h"
 #include "MainFrameWork.h"
-#include "HttpsRequest.h"
 #include "SplitLayer.h"
 #include "FileHandleManager.h"
 #include "WndMessageBox.h"

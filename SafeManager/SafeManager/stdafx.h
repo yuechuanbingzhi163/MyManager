@@ -56,4 +56,5 @@ using namespace DuiLib;
 #endif
 
 
-
+#define GWL_WNDPROC         (-4)
+#define GWL_USERDATA        (-21)

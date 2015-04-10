@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="libcurl">
-      <UniqueIdentifier>{50ebb279-8639-451c-93eb-518679703b6c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="sqlite">
       <UniqueIdentifier>{0eb43eb5-f461-4bbc-82c1-02adfdc22f5b}</UniqueIdentifier>
     </Filter>
@@ -67,33 +64,6 @@
     <ClInclude Include="Log.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\curl\curl.h">
-      <Filter>libcurl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\curl\curlbuild.h">
-      <Filter>libcurl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\curl\curlrules.h">
-      <Filter>libcurl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\curl\curlver.h">
-      <Filter>libcurl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\curl\easy.h">
-      <Filter>libcurl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\curl\mprintf.h">
-      <Filter>libcurl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\curl\multi.h">
-      <Filter>libcurl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\curl\stdcheaders.h">
-      <Filter>libcurl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\curl\typecheck-gcc.h">
-      <Filter>libcurl</Filter>
-    </ClInclude>
     <ClInclude Include="FileHandle.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -131,9 +101,6 @@
       <Filter>manager</Filter>
     </ClInclude>
     <ClInclude Include="QR_Encode.h">
-      <Filter>logic</Filter>
-    </ClInclude>
-    <ClInclude Include="HttpsRequest.h">
       <Filter>logic</Filter>
     </ClInclude>
     <ClInclude Include="MainFrameWork.h">
@@ -227,9 +194,6 @@
     </ClCompile>
     <ClCompile Include="Single.cpp">
       <Filter>other</Filter>
-    </ClCompile>
-    <ClCompile Include="HttpsRequest.cpp">
-      <Filter>logic</Filter>
     </ClCompile>
     <ClCompile Include="Log.cpp">
       <Filter>other</Filter>

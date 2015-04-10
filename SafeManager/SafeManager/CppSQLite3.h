@@ -40,9 +40,9 @@
 #ifdef _M_AMD64
 
 #ifdef _DEBUG
-#pragma comment(lib, "..\\..\\lib\\debug\\x64\\sqlite_d.lib")
+#pragma comment(lib, "..\\..\\lib\\debug\\sqlite_d.lib")
 #else
-#pragma comment(lib, "..\\..\\lib\\debug\\x64\\sqlite.lib")
+#pragma comment(lib, "..\\..\\lib\\release\\sqlite.lib")
 #endif 
 
 #else
@@ -50,7 +50,7 @@
 #ifdef _DEBUG
 #pragma comment(lib, "..\\..\\lib\\debug\\sqlite_d.lib")
 #else
-#pragma comment(lib, "..\\..\\lib\\debug\\sqlite.lib")
+#pragma comment(lib, "..\\..\\lib\\release\\sqlite.lib")
 #endif 
 
 #endif

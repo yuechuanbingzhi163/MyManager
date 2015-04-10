@@ -48,3 +48,6 @@ using namespace DuiLib;
 #endif
 
 #define WM_EXIT_APP (WM_USER + 0x12345)
+
+#define GWL_WNDPROC         (-4)
+#define GWL_USERDATA        (-21)

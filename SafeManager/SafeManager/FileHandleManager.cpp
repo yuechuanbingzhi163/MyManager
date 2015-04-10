@@ -3,7 +3,6 @@
 #include "function.h"
 #include "Single.h"
 #include "MainFrameWork.h"
-#include "HttpsRequest.h"
 #include "DatabaseManager.h"
 
 CFileHandleManager * CFileHandleManager::m_SingleInstance = NULL;
@@ -297,33 +296,9 @@ BOOL CFileHandleManager::ParseUploadFileTree(UINT nTask, CFileHandle *pRoot )
 		//上传
 		for(int i=0; i<(int)EVERY_FILE_CHIPS_NUMBER; i++)
 		{
-//			CHttpsRequest requst;
-//
-//			TCHAR SendComment[1000] = {0};
-//			string strSend;
-//
-//#ifdef UNICODE
-//			strSend = WStringToUTF8(SendComment);
-//#else
-//			wstring steTemp = ANSI2Unicode(SendComment);
-//			strSend = WStringToUTF8(steTemp);
-//#endif 
-//
-//			CURLcode retcode = requst.HttpsRequest(strSend.c_str());
-//
-//			if (retcode == CURLE_OK)
-//			{
 				UpdateUpOrDownLoadChipsInfo(nTask, pRoot);
-				//可以更新界面
-
-			//}
-			//else
-			//{
-			//	LOG(_T("%s上传文件碎片失败!"), pRoot->GetFileOldPath().c_str());
-			//}
 		}
 
-		//测试用------------------------------将相关碎片信息写入数据库//////////////////////////////////////////////////////////////////////////////
 		CDatabaseManager::GetSingleInstance()->InsertRecordToTableFileFragInfo(pRoot->GetFileID().c_str(), pRoot->GetFrageinfo()->Name[0], pRoot->GetFrageinfo()->Name[1], pRoot->GetFrageinfo()->Name[2]);
 	}
 	else							//处理目录
@@ -376,7 +351,6 @@ void CFileHandleManager::ParseDownloadFileTree( UINT nTask, CFileHandle *pRoot )
 
 	if (pRoot->GetFileType() == 1)			//处理文件
 	{
-		//测试用------------------------------//////////////////////////////////////////////////////////////////////////////
 		CDatabaseManager::QueryFileFragInfoRecordByFileID(pRoot->GetFileID().c_str(), *(pRoot->GetFrageinfo()));
 
 		//下载碎片
@@ -418,7 +392,6 @@ void CFileHandleManager::ParseDeleteFileTree(UINT nTask, CFileHandle *pRoot )
 	{
 		CDatabaseManager::DeleteFileBaseInfoRecordByFileID(pRoot->GetFileID().c_str());
 
-		//测试用------------------------------//////////////////////////////////////////////////////////////////////////////
 		CDatabaseManager::QueryFileFragInfoRecordByFileID(pRoot->GetFileID().c_str(), *(pRoot->GetFrageinfo()));
 
 		//下载碎片并删除
@@ -628,8 +601,6 @@ void CFileHandleManager::SearchDirecChildByID( LPCTSTR lpParentID, vector<CFileH
 	{
 		SearchFileHandleTreeByParentID(lpParentID, *iter, vecFileHandle);
 	}
-
-	//ResumeUpAndDownThread();
 }
 
 void CFileHandleManager::SearchFileHandleTreeByParentID( LPCTSTR lpParentID, CFileHandle *pRoot, vector<CFileHandle*> &vecFileHandle )
