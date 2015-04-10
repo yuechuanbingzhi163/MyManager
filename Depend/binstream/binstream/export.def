@@ -1,0 +1,6 @@
+LIBRARY
+
+EXPORTS
+GetIndex		;获取索引
+Split			;破碎
+Merge			;重组

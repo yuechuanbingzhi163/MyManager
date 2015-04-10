@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="590,398" caption="60,0,0,60" roundcorner="5,5" >
+  <!--0--> <Font name="微软雅黑" size="18" />
+  <!--1--> <Font name="微软雅黑" size="14" underline="false"/>
+  <!--2--> <Font name="微软雅黑" size="12" bold="false" italic="false" default="true"/>  
+  <!--3--> <Font name="微软雅黑" size="16" bold="false" italic="false" /> 
+
+    <VerticalLayout bkcolor="#FFFFFFFF"> 
+	
+		<HorizontalLayout bkimage="标题.png" height="60" >
+			<Control width="10" />
+			<Label bkimage="界面logo.png" width="33" height="32" padding="0,14,0,0" />
+			<Control width="6" />
+			<Label name="title" text="守密者" textcolor="#FFFFFFFF" font="3" />		
+			<Control />
+			<Button name="minbtn" height="16" width="16" normalimage="file='最小化.png' source='0,0,16,16'" hotimage="file='最小化.png' source='16,0,32,16'" padding="0,22,0,0" />
+			<Control width="15" />
+			<Button name="closebtn" height="16" width="16" normalimage="file='关闭.png' source='0,0,16,16'" hotimage="file='关闭.png' source='32,0,48,16'" padding="0,22,0,0" />
+			<Control width="15" />
+		</HorizontalLayout>
+		
+		<Control height="20" />
+		
+		<Label height="20" text="凯锐立德个人数据安全防护系统 V1.0" font="0" align="center"/>
+		
+		<Control height="20" />
+
+		<HorizontalLayout height="100">
+			<Control />
+			<Control name="con_weixin" width="100" />	
+			<Control width="60" />
+			<Control name="con_weibo" width="100" />
+			<Control />
+		</HorizontalLayout>
+		
+		<Control height="8" />
+		
+		<HorizontalLayout height="20">
+			<Control />
+			<Label text="微信" width="100" font="0" align="center"/>	
+			<Control width="60" />
+			<Label text="微博" width="100" font="0" align="center"/>
+			<Control />
+		</HorizontalLayout>
+		
+		<Control height="30" />
+		
+		<HorizontalLayout height="20">
+			<Control />
+			<Label text="网站: " font="3" width="45"/>
+			<Button name="btn_web" text="http://www.cherilead.com" textcolor="#FF28A6E0" hottextcolor="#FF189edb" font="3" align="left" width="220"/>
+			<Control />
+		</HorizontalLayout>	
+
+		<Control height="10" />
+		
+		<HorizontalLayout height="20">
+			<Control />
+			<Label text="反馈: " font="3" width="45"/>
+			<Button name="btn_feedback" text="http://www.cherilead.com" textcolor="#FF28A6E0" hottextcolor="#FF189edb" font="3" align="left" width="220"/>
+			<Control />
+		</HorizontalLayout>	
+
+		
+
+    </VerticalLayout>
+	
+	
+</Window>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="300,160" caption="40,0,0,40" roundcorner="5,5" >
+  <!--0--> <Font name="微软雅黑" size="18" bold="false" italic="false" />
+  <!--1--> <Font name="微软雅黑" size="14" bold="false" italic="false" />
+  <!--2--> <Font name="微软雅黑" size="12" bold="false" italic="false" />  
+  <!--3--> <Font name="微软雅黑" size="16" bold="false" italic="false" /> 
+
+
+    <VerticalLayout bkimage="界面背景.png">  
+	  
+	  <HorizontalLayout height="28" >
+		<Control width="10" />
+		<Label bkimage="file='small_logo.png' dest='0,2,24,26'" width="24" />
+		<Control width="6" />
+		<Label name="title" text="守密者" textcolor="#FFFFFFFF" font="3" />			
+		<Button name="closebtn" height="28" width="16" normalimage="file='关闭.png' source='0,0,16,16' dest='0,6,16,22'" hotimage="file='关闭.png' source='32,0,48,16' dest='0,6,16,22'" />
+		<Control width="10" />
+	  </HorizontalLayout>
+	  
+	<Label name="tip" text="提示文字11111111111111111" height="90" textcolor="#FFFF0000" font="1" align="center"/>
+	
+	<HorizontalLayout>
+		<Control />
+		<Button name="closebtn" text="确  定" width="100" height="26" font="3" normalimage="file='按钮.png' source='0,0,160,42'" hotimage="file='按钮.png' source='160,0,320,42'"/>
+		<Control />
+	</HorizontalLayout>
+		    
+
+    </VerticalLayout>
+	
+	
+</Window>

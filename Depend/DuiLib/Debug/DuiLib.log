@@ -1,0 +1,57 @@
+﻿生成启动时间为 2015/4/8/星期三 10:16:47。
+项目“D:\smclient\SafeManager\Depend\DuiLib\DuiLib.vcxproj”在节点 2 上(build 个目标)。
+InitializeBuildStatus:
+  正在创建“..\DuiLib\Debug\DuiLib.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+ClCompile:
+  所有输出均为最新。
+  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D UILIB_EXPORTS /D _VC80_UPGRADE=0x0600 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp".\Build\Debug/DuiLib.pch" /Fo"..\DuiLib\Debug\\" /Fd"..\DuiLib\Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Control\UIList.cpp
+  UIList.cpp
+  所有输出均为最新。
+  所有输出均为最新。
+Lib:
+  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\Lib.exe /OUT:"..\..\lib\debug\DuiLib_d.lib" /NOLOGO ..\DuiLib\Debug\StdAfx.obj
+  ..\DuiLib\Debug\UIlib.obj
+  ..\DuiLib\Debug\WinImplBase.obj
+  ..\DuiLib\Debug\stb_image.obj
+  ..\DuiLib\Debug\UIDelegate.obj
+  ..\DuiLib\Debug\Utils.obj
+  ..\DuiLib\Debug\XUnzip.obj
+  ..\DuiLib\Debug\UIBase.obj
+  ..\DuiLib\Debug\UIContainer.obj
+  ..\DuiLib\Debug\UIControl.obj
+  ..\DuiLib\Debug\UIDlgBuilder.obj
+  ..\DuiLib\Debug\UIManager.obj
+  ..\DuiLib\Debug\UIMarkup.obj
+  ..\DuiLib\Debug\UIRender.obj
+  ..\DuiLib\Debug\UIChildLayout.obj
+  ..\DuiLib\Debug\UIHorizontalLayout.obj
+  ..\DuiLib\Debug\UITabLayout.obj
+  ..\DuiLib\Debug\UITileLayout.obj
+  ..\DuiLib\Debug\UIVerticalLayout.obj
+  ..\DuiLib\Debug\UIActiveX.obj
+  ..\DuiLib\Debug\UIButton.obj
+  ..\DuiLib\Debug\UICheckBox.obj
+  ..\DuiLib\Debug\UICombo.obj
+  ..\DuiLib\Debug\UIComboBox.obj
+  ..\DuiLib\Debug\UIDateTime.obj
+  ..\DuiLib\Debug\UIEdit.obj
+  ..\DuiLib\Debug\UIFlash.obj
+  ..\DuiLib\Debug\UILabel.obj
+  ..\DuiLib\Debug\UIList.obj
+  ..\DuiLib\Debug\UIOption.obj
+  ..\DuiLib\Debug\UIProgress.obj
+  ..\DuiLib\Debug\UIRichEdit.obj
+  ..\DuiLib\Debug\UIScrollBar.obj
+  ..\DuiLib\Debug\UISlider.obj
+  ..\DuiLib\Debug\UIText.obj
+  ..\DuiLib\Debug\UITreeView.obj
+  ..\DuiLib\Debug\UIWebBrowser.obj
+  DuiLib.vcxproj -> D:\smclient\SafeManager\Depend\DuiLib\..\..\lib\debug\DuiLib_d.lib
+FinalizeBuildStatus:
+  正在删除文件“..\DuiLib\Debug\DuiLib.unsuccessfulbuild”。
+  正在对“..\DuiLib\Debug\DuiLib.lastbuildstate”执行 Touch 任务。
+已完成生成项目“D:\smclient\SafeManager\Depend\DuiLib\DuiLib.vcxproj”(build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:00.67

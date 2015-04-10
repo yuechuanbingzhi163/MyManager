@@ -1,0 +1,6 @@
+LIBRARY
+EXPORTS
+
+GetIndex
+Decrypt
+Encrypt

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="590,318" caption="40,0,0,40" roundcorner="5,5" >
+  <!--0--> <Font name="微软雅黑" size="18" bold="false" italic="false" />
+  <!--1--> <Font name="微软雅黑" size="14" bold="false" italic="false" />
+  <!--2--> <Font name="微软雅黑" size="12" bold="false" italic="false" default="true"/>  
+  <!--3--> <Font name="微软雅黑" size="16" bold="false" italic="false" /> 
+
+   <Include source="scrollbar.xml" />
+
+    <VerticalLayout bkimage="界面背景.png">  
+	  
+	  <HorizontalLayout height="56" >
+		<Control width="10" />
+		<Label bkimage="界面logo.png" width="33" height="32" padding="0,12,0,0" />
+		<Control width="6" />
+		<Label name="title" text="守密者" textcolor="#FFFFFFFF" font="3" />		
+		<Control />
+		<Button name="btn_question" height="16" width="16" normalimage="file='关于.png' source='0,0,16,16'" hotimage="file='关于.png' source='16,0,32,16'" padding="0,20,0,0" />
+		<Control width="15" />
+		<Button name="minbtn" height="16" width="16" normalimage="file='最小化.png' source='0,0,16,16'" hotimage="file='最小化.png' source='16,0,32,16'" padding="0,20,0,0" />
+		<Control width="15" />
+		<Button name="closebtn" height="16" width="16" normalimage="file='关闭.png' source='0,0,16,16'" hotimage="file='关闭.png' source='32,0,48,16'" padding="0,20,0,0" />
+		<Control width="15" />
+	  </HorizontalLayout>
+	  
+	  <HorizontalLayout height="80" >
+		<Control width="15" />
+		<Label text="密盘名称:" width="75" font="3" textcolor="#FF555555"/>
+		<Edit name="disk_name" text="12345" width="400" height="40" bordersize="1" bordercolor="#FF189EDB" font="3" padding="0,20,0,0" textcolor="#FF555555"/>
+		<Control />
+	  </HorizontalLayout>
+	  
+	  <HorizontalLayout name="hor_shortcut" height="40">
+		<Control width="15" />
+		<Label text=" 快捷键:" width="75" font="3" textcolor="#FF555555"/>
+		<Label text="Ctrl + Shift + " font="1" width="100" textcolor="#FF555555" />
+       <Combo name="combo_shortcut" padding="0,8,0,0" vscrollbar="true" textpadding="3,0,20,0" width="40" font="2" itemfont="2" itemtextpadding="3,0,0,0" itemselectedtextcolor="#FF555555" textcolor="#FF555555" vscrollbar="true" itemtextcolor="#FF555555" height="25" dropboxsize="0,100" itemalign="left" bordersize="1" bordercolor="#FFAFAFAF" normalimage="file='combo_right.png' source='0,0,20,20' dest='20,2,40,22'" hotimage="file='combo_right.png' source='21,0,41,20' dest='20,2,40,22'" pushedimage="file='combo_right.png' source='42,0,62,20' dest='20,2,40,22'">
+			<ListLabelElement text="A"  height="26" selected="true"/>
+			<ListLabelElement text="B"  height="26"/>
+			<ListLabelElement text="C"  height="26"/>
+			<ListLabelElement text="D"  height="26"/>
+			<ListLabelElement text="E"  height="26"/>
+			<ListLabelElement text="F"  height="26"/>
+			<ListLabelElement text="G"  height="26"/>
+			<ListLabelElement text="H"  height="26"/>
+			<ListLabelElement text="I"  height="26"/>
+			<ListLabelElement text="J"  height="26"/>
+			<ListLabelElement text="K"  height="26"/>
+			<ListLabelElement text="L"  height="26"/>
+			<ListLabelElement text="M"  height="26"/>
+			<ListLabelElement text="N"  height="26"/>
+			<ListLabelElement text="O"  height="26"/>
+			<ListLabelElement text="P"  height="26"/>
+			<ListLabelElement text="Q"  height="26"/>
+			<ListLabelElement text="R"  height="26"/>
+			<ListLabelElement text="S"  height="26"/>
+			<ListLabelElement text="T"  height="26"/>
+			<ListLabelElement text="U"  height="26"/>
+			<ListLabelElement text="V"  height="26"/>
+			<ListLabelElement text="W"  height="26"/>
+			<ListLabelElement text="X"  height="26"/>
+			<ListLabelElement text="Y"  height="26"/>
+			<ListLabelElement text="Z"  height="26"/>			
+        </Combo>
+		
+		<Control width="40" />
+		<Option name="opt_shortcut" text="启用" font="1" textcolor="#FF555555" textpadding="20,0,0,0"  width="55" normalimage="file='checkbox.png' source='0,0,16,16' dest='0,12,16,28'" selectedimage="file='checkbox.png' source='16,0,32,16' dest='0,12,16,28'" />
+	  </HorizontalLayout>
+	  
+	  <Control height="15" />
+	  
+	  <HorizontalLayout height="16">
+		<Control width="90" />
+		<Option name="shortcut_show" text="是否隐藏快捷方式" font="1" textcolor="#FF555555" textpadding="17,0,0,0" width="150" normalimage="file='checkbox.png' source='0,0,16,16' dest='0,0,16,16'" selectedimage="file='checkbox.png' source='16,0,32,16' dest='0,0,16,16'" />
+		<Control width="30" />
+		<Option name="trayicon_show" text="是否隐藏托盘图标" font="1" textcolor="#FF555555" textpadding="17,0,0,0" width="150" normalimage="file='checkbox.png' source='0,0,16,16' dest='0,0,16,16'" selectedimage="file='checkbox.png' source='16,0,32,16' dest='0,0,16,16'" />
+		<Control />
+	  </HorizontalLayout>
+	  
+	  <Control height="15" />
+	  
+	  <HorizontalLayout height="16" >
+		<Label text="其他:  " width="90" align="right" font="3" textcolor="#FF555555" />
+		<Option name="file_save" text="发送到密盘是否保留原文件" font="1" textcolor="#FF555555" textpadding="17,0,0,0" width="200" normalimage="file='checkbox.png' source='0,0,16,16' dest='0,0,16,16'" selectedimage="file='checkbox.png' source='16,0,32,16' dest='0,0,16,16'" />
+	  </HorizontalLayout>
+	  
+	  <Control height="20" />
+	  
+	  <HorizontalLayout height="42" >
+		<Control />
+		<Button name="btn_ok" width="160" text="确  定" font="0" textcolor="FF189EDB" hottextcolor="#FFFFFFFF" pushedtextcolor="FF189EDB" normalimage="file='按钮.png' source='0,0,160,42'" hotimage="file='按钮.png' source='160,0,320,42'" />
+		<Control />
+	  </HorizontalLayout>
+	  
+	
+		    
+
+    </VerticalLayout>
+	
+	
+</Window>

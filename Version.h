@@ -1,0 +1,112 @@
+//
+// call readme:
+//		#define _GUI_
+//		#include "../../Version.h"
+//
+
+#define VERSION						MAJOR_VERSION_NUMBER,MINOR_VERSION_NUMBER,PATCH_VERSION_NUMBER,BUILD_VERSION_NUMBER		
+#define VERSION_STRING				STR(VERSION_NUMBER)
+#define VERSION_NUMBER 				MAJOR_VERSION_NUMBER.MINOR_VERSION_NUMBER.PATCH_VERSION_NUMBER.BUILD_VERSION_NUMBER
+#define VERSION_STRING_P			STR(VERSION_NUMBER_P)
+#define VERSION_NUMBER_P 			MAJOR_VERSION_NUMBER.MINOR_VERSION_NUMBER.PATCH_VERSION_NUMBER
+#define VERSION_COMPANY_STRING		"Copyright (C) 2014-2015 北京凯锐立德科技有限公司"
+#define STR(a)						_STR(a)
+#define _STR(a)						#a
+
+// product 
+#ifndef MAJOR_VERSION_NUMBER
+#define MAJOR_VERSION_NUMBER 		1
+#endif
+
+#ifndef MINOR_VERSION_NUMBER
+#define MINOR_VERSION_NUMBER 		0
+#endif
+
+#ifndef PATCH_VERSION_NUMBER
+#define PATCH_VERSION_NUMBER 		1
+#endif
+
+// crypto
+#ifdef _CORE_
+#define BUILD_VERSION_NUMBER 		1011
+#endif
+
+#ifdef _GUI_
+#define BUILD_VERSION_NUMBER 		866
+#endif
+
+#ifdef _SPLIT_BINSTREAM_
+#define BUILD_VERSION_NUMBER 		528
+#endif
+
+#ifdef _CRYPTO_AES_
+#define BUILD_VERSION_NUMBER 		322
+#endif
+
+#ifdef _TEMPLATE_
+#define BUILD_VERSION_NUMBER 		987
+#endif
+
+#ifdef _TEMPLATE_EX_
+#define BUILD_VERSION_NUMBER 		984
+#endif
+
+#ifdef _HOOK_CTRL_
+#define BUILD_VERSION_NUMBER 		987
+#endif
+
+#ifdef _HOOK_FILE_
+#define BUILD_VERSION_NUMBER 		843
+#endif
+
+#ifdef _HOOK_SCREEN_
+#define BUILD_VERSION_NUMBER 		632
+#endif
+
+#ifdef _HOOK_HELPER_
+#define BUILD_VERSION_NUMBER 		863
+#endif
+
+#ifdef _MENU_
+#define BUILD_VERSION_NUMBER 		790
+#endif
+
+#ifdef _MENU_EXT_
+#define BUILD_VERSION_NUMBER 		704
+#endif
+
+#ifdef _OVERLAY_ICON_
+#define BUILD_VERSION_NUMBER 		528
+#endif
+
+#ifdef _OVERLAY_ICON_LOCAL_
+#define BUILD_VERSION_NUMBER 		528
+#endif
+
+#ifdef _OVERLAY_ICON_OFFLINE_
+#define BUILD_VERSION_NUMBER 		528
+#endif
+
+#ifdef _OVERLAY_ICON_WARNING_
+#define BUILD_VERSION_NUMBER 		528
+#endif
+
+#ifdef _INSTALL_
+#define BUILD_VERSION_NUMBER 		988
+#endif
+
+#ifdef _MANAGER_TOOL_
+#define BUILD_VERSION_NUMBER 		987
+#endif
+
+#ifdef _DATA_SYS_
+#define BUILD_VERSION_NUMBER 		997
+#endif
+
+#ifdef _DCCLIENT_
+#define BUILD_VERSION_NUMBER 		627
+#endif
+
+#ifdef _DUILIB_
+#define BUILD_VERSION_NUMBER 		404
+#endif

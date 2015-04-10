@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="590,400" caption="40,0,0,40" roundcorner="5,5" >
+  <!--0--> <Font name="微软雅黑" size="18" bold="false" italic="false" />
+  <!--1--> <Font name="微软雅黑" size="14" bold="false" italic="false" />
+  <!--2--> <Font name="微软雅黑" size="12" bold="false" italic="false" />
+
+  
+  <Include source="scrollbar.xml" />  
+
+    <VerticalLayout >
+      
+		<TabLayout name="maintab" height="400">		
+		
+			<!--安装首页-->
+			<Container name="firstpage" bkimage="安装背景.png">
+				
+				<VerticalLayout name="firstpate_quick_install" >
+					<Control height="12"/>
+					<HorizontalLayout height="16">
+						<Control />
+						<Button name="minbtn" width="16" normalimage="file='最小化.png' source='0,0,16,16'" hotimage="file='最小化.png' source='16,0,32,16'"/>
+						<Control width="20"/>
+						<Button name="close_btn" width="16" normalimage="file='关闭.png' source='0,0,16,16'" hotimage="file='关闭.png' source='32,0,48,16'" disabledimage="file='弹窗关闭.png' source='0,0,16,16'"/>
+						<Control width="12"/>
+					</HorizontalLayout>					
+					<Control height="150" bkimage="file='安装logo.png' source='0,15,286,165' dest='150,0,436,150'" />
+					<Control height="36" bkimage="file='安装logo2.png' dest='131,0,460,36'" />
+					
+					<TabLayout name="tab_install_set_and_progress">
+						<VerticalLayout>
+							<Control />
+							<HorizontalLayout height="42" >
+								<Control />
+								<Button name="quick_install" text="快速安装" font="0" textcolor="#FFFFFFFF" disabledtextcolor="#FFFFFFFF" enabled="true" normalimage="file='快速安装.png' source='0,0,214,42'" hotimage="file='快速安装.png' source='214,0,428,42'" disabledimage="file='快速安装.png' source='428,0,642,42'" />
+								<Control />
+							</HorizontalLayout>
+							
+							<Control name="con_quick_install" height="20" />
+							
+							<HorizontalLayout height="16" >
+								<Control width="12" />
+								<Option width="100" name="protocol_option" text="我已阅读并同意" selected="true" textpadding="18,0,0,0" normalimage="file='同意协议.png' source='0,0,16,16' dest='0,0,16,16'" selectedimage="file='同意协议.png' source='16,0,32,16' dest='0,0,16,16'" />
+								<Button width="80" name="protocol_btn" text="用户使用协议" textcolor="#FF189cdb" hottextcolor="#FF0000FF"/>
+								<Control />
+								<Option width="90" name="sef_install" text="自定义安装" textcolor="#FF189cdb" textpadding="0,0,20,0" normalimage="file='展开.png' source='0,0,16,16' dest='74,0,90,16'" selectedimage="file='展开.png' source='16,0,32,16' dest='74,0,90,16'"/>   
+								<Control width="12" />
+							</HorizontalLayout>
+							
+							<Control height="12" />
+					
+							<VerticalLayout name="ver_self_install" height="56" visible="false" >
+								<Control height="6" />
+								<HorizontalLayout height="26" >
+									<Control width="12" />
+									<Label text="安装路径:" width="55" />
+									<Control width="10" />
+									<Edit name="edit_install_path" font="2" enabled="false" width="394" bordersize="1" bordercolor="#FF777777" />
+									<Control width="12" />
+									<Button name="btn_install_path" width="80" text="浏览" font="1" normalimage="file='浏览.png' source='0,0,80,36'" hotimage="file='浏览.png' source='160,0,240,36'" />
+								</HorizontalLayout>
+								<Control />
+							</VerticalLayout>
+						</VerticalLayout>
+						
+						<VerticalLayout >
+							<Control height="100"/>
+							
+							<HorizontalLayout height="16" >
+								<Control width="10" />
+								<Label name="label_progress_tip" text="正在安装..." />
+								<Label width="30" name="label_progress_value" text="0%" />
+								<Control width="10" />
+							</HorizontalLayout>
+							
+							<Control height="10" />
+							
+							<HorizontalLayout height="50" >
+								<Control width="10" />
+								<Progress name="install_progress" bordersize="1,1,1,1" bordercolor="#FFb8d6f0" foreimage="progress_fore.png" isstretchfore="true" min="0" max="100" value="0" />
+								<Control width="10" />
+							</HorizontalLayout>
+							
+							<Control />
+							
+						</VerticalLayout>
+					
+					</TabLayout>					
+				</VerticalLayout>
+				
+				<VerticalLayout name="firstpage_protocol" visible="false" bkimage="弹窗背景底图.png">
+					<Control />
+					<HorizontalLayout height="238" >
+						<Control />
+						<VerticalLayout width="458" bkimage="弹窗背景.png">
+							<Control height="30" />
+							<HorizontalLayout height="20" >
+								<Control width="28" />
+								<Label text="锐盾使用协议" font="0" align="center"/>
+								<Button name="protocol_close_btn" width="16" height="16" normalimage="file='弹窗关闭.png' source='0,0,16,16'" hotimage="file='弹窗关闭.png' source='32,0,48,16'" />
+								<Control width="30" />
+							</HorizontalLayout>
+							<Control height="14" />
+							<HorizontalLayout  height="1" >
+								<Control width="25" />
+								<Control bkcolor="#FF189cdb" />
+								<Control width="25" />
+							</HorizontalLayout>
+							<Control height="8" />
+							
+							<HorizontalLayout >
+								<Control width="35" />
+								<RichEdit font="1" text="1 根据法律规定您应提交真实信息，而您提供的个人资料不真实、或与注册时信息不一致又未能提供合理证明；
+2 您违反相关法律法规或本协议的约定；
+3 按照法律规定或主管部门的要求；
+4 出于安全的原因或其他必要的情形。" />
+								<Control width="35" />
+							</HorizontalLayout>
+							
+							<Control height="25" />
+						</VerticalLayout>
+						<Control />
+					</HorizontalLayout>
+					<Control />
+				</VerticalLayout>
+				
+			</Container>
+		
+		</TabLayout>     
+
+    </VerticalLayout>
+</Window>

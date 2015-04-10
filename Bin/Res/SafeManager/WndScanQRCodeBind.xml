@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="590,318" caption="40,0,0,40" roundcorner="5,5" >
+  <!--0--> <Font name="微软雅黑" size="18" bold="false" italic="false" />
+  <!--1--> <Font name="微软雅黑" size="14" bold="false" italic="false" />
+  <!--2--> <Font name="微软雅黑" size="12" bold="false" italic="false" />  
+  <!--3--> <Font name="微软雅黑" size="16" bold="false" italic="false" /> 
+
+
+    <VerticalLayout bkimage="界面背景.png">
+      <Control height="12" />
+	  
+	  <HorizontalLayout height="33" >
+		<Control width="12" />
+		<Control bkimage="界面logo.png" width="32" />
+		<Control width="10" />
+		<Label text="守密者" textcolor="#FFFFFFFF" font="0" />		
+		<Button name="minbtn" width="16" height="16" normalimage="file='最小化.png' source='0,0,16,16'" hotimage="file='最小化.png' source='16,0,32,16'"/>
+		<Control width="15" />
+		<Button name="btn_close" height="16" width="16" normalimage="file='关闭.png' source='0,0,16,16'" hotimage="file='关闭.png' source='32,0,48,16'" />
+		<Control width="20" />
+	  </HorizontalLayout>
+	  
+	  <Control height="40"/>
+	  
+	  <HorizontalLayout height="130">
+		<Control width="80" />
+		<VerticalLayout width="122">
+			<Control />			
+			<Control name="QR_Code" height="122" width="122" />
+			<Control />
+		</VerticalLayout>
+		
+		<Control width="20" />	
+		
+		<RichEdit font="1" readonly="true" height="140" textcolor="#FF505050" text="1、请使用锐盾口令APP扫描二维码；
+2、扫描之后，您的机器将和手机APP唯一绑定，之后您的验证操作均需要该手机扫码。
+注意：如未安装锐盾口令APP,请先安装。
+下载地址：http:www.baidu.com" />	
+
+		<Control width="80" />
+	  </HorizontalLayout>
+	  
+	  <Control />
+	  
+	  <HorizontalLayout height="42">
+		<Control />
+		<Button name="btn_skip" text="跳 过" font="3" normalimage="file='按钮.png' source='0,0,160,42'" hotimage="file='按钮.png' source='160,0,320,42'" />
+		<Control />
+	  </HorizontalLayout>
+	  
+		<Control height="20" />
+		    
+
+    </VerticalLayout>
+	
+	
+</Window>

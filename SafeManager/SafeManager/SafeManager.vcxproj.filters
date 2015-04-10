@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="libcurl">
+      <UniqueIdentifier>{50ebb279-8639-451c-93eb-518679703b6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sqlite">
+      <UniqueIdentifier>{0eb43eb5-f461-4bbc-82c1-02adfdc22f5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="wnd">
+      <UniqueIdentifier>{6d5feffc-ecf4-47b2-968b-0eea05e11737}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="logic">
+      <UniqueIdentifier>{34193ce6-c69a-483d-b46b-8e3cfd34419e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="other">
+      <UniqueIdentifier>{0940f748-ea9d-4d46-a5d6-910ff9c045b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="manager">
+      <UniqueIdentifier>{a28999c7-ea53-4754-9081-50bffadcd2d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="control">
+      <UniqueIdentifier>{d2beeba2-9d42-4e4e-973b-71a52d829535}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="small.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="SafeManager.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="logo.png">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="companylogo.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="..\..\Bin\Res\SafeManager\SafeManager.zip" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SafeManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Log.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\curl\curl.h">
+      <Filter>libcurl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\curl\curlbuild.h">
+      <Filter>libcurl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\curl\curlrules.h">
+      <Filter>libcurl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\curl\curlver.h">
+      <Filter>libcurl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\curl\easy.h">
+      <Filter>libcurl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\curl\mprintf.h">
+      <Filter>libcurl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\curl\multi.h">
+      <Filter>libcurl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\curl\stdcheaders.h">
+      <Filter>libcurl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\curl\typecheck-gcc.h">
+      <Filter>libcurl</Filter>
+    </ClInclude>
+    <ClInclude Include="FileHandle.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CppSQLite3.h">
+      <Filter>sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="WndMainFrame.h">
+      <Filter>wnd</Filter>
+    </ClInclude>
+    <ClInclude Include="WndScanQRCodeAndBind.h">
+      <Filter>wnd</Filter>
+    </ClInclude>
+    <ClInclude Include="WndScanQRCodeOpen.h">
+      <Filter>wnd</Filter>
+    </ClInclude>
+    <ClInclude Include="WndShadow.h">
+      <Filter>wnd</Filter>
+    </ClInclude>
+    <ClInclude Include="CryptoLayer.h">
+      <Filter>logic</Filter>
+    </ClInclude>
+    <ClInclude Include="DropTargetEx.h">
+      <Filter>logic</Filter>
+    </ClInclude>
+    <ClInclude Include="SplitLayer.h">
+      <Filter>logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Single.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="function.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="FileHandleManager.h">
+      <Filter>manager</Filter>
+    </ClInclude>
+    <ClInclude Include="QR_Encode.h">
+      <Filter>logic</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpsRequest.h">
+      <Filter>logic</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrameWork.h">
+      <Filter>manager</Filter>
+    </ClInclude>
+    <ClInclude Include="DatabaseManager.h">
+      <Filter>manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ListContainerElementOfFIleList.h">
+      <Filter>control</Filter>
+    </ClInclude>
+    <ClInclude Include="PathEditUI.h">
+      <Filter>control</Filter>
+    </ClInclude>
+    <ClInclude Include="WndMessageBox.h">
+      <Filter>wnd</Filter>
+    </ClInclude>
+    <ClInclude Include="WndAbout.h">
+      <Filter>wnd</Filter>
+    </ClInclude>
+    <ClInclude Include="WndConfig.h">
+      <Filter>wnd</Filter>
+    </ClInclude>
+    <ClInclude Include="ShortcutEditUI.h">
+      <Filter>control</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeNode.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="TrayNotifyIcon.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="WndTray.h">
+      <Filter>wnd</Filter>
+    </ClInclude>
+    <ClInclude Include="WndQuit.h">
+      <Filter>wnd</Filter>
+    </ClInclude>
+    <ClInclude Include="WndFeedBack.h">
+      <Filter>wnd</Filter>
+    </ClInclude>
+    <ClInclude Include="WndMoveOrPasteTo.h">
+      <Filter>wnd</Filter>
+    </ClInclude>
+    <ClInclude Include="WndProgress.h">
+      <Filter>wnd</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SafeManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="QR_Encode.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FileHandle.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CppSQLite3.cpp">
+      <Filter>sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="WndShadow.cpp">
+      <Filter>wnd</Filter>
+    </ClCompile>
+    <ClCompile Include="WndScanQRCodeOpen.cpp">
+      <Filter>wnd</Filter>
+    </ClCompile>
+    <ClCompile Include="WndScanQRCodeAndBind.cpp">
+      <Filter>wnd</Filter>
+    </ClCompile>
+    <ClCompile Include="WndMainFrame.cpp">
+      <Filter>wnd</Filter>
+    </ClCompile>
+    <ClCompile Include="CryptoLayer.cpp">
+      <Filter>logic</Filter>
+    </ClCompile>
+    <ClCompile Include="DropTargetEx.cpp">
+      <Filter>logic</Filter>
+    </ClCompile>
+    <ClCompile Include="SplitLayer.cpp">
+      <Filter>logic</Filter>
+    </ClCompile>
+    <ClCompile Include="FileHandleManager.cpp">
+      <Filter>manager</Filter>
+    </ClCompile>
+    <ClCompile Include="function.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="Single.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="HttpsRequest.cpp">
+      <Filter>logic</Filter>
+    </ClCompile>
+    <ClCompile Include="Log.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrameWork.cpp">
+      <Filter>manager</Filter>
+    </ClCompile>
+    <ClCompile Include="DatabaseManager.cpp">
+      <Filter>manager</Filter>
+    </ClCompile>
+    <ClCompile Include="ListContainerElementOfFIleList.cpp">
+      <Filter>control</Filter>
+    </ClCompile>
+    <ClCompile Include="PathEditUI.cpp">
+      <Filter>control</Filter>
+    </ClCompile>
+    <ClCompile Include="WndMessageBox.cpp">
+      <Filter>wnd</Filter>
+    </ClCompile>
+    <ClCompile Include="WndAbout.cpp">
+      <Filter>wnd</Filter>
+    </ClCompile>
+    <ClCompile Include="WndConfig.cpp">
+      <Filter>wnd</Filter>
+    </ClCompile>
+    <ClCompile Include="ShortcutEditUI.cpp">
+      <Filter>control</Filter>
+    </ClCompile>
+    <ClCompile Include="TrayNotifyIcon.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeNode.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+    <ClCompile Include="WndTray.cpp">
+      <Filter>wnd</Filter>
+    </ClCompile>
+    <ClCompile Include="WndQuit.cpp">
+      <Filter>wnd</Filter>
+    </ClCompile>
+    <ClCompile Include="WndFeedBack.cpp">
+      <Filter>wnd</Filter>
+    </ClCompile>
+    <ClCompile Include="WndMoveOrPasteTo.cpp">
+      <Filter>wnd</Filter>
+    </ClCompile>
+    <ClCompile Include="WndProgress.cpp">
+      <Filter>wnd</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SafeManager.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

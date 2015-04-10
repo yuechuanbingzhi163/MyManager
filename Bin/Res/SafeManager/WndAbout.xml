@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="590,318" caption="40,0,0,40" roundcorner="5,5" >
+  <!--0--> <Font name="微软雅黑" size="18" />
+  <!--1--> <Font name="微软雅黑" size="14" underline="false"/>
+  <!--2--> <Font name="微软雅黑" size="16" bold="false" italic="false" /> 
+
+
+
+    <VerticalLayout bkimage="关于背景.png"> 
+
+	<Control height="15" />
+	  
+	 <HorizontalLayout height="16" >
+	 	<Control  />	
+		<Button name="btn_update" font="1" width="60" text="检查更新" textcolor="#FFFFFFFF" hottextcolor="#FF0000FF"/>
+		<Control  width="20"/>	
+		<Button name="minbtn" height="16" width="16" normalimage="file='最小化.png' source='0,0,16,16'" hotimage="file='最小化.png' source='16,0,32,16'" />
+		<Control width="15" />
+		<Button name="closebtn" height="16" width="16" normalimage="file='关闭.png' source='0,0,16,16'" hotimage="file='关闭.png' source='32,0,48,16'"/>
+		<Control width="15" />
+	 </HorizontalLayout>
+	  
+	<Control height="30" />
+	
+	<HorizontalLayout height="85">
+		<Control />
+		<Control width="234" bkimage="关于logo.png" />
+		<Control />
+	</HorizontalLayout>
+	
+	<Control />
+	
+	<HorizontalLayout height="90">
+		<Control width="120" />
+		<VerticalLayout >
+			<Label text="凯锐立德®守密者个人数据安全管家 V1.0" align="left" font="0" height="30"/>
+			<Label showhtml="true" text="{f 2}技术支持：{c #28A6E0}010-59840001{/c}{/f}" align="left" height="30"/>
+			<Button name="btn_link" text="http://www.cherilead.com" width="200" textcolor="#FF28A6E0" hottextcolor="#FF189edb" font="2" align="left" height="30"/>			
+		</VerticalLayout>		
+	</HorizontalLayout>	
+
+	
+	<Control height="20" />	    
+
+    </VerticalLayout>
+	
+	
+</Window>

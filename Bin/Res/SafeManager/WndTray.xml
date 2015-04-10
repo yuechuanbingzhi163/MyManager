@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="120,126" caption="40,0,0,40" roundcorner="5,5" >
+  <!--0--> <Font name="微软雅黑" size="18" bold="false" italic="false" />
+  <!--1--> <Font name="微软雅黑" size="14" bold="false" italic="false" />
+  <!--2--> <Font name="微软雅黑" size="13" bold="false" italic="false" />  
+  <!--3--> <Font name="微软雅黑" size="12" bold="false" italic="false" /> 
+
+
+    <VerticalLayout bkimage="托盘背景.png">  
+	  
+	  <HorizontalLayout height="36" >
+		<Control width="10" />
+		<Label bkimage="file='托盘logo.png' dest='0,6,24,30'" width="24" />
+		<Control width="5" />
+		<Label name="title" text="守密者" textcolor="#FFFFFFFF" font="1" />	
+	  </HorizontalLayout>
+	  
+	  <List name="menulist" >
+		<ListContainerElement >
+			<Button name="btn_set" text="设置中心"  normalimage="file='设置.png' dest='10,8,24,22'" textpadding="0,0,0,0" />
+		</ListContainerElement>
+		<ListContainerElement >
+			<Button name="btn_feedback" text="反   馈" normalimage="file='反馈.png' dest='10,8,24,22'" textpadding="0,0,0,0" />
+		</ListContainerElement>
+		<ListContainerElement >
+			<Button name="btn_quit" text="安全退出" normalimage="file='安全退出.png' dest='10,8,24,22'" textpadding="0,0,0,0" />
+		</ListContainerElement>
+      </List>
+
+		    
+
+    </VerticalLayout>
+	
+	
+</Window>

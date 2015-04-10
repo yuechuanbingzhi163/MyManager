@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window  caption="0,0,0,40" size="520,175" roundcorner="0.01,0.01" >
+  <Font name="微软雅黑" size="12" bold="false" default="true" />
+  <VerticalLayout bkimage="updatebkimage.png" width="250" height="100"  >
+    <!--<Button name="hideBtn" float="true" pos="220, 10,0,0" width="14" height="14" normalimage="del.png" hotimage="del2.png" />-->
+    <Text name="tip" text="" float="true" pos ="24,58,0,0" width="455" height="30" />
+    <Text name="animation" text="" alignt="right" float="true" pos ="464,58,0,0" width="15" height="30" />
+    <Progress name="progress" bordersize="1,1,1,1" bordercolor="#FFb8d6f0" isstretchfore="true" float="true" pos="24,80,0,0" width="455" height="13" foreimage="progress_fore.png" min="0" max="100" value="0" />
+  </VerticalLayout>
+</Window>

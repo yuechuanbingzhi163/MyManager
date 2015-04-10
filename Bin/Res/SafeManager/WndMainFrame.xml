@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="1096,700" caption="66,0,0,66" roundcorner="5,5"sizebox="4,4,6,6" mininfo="950,548">
+  <!--0--> <Font name="微软雅黑" size="18" bold="false" italic="false" default="true"/>
+  <!--1--> <Font name="微软雅黑" size="14" bold="false" italic="false" />
+  <!--2--> <Font name="微软雅黑" size="12" bold="false" italic="false" />  
+  <!--3--> <Font name="微软雅黑" size="16" bold="false" italic="false" /> 
+  <!--4--> <Font name="微软雅黑" size="10" bold="false" italic="false" /> 
+  <!--5--> <Font name="微软雅黑" size="12" bold="false" italic="false" underline="true"/>
+  <!--6--> <Font name="微软雅黑" size="13" bold="false" italic="false" /> 
+
+  <Include source="scrollbar.xml" />
+  
+   <Default name="CheckBox" value="textpadding=&quot;21,3,0,0&quot; align=&quot;left&quot; normalimage=&quot;file=&apos;imagelist.checkbox.png&apos; source=&apos;0,0,19,19&apos;&quot; hotimage=&quot;file=&apos;imagelist.checkbox.png&apos; source=&apos;20,0,39,19&apos;&quot; selectedimage=&quot;file=&apos;imagelist.checkbox.png&apos; source=&apos;60,0,79,19&apos;&quot; disabledimage=&quot;file=&apos;imagelist.checkbox.png&apos; source=&apos;40,0,59,19&apos;&quot; " />
+ 
+
+    <VerticalLayout bkcolor="#FFFFFFFF">
+		
+		<HorizontalLayout bkimage="标题.png" height="66">
+			<Control height="65" bkimage="file='主界面logo.png' dest='14,14,132,52'" />
+			
+			<VerticalLayout width="200">
+				<Control height="20"/>
+				
+				<HorizontalLayout height="16">
+					<Control />
+					
+					<Button name="btn_set" width="16" normalimage="file='主页设置.png' source='0,0,16,16'" hotimage="file='主页设置.png' source='16,0,32,016'" />
+					
+					<Control width="15" />
+					
+					<Button name="minbtn" width="16" normalimage="file='最小化.png' source='0,0,16,16'" hotimage="file='最小化.png' source='16,0,32,16'" />
+					
+					<Control width="15" />
+					
+					<Container width="16" >
+						<Button name="maxbtn" normalimage="file='最大化.png' source='0,0,16,16'" hotimage="file='最大化.png' source='16,0,32,16'" />
+						<Button name="restorebtn" visible="false" normalimage="file='复原.png' source='0,0,16,16'" hotimage="file='复原.png' source='16,0,32,16'"	/>				
+					</Container>
+					
+					<Control width="15" />
+					
+					<Button name="btn_close" width="16" normalimage="file='关闭.png' source='0,0,16,16'" hotimage="file='关闭.png' source='32,0,48,16'" />
+ 					
+				</HorizontalLayout>
+				
+				<Control height="10"/>				
+				
+				<Control />
+			
+			</VerticalLayout>
+			
+			<Control width="10" />
+		
+		</HorizontalLayout>
+		
+		<HorizontalLayout>
+		
+			 <Container bkcolor="FFf4f3f3" inset="4,4,4,10" width="200" bordersize="1" bordercolor="#ffc4cbd1" >
+				<TreeView  name="tree_file" itemfont="6" minwidth="200" itemselectedbkcolor="#FFCBDDFF" itemhotbkcolor="#FFCBDDFF" childpadding="2" bkcolor="#FFf4f3f3" visiblecheckbtn="true" vscrollbar="true" hscrollbar="true">
+					<TreeNode text="所有文件" name="computer" itemattr="textpadding=&quot;2,0,0,0&quot; font=&quot;6&quot;" >
+					</TreeNode>
+				</TreeView>
+             </Container>
+			 
+			 <VerticalLayout >
+			 
+				<HorizontalLayout bkimage="导航.png" height="40" inset="0,5,0,0">					
+					<Control width="20" />
+					<Button name="btn_main_page" height="30" width="30"   normalimage="file='主页.png' source='0,0,28,26' dest='1,2,29,28'" hotimage="file='主页.png' source='28,0,56,26' dest='1,2,29,28'"/>
+					<Control width="20" />
+					<Button name="btn_forward" height="30" width="28" normalimage="file='返回.png' source='0,0,28,20' dest='0,5,28,25'" hotimage="file='返回.png' source='28,0,56,20' dest='0,5,28,25'"/>
+					<Control width="10" />
+					<Button name="btn_next" height="30" width="28"   normalimage="file='前进.png' source='0,0,28,20' dest='0,5,28,25'" hotimage="file='前进.png' source='28,0,56,20' dest='0,5,28,25'"/>
+					<Control width="20" />
+					<Edit name="edit_file_path" font="2" height="26" padding="0,2,0,0" bordersize="1" bordercolor="#FFdddddd" />
+					<Control width="30"/>
+					
+					<HorizontalLayout bordersize="1" bordercolor="#FFdddddd" width="200" height="26" padding="0,2,0,0" inset="1,1,1,1">
+						<Edit name="edit_search" font="2" tipvalue="搜索全部文件" tipvaluecolor="#FFdddddd" width="180" />
+						<Button name="btn_search" width="20"  normalimage="file='搜索.png' dest='2,4,18,20'"/>
+					</HorizontalLayout>
+					
+					<Control width="20" />
+					
+				</HorizontalLayout>
+				
+				<HorizontalLayout bkimage="二级.png" height="36" inset="0,3,0,0">
+					<Control width="20" />
+					<Button name="btn_add" width="60" height="30" font="3" textpadding="20,0,3,0" text="添加" textcolor="#FF189EDB" hottextcolor="#FF0D85BC" normalimage="file='添加.png' source='0,0,16,16' dest='0,7,16,23'" hotimage="file='添加.png' source='16,0,32,16' dest='0,7,16,23'"/>
+					<Control width="20" />
+					<Button name="btn_copy" width="60" height="30" font="3" enabled="true" textpadding="20,0,3,0" text="复制" textcolor="#FF999999" hottextcolor="#FF189EDB" normalimage="file='打开.png' source='0,0,16,16' dest='0,7,16,23'" hotimage="file='打开.png' source='16,0,32,16' dest='0,7,16,23'" disabledimage="file='打开.png' source='32,0,48,16' dest='0,7,16,23'"/>
+					<Control width="20" />
+					<Button name="btn_rename" width="75" height="30" font="3" enabled="true" textpadding="20,0,3,0" text="重命名" textcolor="#FF999999" hottextcolor="#FF189EDB" normalimage="file='重命名.png' source='0,0,14,16' dest='0,7,14,23'" hotimage="file='重命名.png' source='14,0,28,16' dest='0,7,14,23'" disabledimage="file='重命名.png' source='28,0,42,16' dest='0,7,14,23'"/>
+					<Control width="20" />
+					<Button name="btn_move" width="60" height="30" font="3" enabled="true" textpadding="20,0,3,0" text="移动" textcolor="#FF999999" hottextcolor="#FF189EDB" normalimage="file='移动.png' source='0,0,14,16' dest='0,7,14,23'" hotimage="file='移动.png' source='14,0,28,16' dest='0,7,14,23'" disabledimage="file='移动.png' source='28,0,42,16' dest='0,7,14,23'"/>
+					<Control width="20" />
+					<Button name="btn_new_fold" width="110" height="30" font="3" enabled="true" textpadding="20,0,3,0" text="新建文件夹" textcolor="#FF999999" hottextcolor="#FF189EDB" normalimage="file='新建.png' source='0,0,14,16' dest='0,7,14,23'" hotimage="file='新建.png' source='14,0,28,16' dest='0,7,14,23'" disabledimage="file='新建.png' source='28,0,42,16' dest='0,7,14,23'"/>
+					<Control />
+					<Button name="btn_eport" width="60" height="30" font="3" enabled="true" textpadding="20,0,3,0" text="导出" textcolor="#FF999999" hottextcolor="#FF189EDB" normalimage="file='导出.png' source='0,0,14,16' dest='0,7,14,23'" hotimage="file='导出.png' source='14,0,28,16' dest='0,7,14,23'" disabledimage="file='导出.png' source='28,0,42,16' dest='0,7,14,23'"/>
+					<Control width="20" />
+					<Button name="btn_delete" width="60" height="30" font="3" enabled="true" textpadding="20,0,3,0" text="删除" textcolor="#FF999999" hottextcolor="#FF189EDB" normalimage="file='删除.png' source='0,0,16,16' dest='0,7,16,23'" hotimage="file='删除.png' source='16,0,32,16' dest='0,7,16,23'" disabledimage="file='删除.png' source='32,0,48,16' dest='0,7,16,23'"/>
+					<Control width="20" />
+				</HorizontalLayout>		
+
+				<Container inset="0,0,0,10">
+					<List name="list_file" bkcolor="#FFf4f3f3" itemfont="2" itemalign="center" itembkcolor="#FFF4F3F3" itemselectedbkcolor="#FFCBDDFF" itemhotbkcolor="#FFCBDDFF" itemaltbk="false" vscrollbar="true" hscrollbar="true" headerbkimage="file='list_header_bg.png'">
+						  <ListHeader height="25" bkcolor="#FFf7f8f8"  >
+						  	<ListHeaderItem inset="1,0,1,0" minwidth="27" maxwidth="27" sepimage="list_header_sep.png" sepwidth="1" sepimm="true">
+							  <HorizontalLayout inset="0,3,0,3" >
+								<Control />
+								<CheckBox name="checkbox_select_all" height="19" width="19" />
+								<Control />
+							  </HorizontalLayout>
+							</ListHeaderItem>
+							<ListHeaderItem text="文件名" textpadding="10,0,0,0" inset="1,0,1,0" endellipsis="true" textcolor="#FF999999" align="left" font="1" width="260" minwidth="260" sepimage="list_header_sep.png" sepwidth="1" sepimm="true" >
+								<Option  name="opt_file_name_order" selectedimage="file='' dest='0,0,0,0'"/>
+							</ListHeaderItem>
+							
+							<ListHeaderItem text="文件大小" textpadding="10,0,0,0" inset="1,0,1,0" endellipsis="true" textcolor="#FF999999" align="left" font="1" width="160" minwidth="57" sepimage="list_header_sep.png" sepwidth="1" sepimm="true" >	
+								<Option  name="opt_file_size_order" selectedimage="file='' dest='0,0,0,0'"/>
+							</ListHeaderItem>
+								
+							<ListHeaderItem text="修改时间" textpadding="10,0,0,0" inset="1,0,1,0" endellipsis="true" textcolor="#FF999999" align="left" font="1" width="120" minwidth="150" sepimage="list_header_sep.png" sepwidth="1" sepimm="true" >							
+								<Option  name="opt_file_time_order" selectedimage="file='' dest='0,0,0,0'"/>
+							</ListHeaderItem>
+							
+							<ListHeaderItem text=""   textcolor="#FF20afe4" align="left" font="1" width="120" minwidth="120" sepimage="list_header_sep.png" sepwidth="1" sepimm="true" />	
+							<ListHeaderItem text=""   textcolor="#FF20afe4" align="left" font="1" width="50" minwidth="50" maxwidth="50" sepimage="list_header_sep.png" sepwidth="1" sepimm="true" />								
+						  </ListHeader>                
+					</List>
+
+				
+				</Container>
+			 
+			 </VerticalLayout>
+		
+		
+		
+		</HorizontalLayout>
+		
+		
+		    
+
+    </VerticalLayout>
+	
+	
+</Window>
