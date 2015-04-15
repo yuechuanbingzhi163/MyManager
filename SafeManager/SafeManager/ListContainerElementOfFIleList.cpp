@@ -39,4 +39,9 @@ void CListContainerElementOfFileList::DoEvent( TEventUI& event )
 	{
 		m_pManager->SendNotify(this, DUI_MSGTYPE_FILE_LIST_DBCLICK, event.wParam, event.lParam);
 	}
+	else if (event.Type == UIEVENT_RBUTTONUP)
+	{
+		::MessageBox(NULL, _T(""), NULL, MB_OK);
+	}
+
 }
