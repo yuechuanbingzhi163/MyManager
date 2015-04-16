@@ -157,6 +157,7 @@
     <ClInclude Include="DropTargetEx.h" />
     <ClInclude Include="FileHandle.h" />
     <ClInclude Include="FileHandleManager.h" />
+    <ClInclude Include="FileListUI.h" />
     <ClInclude Include="function.h" />
     <ClInclude Include="ListContainerElementOfFIleList.h" />
     <ClInclude Include="Log.h" />
@@ -192,6 +193,7 @@
     <ClCompile Include="DropTargetEx.cpp" />
     <ClCompile Include="FileHandle.cpp" />
     <ClCompile Include="FileHandleManager.cpp" />
+    <ClCompile Include="FileListUI.cpp" />
     <ClCompile Include="function.cpp" />
     <ClCompile Include="ListContainerElementOfFIleList.cpp" />
     <ClCompile Include="Log.cpp" />

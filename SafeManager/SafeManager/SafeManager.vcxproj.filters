@@ -148,6 +148,9 @@
     <ClInclude Include="WndProgress.h">
       <Filter>wnd</Filter>
     </ClInclude>
+    <ClInclude Include="FileListUI.h">
+      <Filter>control</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -242,6 +245,9 @@
     </ClCompile>
     <ClCompile Include="WndProgress.cpp">
       <Filter>wnd</Filter>
+    </ClCompile>
+    <ClCompile Include="FileListUI.cpp">
+      <Filter>control</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

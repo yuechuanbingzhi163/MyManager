@@ -5,6 +5,7 @@
 #include "FileHandle.h"
 #include "WndProgress.h"
 #include <list>
+#include "FileListUI.h"
 
 class CDropTargetEx;
 class CWndMoveOrPasteTo;
@@ -60,6 +61,9 @@ private:
 	CTreeNodeUI *GetTreeNodeByFileHandle(CFileHandle *pFileHandle);
 	
 	void InitFileList();
+
+	void CreateFileList();
+
 	void EmptyFileList();
 	void SearchFileAddToFileList(CFileHandle *pFileHandle);
 	CListContainerElementOfFileList *CreateFileListItem(CFileHandle *pFileHandle);
@@ -104,7 +108,7 @@ private:
 	CWndProgress *m_WndProgress;
 
 	CTreeViewUI *m_pTreeViewUI;
-	CListUI *m_pFileListUI;
+	CFileListUI *m_pFileListUI;
 
 	list<CFileHandle*> m_listSelFileHandleHistory;
 	list<CFileHandle*>::reverse_iterator m_listHistoryIter;

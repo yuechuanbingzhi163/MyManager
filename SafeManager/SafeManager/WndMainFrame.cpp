@@ -11,6 +11,7 @@
 #include "WndMessageBox.h"
 #include "WndMoveOrPasteTo.h"
 #include "WndProgress.h"
+#include "FileListUI.h"
 
 HANDLE  hMoveOrCopyEvent = ::CreateEvent(0, FALSE, FALSE, 0);
 DWORD WINAPI _MoveThreadProc( LPVOID lpParam );
@@ -96,16 +97,15 @@ void CWndMainFrame::Notify( TNotifyUI &msg )
 		}
 		else if (msg.pSender->GetName() == _T("checkbox_select_all"))
 		{
-			CCheckBoxUI *pAllSel = static_cast<CCheckBoxUI*>(m_PaintManager.FindControl(_T("checkbox_select_all")));
-			CListUI *pList = static_cast<CListUI*>(m_PaintManager.FindControl(_T("list_file")));
+			CCheckBoxUI *pAllSel = static_cast<CCheckBoxUI*>(m_PaintManager.FindControl(_T("checkbox_select_all")));			
 
 			bool bSel = pAllSel->IsSelected();
 
-			int count = pList->GetCount();
+			int count = m_pFileListUI->GetCount();
 
 			for (int i=0; i<count; i++)
 			{
-				CListContainerElementOfFileList *pEle = static_cast<CListContainerElementOfFileList*>(pList->GetItemAt(i));
+				CListContainerElementOfFileList *pEle = static_cast<CListContainerElementOfFileList*>(m_pFileListUI->GetItemAt(i));
 				CHorizontalLayoutUI *pHor = static_cast<CHorizontalLayoutUI*>(pEle->GetItemAt(0));
 				CCheckBoxUI *pCheckBox = static_cast<CCheckBoxUI*>(pHor->GetItemAt(1));
 				pCheckBox->Selected(!bSel);
@@ -232,14 +232,14 @@ void CWndMainFrame::Notify( TNotifyUI &msg )
 			//判断全选checkbox
 			CCheckBoxUI *pAllSelect = static_cast<CCheckBoxUI*>(m_PaintManager.FindControl(_T("checkbox_select_all")));
 
-			CListUI *pList = static_cast<CListUI*>(m_PaintManager.FindControl(_T("list_file")));
-			int count = pList->GetCount();
+			
+			int count = m_pFileListUI->GetCount();
 
 			int selectedcount = 0;
 
 			for (int i=0; i<count; i++)
 			{
-				CListContainerElementOfFileList *pEle = static_cast<CListContainerElementOfFileList*>(pList->GetItemAt(i));
+				CListContainerElementOfFileList *pEle = static_cast<CListContainerElementOfFileList*>(m_pFileListUI->GetItemAt(i));
 				CHorizontalLayoutUI *pHor = static_cast<CHorizontalLayoutUI*>(pEle->GetItemAt(0));
 				CCheckBoxUI *pCheckBox = static_cast<CCheckBoxUI*>(pHor->GetItemAt(1));
 
@@ -385,8 +385,7 @@ LRESULT CWndMainFrame::OnCreate( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& 
 	m_WndShadow.SetSize(4);
 	m_WndShadow.SetPosition(0, 0);
 
-	m_pTreeViewUI = static_cast<CTreeViewUI*>(m_PaintManager.FindControl(_T("tree_file")));
-	m_pFileListUI = static_cast<CListUI*>(m_PaintManager.FindControl(_T("list_file")));
+	m_pTreeViewUI = static_cast<CTreeViewUI*>(m_PaintManager.FindControl(_T("tree_file")));	
 
 	Init();
 
@@ -395,6 +394,8 @@ LRESULT CWndMainFrame::OnCreate( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& 
 
 void CWndMainFrame::Init()
 {
+	CreateFileList();
+
 	InitFileTree();
 	InitFileList();
 
@@ -493,22 +494,89 @@ CTreeNodeUI * CWndMainFrame::CreateTreeNode(CFileHandle *pFileHandle)
 	return pRetNode;
 }
 
+void CWndMainFrame::CreateFileList()
+{
+	CContainerUI *pContainer = static_cast<CContainerUI*>(m_PaintManager.FindControl(_T("con_file_list")));
+
+	CFileListUI *pList = new CFileListUI;
+	m_pFileListUI = pList;
+	pContainer->Add(pList);
+	pList->SetName(_T("list_file"));
+	pList->ApplyAttributeList(_T("bkcolor=\"#FFf4f3f3\" itemfont=\"2\" itemalign=\"center\" itembkcolor=\"#FFF4F3F3\" itemselectedbkcolor=\"#FFCBDDFF\" itemhotbkcolor=\"#FFCBDDFF\" itemaltbk=\"false\" vscrollbar=\"true\" hscrollbar=\"true\" headerbkimage=\"list_header_bg.png\""));
+	
+			CListHeaderUI *pHeader = pList->GetHeader();
+			pHeader->ApplyAttributeList(_T("height=\"25\" bkcolor=\"#FFf7f8f8\""));
+
+					CListHeaderItemUI *pChkBoxItem = new CListHeaderItemUI;
+					pHeader->Add(pChkBoxItem);
+					pChkBoxItem->ApplyAttributeList(_T("inset=\"1,0,1,0\" minwidth=\"27\" maxwidth=\"27\" sepimage=\"list_header_sep.png\" sepwidth=\"1\" sepimm=\"true\""));
+							
+										CHorizontalLayoutUI *pHor = new CHorizontalLayoutUI;
+										pChkBoxItem->Add(pHor);
+
+														CControlUI *pControl = new CControlUI;
+														pHor->Add(pControl);
+														CCheckBoxUI *pCheckBox = new CCheckBoxUI;
+														pCheckBox->SetName(_T("checkbox_select_all"));	
+														pCheckBox->SetAttribute(_T("normalimage"), _T("file='imagelist.checkbox.png' source='0,0,19,19'"));
+														pCheckBox->SetAttribute(_T("hotimage"), _T("file='imagelist.checkbox.png' source='20,0,39,19'"));
+														pCheckBox->SetAttribute(_T("selectedimage"), _T("file='imagelist.checkbox.png' source='60,0,79,19'"));
+														pCheckBox->SetAttribute(_T("disabledimage"), _T("file='imagelist.checkbox.png' source='40,0,59,19'"));
+														pCheckBox->SetAttribute(_T("width"), _T("19"));
+														pCheckBox->SetAttribute(_T("height"), _T("19"));
+														pHor->Add(pCheckBox);	
+														pControl = new CControlUI;
+														pHor->Add(pControl);
+
+					CListHeaderItemUI *pNameItem = new CListHeaderItemUI;
+					pHeader->Add(pNameItem);
+					pNameItem->ApplyAttributeList(_T("text=\"文件名\" textpadding=\"10,0,0,0\" inset=\"1,0,1,0\" endellipsis=\"true\" textcolor=\"#FF999999\" align=\"left\" font=\"1\" width=\"260\" minwidth=\"260\" sepimage=\"list_header_sep.png\" sepwidth=\"1\" sepimm=\"true\""));
+
+							COptionUI *pOption = new COptionUI;
+							pOption->SetName(_T("opt_file_name_order"));
+							pNameItem->Add(pOption);							
+							pOption->ApplyAttributeList(_T("selectedimage=\"file='' dest='0,0,0,0'\""));
+
+					CListHeaderItemUI *pSizeItem = new CListHeaderItemUI;
+					pHeader->Add(pSizeItem);
+					pSizeItem->ApplyAttributeList(_T("text=\"文件大小\" textpadding=\"10,0,0,0\" inset=\"1,0,1,0\" endellipsis=\"true\" textcolor=\"#FF999999\" align=\"left\" font=\"1\" width=\"160\" minwidth=\"57\" sepimage=\"list_header_sep.png\" sepwidth=\"1\" sepimm=\"true\""));
+
+							pOption = new COptionUI;
+							pOption->ApplyAttributeList(_T("name=\"opt_file_size_order\" selectedimage=\"file='' dest='0,0,0,0'\""));
+							pSizeItem->Add(pOption);							
+
+					CListHeaderItemUI *pModifyTimeItem = new CListHeaderItemUI;
+					pHeader->Add(pModifyTimeItem);
+					pModifyTimeItem->ApplyAttributeList(_T("text=\"修改时间\" textpadding=\"10,0,0,0\" inset=\"1,0,1,0\" endellipsis=\"true\" textcolor=\"#FF999999\" align=\"left\" font=\"1\" width=\"120\" minwidth=\"150\" sepimage=\"list_header_sep.png\" sepwidth=\"1\" sepimm=\"true\""));
+
+							pOption = new COptionUI;
+							pOption->ApplyAttributeList(_T("name=\"opt_file_time_order\" selectedimage=\"file='' dest='0,0,0,0'\""));
+							pModifyTimeItem->Add(pOption);							
+
+					CListHeaderItemUI *pProgressItem = new CListHeaderItemUI;
+					pHeader->Add(pProgressItem);
+					pProgressItem->ApplyAttributeList(_T("textcolor=\"#FF20afe4\" align=\"left\" font=\"1\" width=\"120\" minwidth=\"120\" sepimage=\"list_header_sep.png\" sepwidth=\"1\" sepimm=\"true\""));
+
+					CListHeaderItemUI *pTipItem = new CListHeaderItemUI;
+					pHeader->Add(pTipItem);
+					pTipItem->ApplyAttributeList(_T("textcolor=\"#FF20afe4\" align=\"left\" font=\"1\" width=\"50\" minwidth=\"50\" maxwidth=\"50\" sepimage=\"list_header_sep.png\" sepwidth=\"1\" sepimm=\"true\""));
+}
+
 void CWndMainFrame::InitFileList()
 {
-	CListUI *pFileList = static_cast<CListUI*>(m_PaintManager.FindControl(_T("list_file")));
-
 	CTreeViewUI *pTreeView = static_cast<CTreeViewUI*>(m_PaintManager.FindControl(_T("tree_file")));
 	CTreeNodeUI *pRoot = static_cast<CTreeNodeUI*>(pTreeView->GetItemAt(0));
 
 	CFileHandle *pFileHandle = (CFileHandle*)(pRoot->GetTag());
 
-	SearchFileAddToFileList(pFileHandle);
+	//SearchFileAddToFileList(pFileHandle);
 }
 
+
+
 void CWndMainFrame::EmptyFileList()
-{
-	CListUI *pFileList = static_cast<CListUI*>(m_PaintManager.FindControl(_T("list_file")));
-	pFileList->RemoveAll();
+{	
+	m_pFileListUI->RemoveAll();
 	SetAllSelCheckBoxState(false);
 }
 
@@ -517,9 +585,7 @@ CListContainerElementOfFileList * CWndMainFrame::CreateFileListItem( CFileHandle
 	if (pFileHandle->IsDelete() || ((pFileHandle->GetFileType() == 1) && pFileHandle->IsUpLoadCancel()))
 	{
 		return NULL;
-	}
-
-	CListUI *pFileList = static_cast<CListUI*>(m_PaintManager.FindControl(_T("list_file")));
+	}	
 
 	CHorizontalLayoutUI *pHor = NULL;
 
@@ -527,10 +593,10 @@ CListContainerElementOfFileList * CWndMainFrame::CreateFileListItem( CFileHandle
 	pEle->SetFileHandle(pFileHandle);
 	pEle->SetFixedHeight(25);	
 
-	int nHeadCount = pFileList->GetHeader()->GetCount();
+	int nHeadCount = m_pFileListUI->GetHeader()->GetCount();
 	for (int i=0; i<nHeadCount; i++)
 	{
-		CListHeaderItemUI *pHeadItem = static_cast<CListHeaderItemUI*>(pFileList->GetHeader()->GetItemAt(0));
+		CListHeaderItemUI *pHeadItem = static_cast<CListHeaderItemUI*>(m_pFileListUI->GetHeader()->GetItemAt(0));
 		pHor = new CHorizontalLayoutUI;
 
 		pEle->AddAt(pHor, i);
@@ -570,7 +636,7 @@ CListContainerElementOfFileList * CWndMainFrame::CreateFileListItem( CFileHandle
 	
 	if (pFileHandle->GetFileType() == 0)
 	{
-		pFileList->Add(pEle);
+		m_pFileListUI->Add(pEle);
 		m_IsDirIndex++;
 
 		strIconName = _T("dir_icon_small");
@@ -589,7 +655,7 @@ CListContainerElementOfFileList * CWndMainFrame::CreateFileListItem( CFileHandle
 	}
 	else
 	{
-		pFileList->Add(pEle);
+		m_pFileListUI->Add(pEle);
 
 		string_t strName = pFileHandle->GetFileName();
 
@@ -1042,13 +1108,12 @@ void CWndMainFrame::SetCurFileHandle( CFileHandle *pFileHandle )
 CListContainerElementOfFileList * CWndMainFrame::GetFileListItem( CFileHandle *pFileHandle )
 {
 	CListContainerElementOfFileList *pRet = NULL;
-
-	CListUI *pFileList = static_cast<CListUI*>(m_PaintManager.FindControl(_T("list_file")));
-	int count = pFileList->GetCount();
+	
+	int count = m_pFileListUI->GetCount();
 
 	for (int i=0; i<count; i++)
 	{
-		CListContainerElementOfFileList *pItem = static_cast<CListContainerElementOfFileList*>(pFileList->GetItemAt(i));
+		CListContainerElementOfFileList *pItem = static_cast<CListContainerElementOfFileList*>(m_pFileListUI->GetItemAt(i));
 		CFileHandle *pFile = pItem->GetFileHandle();
 		if (pFileHandle == pFile)
 		{
@@ -1366,16 +1431,15 @@ void CWndMainFrame::AddToSelectedFileHandleHistory( CFileHandle *pFileHandle )
 }
 
 void CWndMainFrame::OnClick_Btn_Copy( TNotifyUI &msg )
-{
-	CListUI *pList = static_cast<CListUI*>(m_PaintManager.FindControl(_T("list_file")));
+{	
 	BOOL bCanOpt = TRUE;
-	int count = pList->GetCount();
+	int count = m_pFileListUI->GetCount();
 
 	m_vecMoveOrCopyFrom.clear();
 
 	for (int i=0; i<count; i++)
 	{
-		CListContainerElementOfFileList *pItem = static_cast<CListContainerElementOfFileList*>(pList->GetItemAt(i));
+		CListContainerElementOfFileList *pItem = static_cast<CListContainerElementOfFileList*>(m_pFileListUI->GetItemAt(i));
 		if (IsFileListItemSelected(pItem))
 		{
 			CFileHandle *pSelFile = (CFileHandle*)(pItem->GetFileHandle());
@@ -1428,8 +1492,7 @@ void CWndMainFrame::OnClick_Btn_MainPage( TNotifyUI &msg )
 
 void CWndMainFrame::OnClick_Btn_ReName( TNotifyUI &msg )
 {
-	CListUI *pList = static_cast<CListUI*>(m_PaintManager.FindControl(_T("list_file")));
-	CListContainerElementOfFileList *pEle = static_cast<CListContainerElementOfFileList*>(pList->GetItemAt(pList->GetCurSel()));
+	CListContainerElementOfFileList *pEle = static_cast<CListContainerElementOfFileList*>(m_pFileListUI->GetItemAt(m_pFileListUI->GetCurSel()));
 
 	if (pEle != NULL)
 	{
@@ -1448,16 +1511,15 @@ void CWndMainFrame::OnClick_Btn_Move( TNotifyUI &msg )
 		pWnd->ShowModal();
 		return;
 	}
-
-	CListUI *pList = static_cast<CListUI*>(m_PaintManager.FindControl(_T("list_file")));
+	
 	BOOL bCanOpt = TRUE;
-	int count = pList->GetCount();
+	int count = m_pFileListUI->GetCount();
 
 	m_vecMoveOrCopyFrom.clear();
 
 	for (int i=0; i<count; i++)
 	{
-		CListContainerElementOfFileList *pItem = static_cast<CListContainerElementOfFileList*>(pList->GetItemAt(i));
+		CListContainerElementOfFileList *pItem = static_cast<CListContainerElementOfFileList*>(m_pFileListUI->GetItemAt(i));
 		if (IsFileListItemSelected(pItem))
 		{
 			CFileHandle *pSelFile = (CFileHandle*)(pItem->GetFileHandle());
@@ -1600,17 +1662,16 @@ void CWndMainFrame::OnClick_Btn_Delete( TNotifyUI &msg )
 		return;
 	}
 
-	CTreeViewUI *pTreeView = static_cast<CTreeViewUI*>(m_PaintManager.FindControl(_T("tree_file")));
-	CListUI *pList = static_cast<CListUI*>(m_PaintManager.FindControl(_T("list_file")));			
+	CTreeViewUI *pTreeView = static_cast<CTreeViewUI*>(m_PaintManager.FindControl(_T("tree_file")));	
 
 	vector<LPSTTEMP> vecTemp;
 	vector<CListContainerElementOfFileList*> vecListEle;
 	vector<CTreeNodeUI*> vecTreeNodes;
 
-	int count = pList->GetCount();
+	int count = m_pFileListUI->GetCount();
 	for (int i=0; i<count; i++)
 	{
-		CListContainerElementOfFileList *pItem = static_cast<CListContainerElementOfFileList*>(pList->GetItemAt(i));
+		CListContainerElementOfFileList *pItem = static_cast<CListContainerElementOfFileList*>(m_pFileListUI->GetItemAt(i));
 		CHorizontalLayoutUI *pHor = static_cast<CHorizontalLayoutUI*>(pItem->GetItemAt(0));
 		CCheckBoxUI *pCheckBox = static_cast<CCheckBoxUI*>(pHor->GetItemAt(1));
 
@@ -1645,7 +1706,7 @@ void CWndMainFrame::OnClick_Btn_Delete( TNotifyUI &msg )
 	int vecEleCount = vecListEle.size();
 	for (int  i = 0; i<vecEleCount; i++)
 	{	
-		pList->Remove(vecListEle[i]);
+		m_pFileListUI->Remove(vecListEle[i]);
 	}
 
 	int vecTreeCount = vecTreeNodes.size();
@@ -1944,6 +2005,8 @@ void CWndMainFrame::OrderFileList( int nIndex, bool bAscend /*= true*/ )
 			}
 		}
 }
+
+
 
 DWORD WINAPI _MoveThreadProc( LPVOID lpParam )
 {
