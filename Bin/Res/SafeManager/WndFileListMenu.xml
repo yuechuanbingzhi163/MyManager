@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="150,380" roundcorner="5,5" >
+  <!--0--> <Font name="微软雅黑" size="14" default="true"/>
+ 
+	<Default name="Label" value="textcolor=&quot;#FF444444&quot;" />
+
+
+    <VerticalLayout bkimage="file='menu_bk.png' corner='26,2,2,2' source='6,6,44,24'"> 
+
+		<List name="menu_list" itemhotbkcolor="#FF98C8F9" itemdisabledbkcolor="#00FFFFFF">
+			<ListContainerElement name="menu_item_upload"  height="30">
+				<HorizontalLayout >
+					<Control width="26" bkimage="file='Virus.png' dest='5,7,21,23'"/>
+					<Label text="上传文件..." textpadding="10,0,0,0"/>
+				</HorizontalLayout>				
+			</ListContainerElement>	
+			<ListContainerElement name="line_upload" height="5" enabled="false">
+				<HorizontalLayout >
+					<Control width="26" />
+					<Control padding="0,2,2,2" bordersize="1" bordercolor="0xFFBCBFC4" />
+				</HorizontalLayout>				
+			</ListContainerElement>	
+			
+			<ListContainerElement name="menu_item_newfolder" height="30">				
+				<HorizontalLayout>
+					<Control width="26" />
+					<Label text="新建文件夹" textpadding="10,0,0,0"/>
+				</HorizontalLayout>
+			</ListContainerElement>				
+			<ListContainerElement name="line_newfolder" height="5" enabled="false">
+				<HorizontalLayout >
+					<Control width="26" />
+					<Control padding="0,2,2,2" bordersize="1" bordercolor="0xFFBCBFC4" />
+				</HorizontalLayout>				
+			</ListContainerElement>	
+			
+			<ListContainerElement name="menu_item_refresh" text="222" height="30">
+				<HorizontalLayout>
+					<Control width="26" />
+					<Label text="刷  新" textpadding="10,0,0,0"/>
+				</HorizontalLayout>				
+			</ListContainerElement>				
+			<ListContainerElement name="line_refresh" height="5" enabled="false">
+				<HorizontalLayout >
+					<Control width="26" />
+					<Control padding="0,2,2,2" bordersize="1" bordercolor="0xFFBCBFC4" />
+				</HorizontalLayout>				
+			</ListContainerElement>	
+			
+			<ListContainerElement name="menu_item_open" height="30">				
+				<HorizontalLayout>
+					<Control width="26" />
+					<Label text="打  开" textpadding="10,0,0,0"/>
+				</HorizontalLayout>
+			</ListContainerElement>	
+			<ListContainerElement name="line_open" height="5" enabled="false">
+				<HorizontalLayout >
+					<Control width="26" />
+					<Control padding="0,2,2,2" bordersize="1" bordercolor="0xFFBCBFC4" />
+				</HorizontalLayout>				
+			</ListContainerElement>	
+			
+			
+			<ListContainerElement name="menu_item_open_way" height="30">				
+				<HorizontalLayout>
+					<Control width="26" />
+					<Label text="打开方式" textpadding="10,0,0,0"/>
+					<Control width="26" bkimage="file='menu_expand.png' dest='9,10,18,19'" />
+				</HorizontalLayout>
+			</ListContainerElement>				
+			<ListContainerElement name="line_open_way" height="5" enabled="false">
+				<HorizontalLayout >
+					<Control width="26" />
+					<Control padding="0,2,2,2" bordersize="1" bordercolor="0xFFBCBFC4" />
+				</HorizontalLayout>				
+			</ListContainerElement>	
+			
+			<ListContainerElement name="menu_item_copy" height="30">				
+				<HorizontalLayout>
+					<Control width="26" />
+					<Label text="复  制" textpadding="10,0,0,0"/>
+				</HorizontalLayout>
+			</ListContainerElement>	
+			<ListContainerElement name="menu_item_move" height="30">				
+				<HorizontalLayout>
+					<Control width="26" />
+					<Label text="移  动" textpadding="10,0,0,0"/>
+				</HorizontalLayout>
+			</ListContainerElement>	
+			<ListContainerElement name="line_copy_move" height="5" enabled="false">
+				<HorizontalLayout >
+					<Control width="26" />
+					<Control padding="0,2,2,2" bordersize="1" bordercolor="0xFFBCBFC4" />
+				</HorizontalLayout>				
+			</ListContainerElement>	
+
+			<ListContainerElement name="menu_item_export" height="30">				
+				<HorizontalLayout>
+					<Control width="26" />
+					<Label text="导  出" textpadding="10,0,0,0"/>
+				</HorizontalLayout>
+			</ListContainerElement>	
+			<ListContainerElement name="line_export" height="5" enabled="false">
+				<HorizontalLayout >
+					<Control width="26" />
+					<Control padding="0,2,2,2" bordersize="1" bordercolor="0xFFBCBFC4" />
+				</HorizontalLayout>				
+			</ListContainerElement>	
+
+			<ListContainerElement name="menu_item_rename" height="30">				
+				<HorizontalLayout>
+					<Control width="26" />
+					<Label text="重命名" textpadding="10,0,0,0"/>
+				</HorizontalLayout>
+			</ListContainerElement>	
+			<ListContainerElement name="line_rename" height="5" enabled="false">
+				<HorizontalLayout >
+					<Control width="26" />
+					<Control padding="0,2,2,2" bordersize="1" bordercolor="0xFFBCBFC4" />
+				</HorizontalLayout>				
+			</ListContainerElement>				
+				
+			<ListContainerElement name="menu_item_delete" height="30">				
+				<HorizontalLayout>
+					<Control width="26" />
+					<Label text="删除" textpadding="10,0,0,0"/>
+				</HorizontalLayout>
+			</ListContainerElement>	
+			<ListContainerElement name="line_delete" height="5" enabled="false">
+				<HorizontalLayout >
+					<Control width="26" />
+					<Control padding="0,2,2,2" bordersize="1" bordercolor="0xFFBCBFC4" />
+				</HorizontalLayout>				
+			</ListContainerElement>	
+				
+			<ListContainerElement name="menu_item_attr" height="30">				
+				<HorizontalLayout>
+					<Control width="26" />
+					<Label text="属  性" textpadding="10,0,0,0"/>
+				</HorizontalLayout>
+			</ListContainerElement>				
+		</List>
+
+    </VerticalLayout>
+	
+	
+</Window>

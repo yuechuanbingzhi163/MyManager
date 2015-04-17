@@ -8,10 +8,7 @@
   <!--5--> <Font name="微软雅黑" size="12" bold="false" italic="false" underline="true"/>
   <!--6--> <Font name="微软雅黑" size="13" bold="false" italic="false" /> 
 
-  <Include source="scrollbar.xml" />
-  
-   <Default name="CheckBox" value="textpadding=&quot;21,3,0,0&quot; align=&quot;left&quot; normalimage=&quot;file=&apos;imagelist.checkbox.png&apos; source=&apos;0,0,19,19&apos;&quot; hotimage=&quot;file=&apos;imagelist.checkbox.png&apos; source=&apos;20,0,39,19&apos;&quot; selectedimage=&quot;file=&apos;imagelist.checkbox.png&apos; source=&apos;60,0,79,19&apos;&quot; disabledimage=&quot;file=&apos;imagelist.checkbox.png&apos; source=&apos;40,0,59,19&apos;&quot; " />
- 
+  <Include source="scrollbar.xml" /> 
 
     <VerticalLayout bkcolor="#FFFFFFFF">
 		
@@ -102,8 +99,8 @@
 					<Control width="20" />
 				</HorizontalLayout>		
 
-				<Container inset="0,0,0,10">
-					<List name="list_file" bkcolor="#FFf4f3f3" itemfont="2" itemalign="center" itembkcolor="#FFF4F3F3" itemselectedbkcolor="#FFCBDDFF" itemhotbkcolor="#FFCBDDFF" itemaltbk="false" vscrollbar="true" hscrollbar="true" headerbkimage="file='list_header_bg.png'">
+				<Container name="con_file_list"inset="0,0,0,0">
+<!-- 					<List name="list_file" bkcolor="#FFf4f3f3" itemfont="2" itemalign="center" itembkcolor="#FFF4F3F3" itemselectedbkcolor="#FFCBDDFF" itemhotbkcolor="#FFCBDDFF" itemaltbk="false" vscrollbar="true" hscrollbar="true" headerbkimage="file='list_header_bg.png'">
 						  <ListHeader height="25" bkcolor="#FFf7f8f8"  >
 						  	<ListHeaderItem inset="1,0,1,0" minwidth="27" maxwidth="27" sepimage="list_header_sep.png" sepwidth="1" sepimm="true">
 							  <HorizontalLayout inset="0,3,0,3" >
@@ -127,7 +124,7 @@
 							<ListHeaderItem text=""   textcolor="#FF20afe4" align="left" font="1" width="120" minwidth="120" sepimage="list_header_sep.png" sepwidth="1" sepimm="true" />	
 							<ListHeaderItem text=""   textcolor="#FF20afe4" align="left" font="1" width="50" minwidth="50" maxwidth="50" sepimage="list_header_sep.png" sepwidth="1" sepimm="true" />								
 						  </ListHeader>                
-					</List>
+					</List> -->
 
 				
 				</Container>
