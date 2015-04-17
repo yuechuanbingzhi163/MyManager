@@ -75,7 +75,7 @@ union DuiMessageMapFunctions
 #define DUI_MSGTYPE_VALUECHANGED_MOVE      (_T("movevaluechanged"))
 
 #define DUI_MSGTYPE_SELECTCHANGED 		   (_T("selectchanged"))
-
+#define DUI_MSGTYPE_UNSELECTED	 		   (_T("unselected"))
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -234,6 +234,7 @@ protected:                                                                \
 
 #define  DUI_CTR_CONTROL                         (_T("Control"))
 #define  DUI_CTR_ACTIVEX                         (_T("ActiveX"))
+#define  DUI_CTR_GIFANIM                         (_T("GifAnim"))
 
 #define  DUI_CTR_LISTITEM                        (_T("ListItem"))
 #define  DUI_CTR_PROGRESS                        (_T("Progress"))

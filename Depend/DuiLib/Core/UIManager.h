@@ -31,7 +31,7 @@ typedef enum EVENTTYPE_UI
     UIEVENT_BUTTONUP,
     UIEVENT_RBUTTONDOWN,
 	UIEVENT_RBUTTONUP,
-    UIEVENT_DBLCLICK,
+	UIEVENT_DBLCLICK,
     UIEVENT_CONTEXTMENU,
     UIEVENT_SCROLLWHEEL,
     UIEVENT__MOUSEEND,
@@ -196,6 +196,9 @@ public:
 	CRichEditUI* GetCurrentCaretObject();
 	bool CreateCaret(HBITMAP hBmp, int nWidth, int nHeight);
 	void DrawCaret(HDC hDC, const RECT& rcPaint);
+	CShadowUI* GetShadow();
+	void SetUseGdiplusText(bool bUse);
+	bool IsUseGdiplusText() const;
 
     static HINSTANCE GetInstance();
     static CDuiString GetInstancePath();
@@ -347,13 +350,20 @@ private:
     HWND m_hwndTooltip;
     TOOLINFO m_ToolTip;
     bool m_bShowUpdateRect;
-
+	bool m_bIsRestore;
 	//redrain
 	RECT m_rtCaret;
 	bool m_bCaretActive;
 	bool m_bCaretShowing;
 	CRichEditUI* m_currentCaretObject;
+
+	CShadowUI m_shadow;
+	bool m_bUseGdiplusText;
     //
+	//
+	ULONG_PTR						m_gdiplusToken;
+	Gdiplus::GdiplusStartupInput	*m_pGdiplusStartupInput;
+	//
     CControlUI* m_pRoot;
     CControlUI* m_pFocus;
     CControlUI* m_pEventHover;

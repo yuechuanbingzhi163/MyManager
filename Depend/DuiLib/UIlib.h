@@ -13,6 +13,8 @@
 //#endif
 //#endif
 
+#pragma comment(lib,"gdiplus.lib")
+
 // #pragma comment(lib,"oledlg.lib")
 // #pragma comment(lib,"winmm.lib")
 // #pragma comment(lib,"comctl32.lib") 
@@ -39,8 +41,11 @@
 #include <assert.h>
 #include <crtdbg.h>
 #include <malloc.h>
+#include <comdef.h>
+#include <gdiplus.h>
 
 #include "Utils/Utils.h"
+#include "Utils/UIShadow.h"
 #include "Utils/UIDelegate.h"
 #include "Core/UIDefine.h"
 #include "Core/UIManager.h"
@@ -67,6 +72,7 @@
 #include "Control/UILabel.h"
 #include "Control/UIText.h"
 #include "Control/UIEdit.h"
+#include "Control/UIGifAnim.h"
 
 #include "Control/UIButton.h"
 #include "Control/UIOption.h"

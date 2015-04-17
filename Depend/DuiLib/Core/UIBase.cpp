@@ -282,15 +282,7 @@ void CWindowWnd::ShowWindow(bool bShow /*= true*/, bool bTakeFocus /*= false*/)
 {
     ASSERT(::IsWindow(m_hWnd));
     if( !::IsWindow(m_hWnd) ) return;
-
-	if (IsZoomed(m_hWnd))
-	{
-		 ::ShowWindow(m_hWnd, bShow ? (bTakeFocus ? SW_SHOWMAXIMIZED : SW_SHOWNOACTIVATE) : SW_HIDE);
-	}
-	else
-	{
-		  ::ShowWindow(m_hWnd, bShow ? (bTakeFocus ? SW_SHOWNORMAL : SW_SHOWNOACTIVATE) : SW_HIDE);
-	}  
+    ::ShowWindow(m_hWnd, bShow ? (bTakeFocus ? SW_SHOWNORMAL : SW_SHOWNOACTIVATE) : SW_HIDE);
 }
 
 UINT CWindowWnd::ShowModal()
