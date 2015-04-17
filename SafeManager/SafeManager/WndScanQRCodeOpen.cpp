@@ -74,12 +74,6 @@ LRESULT CWndScanQRCodeOpen::OnCreate( UINT uMsg, WPARAM wParam, LPARAM lParam, B
 	m_PaintManager.AddImage(_T("CWndScanQRCodeAndOpen_QR_bmp.png"), hQRBitmap, 122, 122, false);
 	pQR_Code->SetBkImage(_T("CWndScanQRCodeAndOpen_QR_bmp.png"));
 
-
-	CWndShadow::Initialize(m_PaintManager.GetInstance() );
-	m_WndShadow.Create(m_hWnd);
-	m_WndShadow.SetSize(4);
-	m_WndShadow.SetPosition(0, 0);
-
 	return 0;
 }
 

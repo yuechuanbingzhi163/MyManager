@@ -1,5 +1,5 @@
 #pragma once
-#include "WndShadow.h"
+
 class CWndQuit : public WindowImplBase
 {
 public:
@@ -22,6 +22,6 @@ public:
 	void HandleOk();
 
 private:
-	CWndShadow m_WndShadow;
+
 };
 

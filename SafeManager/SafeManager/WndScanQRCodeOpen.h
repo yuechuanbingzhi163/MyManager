@@ -1,5 +1,5 @@
 #pragma once
-#include "WndShadow.h"
+
 
 class CWndScanQRCodeOpen : public WindowImplBase
 {
@@ -27,7 +27,7 @@ public:
 	LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 private:
-	CWndShadow m_WndShadow;
+
 
 	string_t m_QR_Code_Data;
 

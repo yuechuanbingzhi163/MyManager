@@ -55,11 +55,6 @@ LRESULT CWndMoveOrPasteTo::OnCreate( UINT uMsg, WPARAM wParam, LPARAM lParam, BO
 {
 		__super::OnCreate(uMsg, wParam, lParam, bHandled);
 
-		CWndShadow::Initialize(m_PaintManager.GetInstance() );
-		m_WndShadow.Create(m_hWnd);
-		m_WndShadow.SetSize(4);
-		m_WndShadow.SetPosition(0, 0);
-
 		HBITMAP hBmp;
 		int nWidth = 0;
 		int nHeight =0;

@@ -43,11 +43,6 @@ LRESULT CWndProgress::OnCreate( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& b
 {
 	__super::OnCreate(uMsg,wParam, lParam, bHandled);
 
-	CWndShadow::Initialize(m_PaintManager.GetInstance() );
-	m_WndShadow.Create(m_hWnd);
-	m_WndShadow.SetSize(3);
-	m_WndShadow.SetPosition(0, 0);	
-
 	SetTimer(m_hWnd, NULL, 200, TimerProc2);
 	
 	SetEvent(hMoveOrCopyEvent);

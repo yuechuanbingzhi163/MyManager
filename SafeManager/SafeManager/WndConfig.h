@@ -1,5 +1,5 @@
 #pragma once
-#include "WndShadow.h"
+
 class CWndConfig : public WindowImplBase
 {
 public:
@@ -21,7 +21,6 @@ public:
 
 	void Init(LPCTSTR lpDiskName, bool bUserShortcutKey, UINT nModifiers, UINT nVirtualKey, bool bShowShortcutIcon, bool bShowTrayIcon, bool bSaveSource);
 
-private:
-	CWndShadow m_WndShadow;
+
 };
 

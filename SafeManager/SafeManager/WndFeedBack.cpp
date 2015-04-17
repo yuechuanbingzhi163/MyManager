@@ -68,10 +68,5 @@ LRESULT CWndFeedBack::OnCreate( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& b
 	m_PaintManager.AddImage(_T("weibo_QR_bmp.png"), hQRBitmap1, 100, 100, false);
 	pQR_Code->SetBkImage(_T("weibo_QR_bmp.png"));
 
-	CWndShadow::Initialize(m_PaintManager.GetInstance() );
-	m_WndShadow.Create(m_hWnd);
-	m_WndShadow.SetSize(4);
-	m_WndShadow.SetPosition(0, 0);
-
 	return 0;
 }

@@ -50,12 +50,6 @@ LRESULT CWndScanQRCodeAndBind::OnCreate( UINT uMsg, WPARAM wParam, LPARAM lParam
 
 	SetIcon(IDI_SAFEMANAGER);
 
-
-	CWndShadow::Initialize(m_PaintManager.GetInstance() );
-	m_WndShadow.Create(m_hWnd);
-	m_WndShadow.SetSize(4);
-	m_WndShadow.SetPosition(0, 0);
-
 	CControlUI *pQR_Code = static_cast<CControlUI*>(m_PaintManager.FindControl(_T("QR_Code")));
 	int nWidth = pQR_Code->GetFixedWidth();
 	int nHeight = pQR_Code->GetFixedHeight();

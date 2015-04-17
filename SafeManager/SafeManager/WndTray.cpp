@@ -41,11 +41,6 @@ LRESULT CWndTray::OnCreate( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHand
 {
 	__super::OnCreate(uMsg, wParam, lParam, bHandled);
 
-	CWndShadow::Initialize(m_PaintManager.GetInstance() );
-	m_WndShadow.Create(m_hWnd);
-	m_WndShadow.SetSize(4);
-	m_WndShadow.SetPosition(0, 0);
-
 	CListUI *pList = static_cast<CListUI*>(m_PaintManager.FindControl(_T("menulist")));
 	pList->GetHeader()->SetVisible(false);
 
@@ -55,11 +50,6 @@ LRESULT CWndTray::OnCreate( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHand
 LRESULT CWndTray::OnKillFocus( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled )
 {
 	if( (HWND)wParam == m_hWnd ) bHandled = FALSE;
-	else if(  (HWND)wParam == m_WndShadow.GetHwnd() ) {
-		CWindowWnd::HandleMessage(uMsg, wParam, lParam);
-		::SetFocus( m_hWnd );
-		bHandled = FALSE;
-	}
 	else {
 		Close();
 		bHandled = FALSE;

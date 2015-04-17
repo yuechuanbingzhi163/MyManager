@@ -1,5 +1,5 @@
 #pragma once
-#include "WndShadow.h"
+
 
 class CWndMessageBox: public WindowImplBase
 {
@@ -23,6 +23,6 @@ public:
 	void SetTitleAndTip(LPCTSTR lpTitle, LPCTSTR lpTip, DWORD dwTipColor=0xffff0000);
 
 private:
-	CWndShadow m_WndShadow;
+
 };
 

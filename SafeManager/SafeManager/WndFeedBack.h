@@ -1,5 +1,5 @@
 #pragma once
-#include "WndShadow.h"
+
 class CWndFeedBack : public WindowImplBase
 {
 public:
@@ -20,8 +20,6 @@ public:
 	LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);	
 
 private:
-	CWndShadow m_WndShadow;
-
 	string_t m_QR_Code_WeiXin;
 	string_t m_QR_Code_WeiBo;
 };

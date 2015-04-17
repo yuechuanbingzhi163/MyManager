@@ -1,5 +1,5 @@
 #pragma once
-#include "WndShadow.h"
+
 class CWndAbout : public WindowImplBase
 {
 public:
@@ -19,7 +19,6 @@ public:
 	void Notify( TNotifyUI &msg );
 	LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);	
 
-private:
-	CWndShadow m_WndShadow;
+
 };
 

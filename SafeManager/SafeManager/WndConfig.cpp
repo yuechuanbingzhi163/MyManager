@@ -63,11 +63,6 @@ LRESULT CWndConfig::OnCreate( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHa
 {
 	__super::OnCreate(uMsg, wParam, lParam, bHandled);
 
-	CWndShadow::Initialize(m_PaintManager.GetInstance() );
-	m_WndShadow.Create(m_hWnd);
-	m_WndShadow.SetSize(4);
-	m_WndShadow.SetPosition(0, 0);
-
 	string_t strDiskName = CMainFrameWork::SingleInstance()->GetConfig_DiskName();
 	bool bUserShortcutKey = CMainFrameWork::SingleInstance()->GetConfig_UseShortcutKey();
 	UINT nVirtualKey = CMainFrameWork::SingleInstance()->GetConfig_VirturlKey();

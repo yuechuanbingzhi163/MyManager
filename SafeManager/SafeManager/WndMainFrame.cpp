@@ -381,11 +381,6 @@ LRESULT CWndMainFrame::OnCreate( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& 
 
 	SetIcon(IDI_SAFEMANAGER);
 
-	CWndShadow::Initialize(m_PaintManager.GetInstance() );
-	m_WndShadow.Create(m_hWnd);
-	m_WndShadow.SetSize(4);
-	m_WndShadow.SetPosition(0, 0);
-
 	m_pTreeViewUI = static_cast<CTreeViewUI*>(m_PaintManager.FindControl(_T("tree_file")));	
 
 	Init();

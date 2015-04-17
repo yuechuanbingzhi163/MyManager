@@ -79,9 +79,6 @@
     <ClInclude Include="WndScanQRCodeOpen.h">
       <Filter>wnd</Filter>
     </ClInclude>
-    <ClInclude Include="WndShadow.h">
-      <Filter>wnd</Filter>
-    </ClInclude>
     <ClInclude Include="CryptoLayer.h">
       <Filter>logic</Filter>
     </ClInclude>
@@ -170,9 +167,6 @@
     </ClCompile>
     <ClCompile Include="CppSQLite3.cpp">
       <Filter>sqlite</Filter>
-    </ClCompile>
-    <ClCompile Include="WndShadow.cpp">
-      <Filter>wnd</Filter>
     </ClCompile>
     <ClCompile Include="WndScanQRCodeOpen.cpp">
       <Filter>wnd</Filter>

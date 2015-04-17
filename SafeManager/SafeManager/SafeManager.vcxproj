@@ -184,7 +184,6 @@
     <ClInclude Include="WndQuit.h" />
     <ClInclude Include="WndScanQRCodeAndBind.h" />
     <ClInclude Include="WndScanQRCodeOpen.h" />
-    <ClInclude Include="WndShadow.h" />
     <ClInclude Include="WndTray.h" />
   </ItemGroup>
   <ItemGroup>
@@ -224,7 +223,6 @@
     <ClCompile Include="WndQuit.cpp" />
     <ClCompile Include="WndScanQRCodeAndBind.cpp" />
     <ClCompile Include="WndScanQRCodeOpen.cpp" />
-    <ClCompile Include="WndShadow.cpp" />
     <ClCompile Include="WndTray.cpp" />
   </ItemGroup>
   <ItemGroup>

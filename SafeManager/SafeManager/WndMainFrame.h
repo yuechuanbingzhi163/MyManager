@@ -1,5 +1,5 @@
 #pragma once
-#include "WndShadow.h"
+
 #include "ListContainerElementOfFIleList.h"
 #include "DropTargetEx.h"
 #include "FileHandle.h"
@@ -108,8 +108,6 @@ private:
 
 
 private:
-	CWndShadow m_WndShadow;
-
 	CDropTargetEx * m_pDropTarget;	//使窗体支持拖放操作
 
 	int m_IsDirIndex;

@@ -1,5 +1,5 @@
 #pragma once
-#include "WndShadow.h"
+
 #include "FileHandle.h"
 
 class CWndMainFrame;
@@ -30,7 +30,7 @@ public:
 	CFileHandle *GetSelFileHandle();
 
 private:
-	CWndShadow m_WndShadow;
+
 
 	CFileHandle *m_pSelFileHandle;
 

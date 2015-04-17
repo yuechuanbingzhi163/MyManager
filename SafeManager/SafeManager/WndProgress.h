@@ -1,6 +1,6 @@
 #pragma once
 #include "stdafx.h"
-#include "WndShadow.h"
+
 
 class CWndProgress :	public WindowImplBase
 {
@@ -31,8 +31,6 @@ public:
 	CTextUI *GetAnimation();
 
 private:
-	CWndShadow m_WndShadow;
-
 	ULONG m_SecondCount;
 };
 

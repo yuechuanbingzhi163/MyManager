@@ -1,5 +1,4 @@
 #pragma once
-#include "WndShadow.h"
 #include "FileHandle.h"
 #include "WndMainFrame.h"
 
@@ -32,8 +31,6 @@ public:
 	void SetMainWnd(CWndMainFrame *pWnd);
 
 private:
-	CWndShadow m_WndShadow;
-
 	CFileHandle *m_pFileHandle;
 
 	CListUI *m_pMenuList;
