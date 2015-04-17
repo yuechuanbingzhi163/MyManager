@@ -57,4 +57,35 @@ using namespace DuiLib;
 
 
 #define GWL_WNDPROC         (-4)
+#define GWLP_WNDPROC		(-4)
 #define GWL_USERDATA        (-21)
+
+#define WM_FILE_PROCESS												(WM_USER + 0X820)
+#define WM_THREAD_QUIT												(WM_USER + 0X821)
+#define  WM_UPDATE_FILE_LIST_UI									(WM_USER + 0X822)
+#define  WM_UPDATA_FILE_LIST_PROGRESS_UI			(WM_USER + 0X823)
+#define  WM_NIDTIP															(WM_USER + 0X824)
+#define  WM_UPDATE_PROGRESS									(WM_USER + 0X825)
+#define  WM_POP_MENU													(WM_USER + 0X826)
+
+#define  WM_COMMAND_UPLOAD								(WM_USER + 0X827)
+#define	WM_COMMAND_NEW_FOLDER						(WM_USER + 0X828)
+#define  WM_COMMAND_REFRESH								(WM_USER + 0X829)
+#define  WM_COMMAND_OPEN										(WM_USER + 0X830)
+#define  WM_COMMAND_COPY										(WM_USER + 0X831)
+#define  WM_COMMAND_MOVE										(WM_USER + 0X832)
+#define  WM_COMMAND_EXPORT									(WM_USER + 0X833)
+#define  WM_COMMAND_RENAME								(WM_USER + 0X834)
+#define  WM_COMMAND_DELETE									(WM_USER + 0X835)
+#define  WM_COMMAND_ATTRIBUTE							(WM_USER + 0X836)
+
+
+
+
+#define DUI_MSGTYPE_FILE_LIST_DBCLICK			_T("self_def_list_item_dbclick")
+
+#define EVERY_FILE_CHIPS_NUMBER										(3)
+#define  FILE_SPLIT_OR_MERGER_PROGERSS_VALUE			(0.6)
+#define  FILE_GET_FRAGS_PROGERSS_VALUE						(0.4)
+
+#define  FILE_HANDLE_STRING_END						_T("OPERATOR_END")

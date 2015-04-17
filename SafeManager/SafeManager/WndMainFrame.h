@@ -49,6 +49,19 @@ public:
 
 	void SearchFile( );
 
+	void PopFileListMenu(const POINT & pt, CFileHandle *pFileHandle = NULL);
+
+	void ExecutCommand_Upload();
+	void ExecutCommand_Refresh();
+	void ExecutCommand_NewFolder();
+	void ExecutCommand_Attribute(CFileHandle *pFileHandle);
+	void ExecutCommand_Open(CFileHandle *pFileHandle);
+	void ExecutCommand_Copy(CFileHandle *pFileHandle);
+	void ExecutCommand_Move(CFileHandle *pFileHandle);
+	void ExecutCommand_Export(CFileHandle *pFileHandle);
+	void ExecutCommand_Delete(CFileHandle *pFileHandle);
+	void ExecutCommand_Rename(CFileHandle *pFileHandle);
+
 private:
 	void SetCurFileHandle(CFileHandle *pFileHandle);
 

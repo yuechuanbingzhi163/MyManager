@@ -41,7 +41,7 @@ void CListContainerElementOfFileList::DoEvent( TEventUI& event )
 	}
 	else if (event.Type == UIEVENT_RBUTTONUP)
 	{
-		::MessageBox(NULL, _T(""), NULL, MB_OK);
+		
 	}
 
 }

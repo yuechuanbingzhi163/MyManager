@@ -12,6 +12,7 @@
 #include "WndMoveOrPasteTo.h"
 #include "WndProgress.h"
 #include "FileListUI.h"
+#include "WndFileListMenu.h"
 
 HANDLE  hMoveOrCopyEvent = ::CreateEvent(0, FALSE, FALSE, 0);
 DWORD WINAPI _MoveThreadProc( LPVOID lpParam );
@@ -518,6 +519,7 @@ void CWndMainFrame::CreateFileList()
 														pHor->Add(pControl);
 														CCheckBoxUI *pCheckBox = new CCheckBoxUI;
 														pCheckBox->SetName(_T("checkbox_select_all"));	
+														pCheckBox->SetAttribute(_T("padding"), _T("0,3,0,0"));
 														pCheckBox->SetAttribute(_T("normalimage"), _T("file='imagelist.checkbox.png' source='0,0,19,19'"));
 														pCheckBox->SetAttribute(_T("hotimage"), _T("file='imagelist.checkbox.png' source='20,0,39,19'"));
 														pCheckBox->SetAttribute(_T("selectedimage"), _T("file='imagelist.checkbox.png' source='60,0,79,19'"));
@@ -569,7 +571,7 @@ void CWndMainFrame::InitFileList()
 
 	CFileHandle *pFileHandle = (CFileHandle*)(pRoot->GetTag());
 
-	//SearchFileAddToFileList(pFileHandle);
+	SearchFileAddToFileList(pFileHandle);
 }
 
 
@@ -1005,6 +1007,86 @@ LRESULT CWndMainFrame::HandleCustomMessage( UINT uMsg, WPARAM wParam, LPARAM lPa
 {
 	switch(uMsg)
 	{
+	case WM_COMMAND_ATTRIBUTE:
+		{
+			CFileHandle *pFileHandle = (CFileHandle*)wParam;
+			ExecutCommand_Attribute(pFileHandle);
+			break;
+		}
+	case WM_COMMAND_DELETE:
+		{
+			CFileHandle *pFileHandle = (CFileHandle*)wParam;
+			ExecutCommand_Delete(pFileHandle);
+			break;
+		}
+	case WM_COMMAND_RENAME:
+		{
+			CFileHandle *pFileHandle = (CFileHandle*)wParam;
+			ExecutCommand_Rename(pFileHandle);
+			break;
+		}
+	case WM_COMMAND_EXPORT:
+		{
+			CFileHandle *pFileHandle = (CFileHandle*)wParam;
+			ExecutCommand_Export(pFileHandle);
+			break;
+		}
+	case WM_COMMAND_COPY:
+		{
+			CFileHandle *pFileHandle = (CFileHandle*)wParam;
+			ExecutCommand_Copy(pFileHandle);
+			break;
+		}
+	case WM_COMMAND_MOVE:
+		{
+			CFileHandle *pFileHandle = (CFileHandle*)wParam;
+			ExecutCommand_Move(pFileHandle);
+			break;
+		}
+	case WM_COMMAND_OPEN:
+		{
+			CFileHandle *pFileHandle = (CFileHandle*)wParam;
+			ExecutCommand_Open(pFileHandle);
+			break;
+		}
+	case WM_COMMAND_REFRESH:
+		{
+			ExecutCommand_Refresh();
+			break;
+		}
+	case WM_COMMAND_NEW_FOLDER:
+		{
+			ExecutCommand_NewFolder();
+			break;
+		}
+	case WM_COMMAND_UPLOAD:
+		{
+			ExecutCommand_Upload();
+			break;
+		}
+	case  WM_POP_MENU:
+		{
+			CListContainerElementOfFileList *pItem = static_cast<CListContainerElementOfFileList*>((CControlUI*)wParam);
+			CFileHandle *pFileHandle = NULL;
+
+			if (pItem != NULL)
+			{
+				pFileHandle = pItem->GetFileHandle();
+			}
+
+			POINT  pPt = *((POINT*)lParam);
+			::ClientToScreen(m_hWnd, &pPt);
+
+			if (pItem != NULL)
+			{
+				PopFileListMenu(pPt, pFileHandle);
+			}
+			else
+			{
+				PopFileListMenu(pPt, pFileHandle);
+			}
+			break;
+		}
 	case WM_UPDATE_FILE_LIST_UI:
 		{
 			CFileHandle *pFile = (CFileHandle*)wParam;
@@ -1562,55 +1644,7 @@ void CWndMainFrame::OnClick_Btn_Move( TNotifyUI &msg )
 
 void CWndMainFrame::OnClick_Btn_NewDir( TNotifyUI &msg )
 {
-	if (m_Current_File_Handle == NULL)
-	{
-		CWndMessageBox *pWnd = new CWndMessageBox;
-		pWnd->Create(m_hWnd, _T("提示"), UI_WNDSTYLE_FRAME, 0);
-		pWnd->SetTitleAndTip(_T("提示"), _T("不好意思，查询结果中不可新建文件夹！"));
-		pWnd->CenterWindow();
-		pWnd->ShowModal();
-		return;
-	}
-
-	SYSTEMTIME sysModifyTime;
-	GetLocalTime(&sysModifyTime);
-	TCHAR strModifyTime[MAX_PATH] = {0};	
-	StringCchPrintf(strModifyTime, _countof(strModifyTime), _T("%d/%02d/%02d %02d:%02d:%02d"), sysModifyTime.wYear, sysModifyTime.wMonth, sysModifyTime.wDay, sysModifyTime.wHour, sysModifyTime.wMinute, sysModifyTime.wSecond);
-
-	CFileHandle *pNewFileHandle = new CFileHandle;
-	pNewFileHandle->SetFileID(CreateGUID());
-	pNewFileHandle->SetFileName( _T("新建文件夹"));
-	pNewFileHandle->SetFileSize(0);
-	pNewFileHandle->SetParentID(m_Current_File_Handle->GetFileID());
-	pNewFileHandle->SetFileType(0);
-	pNewFileHandle->SetLoadAllChildrenFile(TRUE);
-	pNewFileHandle->SetModifyTime(SystemTimeToINT64(sysModifyTime));
-
-	m_Current_File_Handle->AddChildrenNode(pNewFileHandle);
-
-	CreateFileListItem(pNewFileHandle);			
-
-	CTreeViewUI *pTreeView = static_cast<CTreeViewUI*>(m_PaintManager.FindControl(_T("tree_file")));
-	int count = pTreeView->GetCount();
-
-	CTreeNodeUI *pParent = NULL;
-	CTreeNodeUI *pRoot = NULL;
-	for (int i=0; i<count; i++)
-	{
-		pRoot = static_cast<CTreeNodeUI*>(pTreeView->GetItemAt(i));
-		CFileHandle *pParentFile = (CFileHandle*)(pRoot->GetTag());
-
-		if (pParentFile == m_Current_File_Handle)
-		{
-			pParent = pRoot;
-			break;
-		}
-	}
-
-	CTreeNodeUI *pCurNode = CreateTreeNode(pNewFileHandle);
-	pParent->Add(pCurNode);
-
-	CDatabaseManager::GetSingleInstance()->InsertRecordToTableFileBaseInfo(pNewFileHandle->GetFileID().c_str(), pNewFileHandle->GetFileType(), pNewFileHandle->GetFileName().c_str(), pNewFileHandle->GetParentID().c_str(), pNewFileHandle->GetFileSize(), pNewFileHandle->GetModifyTime(), pNewFileHandle->GetState());
+	ExecutCommand_NewFolder();
 }
 
 void CWndMainFrame::OnClick_Btn_Export( TNotifyUI &msg )
@@ -1724,55 +1758,7 @@ void CWndMainFrame::OnClick_Btn_Delete( TNotifyUI &msg )
 
 void CWndMainFrame::OnClick_Btn_Add( TNotifyUI &msg )
 {
-	if (m_Current_File_Handle == NULL)
-	{
-		CWndMessageBox *pWnd = new CWndMessageBox;
-		pWnd->Create(m_hWnd, _T("提示"), UI_WNDSTYLE_FRAME, 0);
-		pWnd->SetTitleAndTip(_T("提示"), _T("不好意思，查询结果中不可添加！"));
-		pWnd->CenterWindow();
-		pWnd->ShowModal();
-		return;
-	}
-
-	TCHAR chDir[512] = {0};
-
-	LPMALLOC ShellMalloc;
-	if (SUCCEEDED(SHGetMalloc(&ShellMalloc)))
-	{
-		LPITEMIDLIST DesktopPidl;
-		if (SUCCEEDED(SHGetSpecialFolderLocation(NULL, CSIDL_DESKTOP  , &DesktopPidl)))
-		{
-			if (SUCCEEDED(SHGetPathFromIDList(DesktopPidl, chDir)))
-			{
-				ShellMalloc->Free(DesktopPidl);
-				ShellMalloc->Release();						
-			}
-		}
-	}	
-
-	OPENFILENAME ofn;
-	TCHAR strFile[MAX_PATH] = {0};
-	ZeroMemory(&ofn, sizeof(OPENFILENAME));
-	ofn.lStructSize = sizeof(OPENFILENAME);
-	ofn.lpstrFilter = _T("All Files(*.*)\0*.*\0\0");
-	ofn.lpstrFile = strFile;
-	ofn.nMaxFile = MAX_PATH;
-	ofn.Flags = OFN_PATHMUSTEXIST  | OFN_HIDEREADONLY | OFN_EXPLORER | OFN_NOCHANGEDIR  | OFN_ENABLEHOOK ;
-	ofn.hwndOwner = m_hWnd;
-	ofn.lpfnHook = OpenFileDlgProc;
-	ofn.lpstrInitialDir = chDir;
-
-	BOOL bRet = GetOpenFileName(&ofn);
-
-	if (StrCmp(ofn.lpstrFile, _T("")) != 0)
-	{
-		LPSTTEMP lpTemp = new STTEMP;
-		lpTemp->Path = ofn.lpstrFile;
-		lpTemp->CurFileHandle = m_Current_File_Handle;
-		lpTemp->nTag = 0;
-
-		::PostThreadMessage(CFileHandleManager::GetSingleInstance()->GetThreadID(PRE_PROC_THREAD_ID), WM_FILE_PROCESS, (WPARAM)lpTemp, NULL);				
-	}
+	ExecutCommand_Upload();
 }
 
 void CWndMainFrame::OnClick_Btn_Forward( TNotifyUI &msg )
@@ -2006,6 +1992,385 @@ void CWndMainFrame::OrderFileList( int nIndex, bool bAscend /*= true*/ )
 		}
 }
 
+void CWndMainFrame::PopFileListMenu( const POINT & pt, CFileHandle *pFileHandle)
+{
+	CWndFileListMenu *pWnd = new CWndFileListMenu;	
+	pWnd->Create(NULL, _T("FileListMenu"), UI_WNDSTYLE_DIALOG, WS_EX_TOOLWINDOW);		
+	pWnd->SetMainWnd(this);
+	pWnd->SetFileHandle(pFileHandle);
+	pWnd->ShowWindow();
+
+	HDC   hdc=::GetDC(NULL);   //获得屏幕设备描述表句柄   
+	int   ScrWidth=GetDeviceCaps(hdc,HORZRES);   //获取屏幕水平分辨率   
+	int   ScrHeight=GetDeviceCaps(hdc,VERTRES);     //获取屏幕垂直分辨率  
+	::ReleaseDC(NULL,hdc);   //释放屏幕设备描述表
+
+	SetForegroundWindow(pWnd->GetHWND());
+
+	CDuiRect rcWnd;
+	::GetWindowRect(pWnd->GetHWND(), &rcWnd);
+
+	POINT ptNew = pt;
+
+	if (pt.x + rcWnd.GetWidth() > ScrWidth)
+	{
+		ptNew.x = pt.x - rcWnd.GetWidth();			
+	}
+
+	if (pt.y + rcWnd.GetHeight() > ScrHeight)
+	{
+		ptNew.y = pt.y - rcWnd.GetHeight();
+	}
+
+	::SetWindowPos(pWnd->GetHWND(), HWND_TOPMOST, ptNew.x, ptNew.y, rcWnd.GetWidth(), rcWnd.GetHeight(), SWP_SHOWWINDOW );
+}
+
+void CWndMainFrame::ExecutCommand_Upload()
+{
+	if (m_Current_File_Handle == NULL)
+	{
+		CWndMessageBox *pWnd = new CWndMessageBox;
+		pWnd->Create(m_hWnd, _T("提示"), UI_WNDSTYLE_FRAME, 0);
+		pWnd->SetTitleAndTip(_T("提示"), _T("不好意思，查询结果中不可添加！"));
+		pWnd->CenterWindow();
+		pWnd->ShowModal();
+		return;
+	}
+
+	TCHAR chDir[512] = {0};
+
+	LPMALLOC ShellMalloc;
+	if (SUCCEEDED(SHGetMalloc(&ShellMalloc)))
+	{
+		LPITEMIDLIST DesktopPidl;
+		if (SUCCEEDED(SHGetSpecialFolderLocation(NULL, CSIDL_DESKTOP  , &DesktopPidl)))
+		{
+			if (SUCCEEDED(SHGetPathFromIDList(DesktopPidl, chDir)))
+			{
+				ShellMalloc->Free(DesktopPidl);
+				ShellMalloc->Release();						
+			}
+		}
+	}	
+
+	OPENFILENAME ofn;
+	TCHAR strFile[MAX_PATH] = {0};
+	ZeroMemory(&ofn, sizeof(OPENFILENAME));
+	ofn.lStructSize = sizeof(OPENFILENAME);
+	ofn.lpstrFilter = _T("All Files(*.*)\0*.*\0\0");
+	ofn.lpstrFile = strFile;
+	ofn.nMaxFile = MAX_PATH;
+	ofn.Flags = OFN_PATHMUSTEXIST  | OFN_HIDEREADONLY | OFN_EXPLORER | OFN_NOCHANGEDIR  | OFN_ENABLEHOOK ;
+	ofn.hwndOwner = m_hWnd;
+	ofn.lpfnHook = OpenFileDlgProc;
+	ofn.lpstrInitialDir = chDir;
+
+	BOOL bRet = GetOpenFileName(&ofn);
+
+	if (StrCmp(ofn.lpstrFile, _T("")) != 0)
+	{
+		LPSTTEMP lpTemp = new STTEMP;
+		lpTemp->Path = ofn.lpstrFile;
+		lpTemp->CurFileHandle = m_Current_File_Handle;
+		lpTemp->nTag = 0;
+
+		::PostThreadMessage(CFileHandleManager::GetSingleInstance()->GetThreadID(PRE_PROC_THREAD_ID), WM_FILE_PROCESS, (WPARAM)lpTemp, NULL);				
+	}
+}
+
+void CWndMainFrame::ExecutCommand_NewFolder()
+{
+	if (m_Current_File_Handle == NULL)
+	{
+		CWndMessageBox *pWnd = new CWndMessageBox;
+		pWnd->Create(m_hWnd, _T("提示"), UI_WNDSTYLE_FRAME, 0);
+		pWnd->SetTitleAndTip(_T("提示"), _T("不好意思，查询结果中不可新建文件夹！"));
+		pWnd->CenterWindow();
+		pWnd->ShowModal();
+		return;
+	}
+
+	SYSTEMTIME sysModifyTime;
+	GetLocalTime(&sysModifyTime);
+	TCHAR strModifyTime[MAX_PATH] = {0};	
+	StringCchPrintf(strModifyTime, _countof(strModifyTime), _T("%d/%02d/%02d %02d:%02d:%02d"), sysModifyTime.wYear, sysModifyTime.wMonth, sysModifyTime.wDay, sysModifyTime.wHour, sysModifyTime.wMinute, sysModifyTime.wSecond);
+
+	CFileHandle *pNewFileHandle = new CFileHandle;
+	pNewFileHandle->SetFileID(CreateGUID());
+	pNewFileHandle->SetFileName( _T("新建文件夹"));
+	pNewFileHandle->SetFileSize(0);
+	pNewFileHandle->SetParentID(m_Current_File_Handle->GetFileID());
+	pNewFileHandle->SetFileType(0);
+	pNewFileHandle->SetLoadAllChildrenFile(TRUE);
+	pNewFileHandle->SetModifyTime(SystemTimeToINT64(sysModifyTime));
+
+	m_Current_File_Handle->AddChildrenNode(pNewFileHandle);
+
+	CreateFileListItem(pNewFileHandle);			
+
+	CTreeViewUI *pTreeView = static_cast<CTreeViewUI*>(m_PaintManager.FindControl(_T("tree_file")));
+	int count = pTreeView->GetCount();
+
+	CTreeNodeUI *pParent = NULL;
+	CTreeNodeUI *pRoot = NULL;
+	for (int i=0; i<count; i++)
+	{
+		pRoot = static_cast<CTreeNodeUI*>(pTreeView->GetItemAt(i));
+		CFileHandle *pParentFile = (CFileHandle*)(pRoot->GetTag());
+
+		if (pParentFile == m_Current_File_Handle)
+		{
+			pParent = pRoot;
+			break;
+		}
+	}
+
+	CTreeNodeUI *pCurNode = CreateTreeNode(pNewFileHandle);
+	pParent->Add(pCurNode);
+
+	CDatabaseManager::GetSingleInstance()->InsertRecordToTableFileBaseInfo(pNewFileHandle->GetFileID().c_str(), pNewFileHandle->GetFileType(), pNewFileHandle->GetFileName().c_str(), pNewFileHandle->GetParentID().c_str(), pNewFileHandle->GetFileSize(), pNewFileHandle->GetModifyTime(), pNewFileHandle->GetState());
+}
+
+void CWndMainFrame::ExecutCommand_Refresh()
+{
+	EmptyFileList();
+	SearchFileAddToFileList(m_Current_File_Handle);
+}
+
+void CWndMainFrame::ExecutCommand_Open( CFileHandle *pFileHandle )
+{
+	if (pFileHandle->GetFileType() == 0)
+	{
+		EmptyFileList();
+		SearchFileAddToFileList(pFileHandle);
+		SetCurFileHandle(pFileHandle);
+	}
+	else
+	{
+		HANDLE hThread = CreateThread(NULL, 0, _OpenFileThreadProc, pFileHandle, NULL, NULL);
+		CloseHandle(hThread);		
+	}
+}
+
+void CWndMainFrame::ExecutCommand_Copy( CFileHandle *pFileHandle )
+{
+	BOOL bCanOpt = TRUE;
+
+	m_vecMoveOrCopyFrom.clear();
+
+	CFileHandle *pSelFile = pFileHandle;
+
+	if (pSelFile->GetTaskCount() != 0)
+	{
+		CWndMessageBox *pMsgBox = new CWndMessageBox;
+		pMsgBox->Create(m_hWnd, NULL, UI_WNDSTYLE_DIALOG, NULL);
+		pMsgBox->SetTitleAndTip(_T("提示"), _T("有文件正在进行处理，不可复制或移动!"));
+		pMsgBox->CenterWindow();
+		pMsgBox->ShowModal();
+		return;
+	}
+
+	m_vecMoveOrCopyFrom.push_back(pSelFile);
+
+	CWndMoveOrPasteTo *pWnd = new CWndMoveOrPasteTo(this, TRUE);
+	pWnd->Create(m_hWnd, NULL, UI_WNDSTYLE_DIALOG, NULL);
+	pWnd->CenterWindow();
+	int nRet = pWnd->ShowModal();
+	CFileHandle *pSelFileHandle = NULL;
+	if (nRet == 1)
+	{
+		//下面进行文件复制操作流程
+		pSelFileHandle = m_pMoveOrCopyTo;	
+
+		ResetEvent(hMoveOrCopyEvent);
+		HANDLE hThread = CreateThread(NULL, 0, _CopyThreadProc, this, NULL, NULL);
+		CloseHandle(hThread);
+
+		CWndProgress *pWndProgress = new CWndProgress;
+		m_WndProgress = pWndProgress;
+		pWndProgress->Create(m_hWnd, NULL, UI_WNDSTYLE_DIALOG, NULL);
+		pWndProgress->SetTip(_T("正在准备..."));
+		pWndProgress->CenterWindow();
+		pWndProgress->ShowModal();
+	}
+}
+
+void CWndMainFrame::ExecutCommand_Move( CFileHandle *pFileHandle )
+{
+	if (m_Current_File_Handle == NULL)
+	{
+		CWndMessageBox *pWnd = new CWndMessageBox;
+		pWnd->Create(m_hWnd, _T("提示"), UI_WNDSTYLE_FRAME, 0);
+		pWnd->SetTitleAndTip(_T("提示"), _T("不好意思，查询结果中不可移动！"));
+		pWnd->CenterWindow();
+		pWnd->ShowModal();
+		return;
+	}
+
+	BOOL bCanOpt = TRUE;
+
+
+	m_vecMoveOrCopyFrom.clear();
+
+
+			CFileHandle *pSelFile = pFileHandle;
+			if (pSelFile->GetTaskCount() != 0)
+			{
+				CWndMessageBox *pMsgBox = new CWndMessageBox;
+				pMsgBox->Create(m_hWnd, NULL, UI_WNDSTYLE_DIALOG, NULL);
+				pMsgBox->SetTitleAndTip(_T("提示"), _T("有文件正在进行处理，不可复制或移动!"));
+				pMsgBox->CenterWindow();
+				pMsgBox->ShowModal();
+				return;
+			}
+
+			m_vecMoveOrCopyFrom.push_back(pSelFile);
+
+	CWndMoveOrPasteTo *pWnd = new CWndMoveOrPasteTo(this, FALSE);
+	pWnd->Create(m_hWnd, NULL, UI_WNDSTYLE_DIALOG, NULL);
+	pWnd->CenterWindow();
+	int nRet = pWnd->ShowModal();
+	CFileHandle *pSelFileHandle = NULL;
+	if (nRet == 1)
+	{
+		pSelFileHandle = m_pMoveOrCopyTo;	
+
+		//下面进行文件移动操作流程
+		ResetEvent(hMoveOrCopyEvent);
+		HANDLE hThread = CreateThread(NULL, 0, _MoveThreadProc, this, NULL, NULL);
+		CloseHandle(hThread);
+
+		CWndProgress *pWndProgress = new CWndProgress;
+		m_WndProgress = pWndProgress;
+		pWndProgress->Create(m_hWnd, NULL, UI_WNDSTYLE_DIALOG, NULL);
+		pWndProgress->SetTip(_T("正在准备..."));
+		pWndProgress->CenterWindow();
+		pWndProgress->ShowModal();
+	}
+}
+
+void CWndMainFrame::ExecutCommand_Export( CFileHandle *pFileHandle )
+{
+	TCHAR szPathName[MAX_PATH] = {0};
+	BROWSEINFO bInfo={0};
+	bInfo.hwndOwner = m_hWnd;
+	bInfo.lpszTitle = _T("请选择存放路径");
+	bInfo.ulFlags      =  BIF_RETURNONLYFSDIRS | BIF_NEWDIALOGSTYLE ; 
+	bInfo.lpfn		 = NULL;
+
+	LPITEMIDLIST lpDlist; 
+	lpDlist   =   SHBrowseForFolder(&bInfo); 
+	if (lpDlist != NULL)
+	{
+		SHGetPathFromIDList(lpDlist, szPathName);	
+
+		LPSTTEMP lpTemp = new STTEMP;
+		lpTemp->Path = szPathName;
+		lpTemp->CurFileHandle =pFileHandle;
+		lpTemp->nTag = 1;
+
+		::PostThreadMessage(CFileHandleManager::GetSingleInstance()->GetThreadID(PRE_PROC_THREAD_ID), WM_FILE_PROCESS, (WPARAM)lpTemp, NULL);				
+	}
+}
+
+void CWndMainFrame::ExecutCommand_Rename( CFileHandle *pFileHandle )
+{
+	CListContainerElementOfFileList *pEle = NULL;
+	CListContainerElementOfFileList *pTager = NULL;
+	
+	int nCount = m_pFileListUI->GetCount();
+	for (int i=0; i<nCount; i++)
+	{
+		pEle = static_cast<CListContainerElementOfFileList*>(m_pFileListUI->GetItemAt(i));
+		if (pEle->GetFileHandle() == pFileHandle)
+		{
+			pTager = pEle;
+			break;
+		}
+	}
+
+	if (pTager != NULL)
+	{
+		RenameFile(pEle);
+	}
+}
+
+void CWndMainFrame::ExecutCommand_Delete( CFileHandle *pFileHandle )
+{
+	if (m_Current_File_Handle == NULL)
+	{
+		CWndMessageBox *pWnd = new CWndMessageBox;
+		pWnd->Create(m_hWnd, _T("提示"), UI_WNDSTYLE_FRAME, 0);
+		pWnd->SetTitleAndTip(_T("提示"), _T("不好意思，查询结果中不可删除！"));
+		pWnd->CenterWindow();
+		pWnd->ShowModal();
+		return;
+	}
+
+	CTreeViewUI *pTreeView = static_cast<CTreeViewUI*>(m_PaintManager.FindControl(_T("tree_file")));	
+
+	vector<LPSTTEMP> vecTemp;
+	vector<CListContainerElementOfFileList*> vecListEle;
+	vector<CTreeNodeUI*> vecTreeNodes;
+
+	int count = m_pFileListUI->GetCount();
+	for (int i=0; i<count; i++)
+	{
+		CListContainerElementOfFileList *pItem = static_cast<CListContainerElementOfFileList*>(m_pFileListUI->GetItemAt(i));		
+
+		if (pItem->GetFileHandle() == pFileHandle)
+		{
+			LPSTTEMP lpTemp = new STTEMP;
+			lpTemp->CurFileHandle = pItem->GetFileHandle();
+			lpTemp->nTag = 2;
+
+			vecTemp.push_back(lpTemp);
+			vecListEle.push_back(pItem);	
+
+			int nodescount = pTreeView->GetCount();
+
+			for (int k = 0; k<nodescount; k++)
+			{
+				CTreeNodeUI *pNode = static_cast<CTreeNodeUI*>(pTreeView->GetItemAt(k));
+
+				if (pNode != NULL)
+				{
+					CFileHandle *pTempFile = (CFileHandle*)(pNode->GetTag());
+
+					if (pTempFile == pItem->GetFileHandle())
+					{								
+						vecTreeNodes.push_back(pNode);
+					}
+				}
+			}
+
+			break;
+		}
+	}
+
+	int vecEleCount = vecListEle.size();
+	for (int  i = 0; i<vecEleCount; i++)
+	{	
+		m_pFileListUI->Remove(vecListEle[i]);
+	}
+
+	int vecTreeCount = vecTreeNodes.size();
+	for (int i=0; i<vecTreeCount; i++)
+	{
+		pTreeView->Remove(vecTreeNodes[i]);
+	}
+
+	int VecTempCount = vecTemp.size();
+	for (int k=0; k<VecTempCount; k++)
+	{
+		::PostThreadMessage(CFileHandleManager::GetSingleInstance()->GetThreadID(PRE_PROC_THREAD_ID), WM_FILE_PROCESS, (WPARAM)vecTemp[k], NULL);
+	}
+}
+
+void CWndMainFrame::ExecutCommand_Attribute( CFileHandle *pFileHandle )
+{
+	MessageBox(NULL, pFileHandle->GetFileName().c_str(), _T("属性"), MB_OK);
+}
 
 
 DWORD WINAPI _MoveThreadProc( LPVOID lpParam )

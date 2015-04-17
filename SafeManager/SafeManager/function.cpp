@@ -4,7 +4,7 @@
 #include "function.h"
 #include <winioctl.h>
 
-LONG g_lOriWndProc = 0;
+LONG_PTR g_lOriWndProc = 0;
 LRESULT static __stdcall  _WndProc ( HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam  );
 
 BOOL ReleaseResource( IN ULONG ResID, IN LPCTSTR lpResType, IN LPTSTR lpPath, IN LPTSTR lpFileName )
@@ -369,12 +369,12 @@ UINT_PTR CALLBACK OpenFileDlgProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM l
 
 		if (StrCmp(wcsClassNameParent, wcsClassName) == 0)
 		{
-			LONG lUserData = GetWindowLong(hWnd, GWL_USERDATA);
+			LONG_PTR lUserData = GetWindowLongPtr(hWnd, GWL_USERDATA);
 
 			if (lUserData != 100)
 			{
-				g_lOriWndProc = SetWindowLong(hParent, GWL_WNDPROC, (LONG)_WndProc);
-				SetWindowLong(hWnd, GWL_USERDATA, 100);				
+				g_lOriWndProc = SetWindowLongPtr(hParent, GWLP_WNDPROC, (LONG_PTR)_WndProc);
+				SetWindowLongPtr(hWnd, GWL_USERDATA, (LONG_PTR)100);				
 			}
 		}
 
@@ -388,7 +388,7 @@ UINT_PTR CALLBACK OpenFileDlgProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM l
 
 		LPOFNOTIFY lpOfNotify = (LPOFNOTIFY)lParam;
 
-		SetWindowLong(hParent, GWL_USERDATA, (long)(lpOfNotify->lpOFN));
+		SetWindowLongPtr(hParent, GWL_USERDATA, (LONG_PTR)(lpOfNotify->lpOFN));
 
 		if (lpOfNotify->hdr.code == CDN_SELCHANGE)
 		{
