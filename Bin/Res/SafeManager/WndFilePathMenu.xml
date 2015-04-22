@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="150,380" showshadow="true" shadowsize="5" shadowposition="1,1" shadowcolor="#333333" >
+  <!--0--> <Font name="微软雅黑" size="12" default="true"/>
+ 
+	<Default name="Label" value="textcolor=&quot;#FF444444&quot;" />
+
+
+    <VerticalLayout bkimage="file='menu_bk.png' corner='26,2,2,2' source='6,6,44,24'"> 
+
+		<List name="menu_list" itemhotbkcolor="#FF98C8F9" itemdisabledbkcolor="#00FFFFFF">
+												
+		</List>
+
+    </VerticalLayout>
+	
+	
+</Window>

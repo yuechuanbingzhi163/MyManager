@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <Window size="1096,700" caption="66,0,0,66" sizebox="4,4,6,6" mininfo="950,548" showshadow="true" shadowsize="5" shadowposition="1,1" shadowcolor="#333333">
-  <!--0--> <Font name="微软雅黑" size="18" bold="false" italic="false" default="true"/>
+  <!--0--> <Font name="微软雅黑" size="18" bold="false" italic="false" />
   <!--1--> <Font name="微软雅黑" size="14" bold="false" italic="false" />
-  <!--2--> <Font name="微软雅黑" size="12" bold="false" italic="false" />  
+  <!--2--> <Font name="微软雅黑" size="12" bold="false" italic="false" default="true"/>  
   <!--3--> <Font name="微软雅黑" size="16" bold="false" italic="false" /> 
   <!--4--> <Font name="微软雅黑" size="10" bold="false" italic="false" /> 
   <!--5--> <Font name="微软雅黑" size="12" bold="false" italic="false" underline="true"/>
@@ -68,8 +68,8 @@
 					<Button name="btn_forward" height="30" width="28" normalimage="file='返回.png' source='0,0,28,20' dest='0,5,28,25'" hotimage="file='返回.png' source='28,0,56,20' dest='0,5,28,25'"/>
 					<Control width="10" />
 					<Button name="btn_next" height="30" width="28"   normalimage="file='前进.png' source='0,0,28,20' dest='0,5,28,25'" hotimage="file='前进.png' source='28,0,56,20' dest='0,5,28,25'"/>
-					<Control width="20" />
-					<Edit name="edit_file_path" font="2" height="26" padding="0,2,0,0" bordersize="1" bordercolor="#FFdddddd" />
+					<Control width="20" />					
+					<HorizontalLayout name="hor_file_path" height="26" bordersize="1" bordercolor="#FFdddddd" />
 					<Control width="30"/>
 					
 					<HorizontalLayout bordersize="1" bordercolor="#FFdddddd" width="200" height="26" padding="0,2,0,0" inset="1,1,1,1">
