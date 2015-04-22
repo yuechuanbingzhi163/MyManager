@@ -59,11 +59,12 @@ IFACEMETHODIMP CPropPageEx::AddPages( LPFNADDPROPSHEETPAGE pfnAddPage, LPARAM lP
 {
 	// Create a property sheet page.
 
-	PROPSHEETPAGE psp = { sizeof(psp) };
+	PROPSHEETPAGE psp;
+	ZeroMemory(&psp, sizeof(PROPSHEETPAGE));
+	psp.dwSize = sizeof(PROPSHEETPAGE);
 	psp.dwFlags = PSP_USETITLE | PSP_USECALLBACK ;
 	psp.hInstance = _hInstance;
-	psp.pszTemplate = MAKEINTRESOURCE(IDD_FILE_PROPPAGE);
-	//psp.hIcon = hIcon;
+	psp.pszTemplate = MAKEINTRESOURCE(IDD_FILE_PROPPAGE);	
 	psp.pszTitle = SAFE_PROP_TITLE;
 	psp.pfnDlgProc = FilePropPageDlgProc;
 	psp.pcRefParent = NULL;
@@ -104,12 +105,14 @@ INT_PTR CALLBACK FilePropPageDlgProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 				 if (pExt != NULL)
 				 {
 					 HWND hwndMeta = GetDlgItem(hWnd, IDC_DATA);
-					 SetWindowText(hWnd, _T("202222222222"));
+					 SetWindowText(hwndMeta, _T("202222222222"));
 
 					 // Store the object pointer with this particular page dialog.
 					 SetProp(hWnd, EXT_POINTER_PROP, static_cast<HANDLE>(pExt));
 				 }		
-			 }		
+			 }	
+			
+			 return TRUE;				//×¢ÒâÒª·µ»ØTRUE or FALSE
 		}
 	case WM_COMMAND:
 		{
@@ -124,8 +127,8 @@ INT_PTR CALLBACK FilePropPageDlgProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 					reinterpret_cast<WPARAM>(hWnd), 0);
 				return TRUE;
 			}
-		}
-		break;
+			break;
+		}	
 		case WM_NOTIFY:
         {
             switch ((reinterpret_cast<LPNMHDR>(lParam))->code)
@@ -146,7 +149,8 @@ INT_PTR CALLBACK FilePropPageDlgProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 
                 // Return PSNRET_NOERROR to allow the property dialog to close if 
                 // the user clicked OK.
-                SetWindowLong(hWnd, DWLP_MSGRESULT, PSNRET_NOERROR);               
+                SetWindowLong(hWnd, DWLP_MSGRESULT, PSNRET_NOERROR);  
+				return TRUE;
             }
 			      break;
         }
@@ -156,11 +160,11 @@ INT_PTR CALLBACK FilePropPageDlgProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 				// The EXT_POINTER_PROP property stored the pointer to the 
 				// FilePropSheetExt object.
 				RemoveProp(hWnd, EXT_POINTER_PROP);
-				break;
+				return TRUE;
 			}
 	}
 	
-	return TRUE;
+	return FALSE;
 }
 
 UINT CALLBACK FilePropPageCallbackProc( HWND hWnd, UINT uMsg, LPPROPSHEETPAGE ppsp )
@@ -191,9 +195,8 @@ UINT CALLBACK FilePropPageCallbackProc( HWND hWnd, UINT uMsg, LPPROPSHEETPAGE pp
 		}
 		break;
 	}
-
+	
 	return FALSE;
-	return 0;
 }
 
 
