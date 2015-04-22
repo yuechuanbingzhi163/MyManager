@@ -79,6 +79,8 @@ using namespace DuiLib;
 #define  WM_COMMAND_DELETE									(WM_USER + 0X835)
 #define  WM_COMMAND_ATTRIBUTE							(WM_USER + 0X836)
 
+#define  WM_LOAD_NEW_FILE_HANDLE						(WM_USER + 0X837)
+
 
 
 

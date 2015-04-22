@@ -6,6 +6,7 @@
 #include "WndProgress.h"
 #include <list>
 #include "FileListUI.h"
+#include "OptionPath.h"
 
 class CDropTargetEx;
 class CWndMoveOrPasteTo;
@@ -67,6 +68,14 @@ private:
 
 	void Init();
 
+	void InitFilePath();
+	void AddFilePathMain();
+	void AddFilePathPath(CFileHandle *pFileHandle);
+	void AddFilePathPullDownMenu(CFileHandle *pFileHandle);
+	void ParseCurFileHandlePaths(CFileHandle *pFileHandle);
+	void EmptyFilePathUIs();
+
+
 	void InitFileTree();
 	void EnumFileHandleTreeAddToTree(CTreeNodeUI *pParent);
 	void TravFileHandleTreeAddToTree(CTreeNodeUI *pParent, CFileHandle *pRoot);
@@ -125,5 +134,8 @@ private:
 	list<CFileHandle*>::reverse_iterator m_listHistoryIter;
 
 	string_t m_strSearchContent;
+
+	CHorizontalLayoutUI *m_pHorFilePath;
+	list<COptionPath*> m_listFilePathUIs;
 };	
 

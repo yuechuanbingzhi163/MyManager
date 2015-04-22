@@ -104,7 +104,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\..\Lib\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\Lib\debug;C:\Program Files %28x86%29\Visual Leak Detector\lib\Win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -157,6 +157,7 @@
     <ClInclude Include="DropTargetEx.h" />
     <ClInclude Include="FileHandle.h" />
     <ClInclude Include="FileHandleManager.h" />
+    <ClInclude Include="OptionPath.h" />
     <ClInclude Include="WndFileListMenu.h" />
     <ClInclude Include="FileListUI.h" />
     <ClInclude Include="function.h" />
@@ -177,6 +178,7 @@
     <ClInclude Include="WndAbout.h" />
     <ClInclude Include="WndConfig.h" />
     <ClInclude Include="WndFeedBack.h" />
+    <ClInclude Include="WndFilePathMenu.h" />
     <ClInclude Include="WndMainFrame.h" />
     <ClInclude Include="WndMessageBox.h" />
     <ClInclude Include="WndMoveOrPasteTo.h" />
@@ -193,6 +195,7 @@
     <ClCompile Include="DropTargetEx.cpp" />
     <ClCompile Include="FileHandle.cpp" />
     <ClCompile Include="FileHandleManager.cpp" />
+    <ClCompile Include="OptionPath.cpp" />
     <ClCompile Include="WndFileListMenu.cpp" />
     <ClCompile Include="FileListUI.cpp" />
     <ClCompile Include="function.cpp" />
@@ -216,6 +219,7 @@
     <ClCompile Include="WndAbout.cpp" />
     <ClCompile Include="WndConfig.cpp" />
     <ClCompile Include="WndFeedBack.cpp" />
+    <ClCompile Include="WndFilePathMenu.cpp" />
     <ClCompile Include="WndMainFrame.cpp" />
     <ClCompile Include="WndMessageBox.cpp" />
     <ClCompile Include="WndMoveOrPasteTo.cpp" />

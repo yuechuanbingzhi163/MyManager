@@ -124,14 +124,13 @@ void CWndMainFrame::Notify( TNotifyUI &msg )
 			bool bSel = pCheckBox->IsSelected();
 
 			CCheckBoxUI *pAllSel = static_cast<CCheckBoxUI*>(m_PaintManager.FindControl(_T("checkbox_select_all")));
-			CListUI *pList = static_cast<CListUI*>(m_PaintManager.FindControl(_T("list_file")));
 
-			int count = pList->GetCount();
+			int count = m_pFileListUI->GetCount();
 			int selcount = 0;
 
 			for (int i=0; i<count; i++)
 			{
-				CListContainerElementOfFileList *pEle = static_cast<CListContainerElementOfFileList*>(pList->GetItemAt(i));
+				CListContainerElementOfFileList *pEle = static_cast<CListContainerElementOfFileList*>(m_pFileListUI->GetItemAt(i));
 				CHorizontalLayoutUI *pHor = static_cast<CHorizontalLayoutUI*>(pEle->GetItemAt(0));
 				CCheckBoxUI *pCheckBox = static_cast<CCheckBoxUI*>(pHor->GetItemAt(1));
 				if (pCheckBox->IsSelected())
@@ -382,6 +381,7 @@ LRESULT CWndMainFrame::OnCreate( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& 
 	SetIcon(IDI_SAFEMANAGER);
 
 	m_pTreeViewUI = static_cast<CTreeViewUI*>(m_PaintManager.FindControl(_T("tree_file")));	
+	m_pHorFilePath = static_cast<CHorizontalLayoutUI*>(m_PaintManager.FindControl(_T("hor_file_path")));
 
 	Init();
 
@@ -390,6 +390,8 @@ LRESULT CWndMainFrame::OnCreate( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& 
 
 void CWndMainFrame::Init()
 {
+	InitFilePath();
+
 	CreateFileList();
 
 	InitFileTree();
@@ -1002,6 +1004,14 @@ LRESULT CWndMainFrame::HandleCustomMessage( UINT uMsg, WPARAM wParam, LPARAM lPa
 {
 	switch(uMsg)
 	{
+	case WM_LOAD_NEW_FILE_HANDLE:
+		{
+			CFileHandle *pFileHandle = (CFileHandle*)wParam;
+
+			SearchFileAddToFileList(pFileHandle);
+			SetCurFileHandle(pFileHandle);
+			break;
+		}
 	case WM_COMMAND_ATTRIBUTE:
 		{
 			CFileHandle *pFileHandle = (CFileHandle*)wParam;
@@ -1180,6 +1190,8 @@ void CWndMainFrame::SetCurFileHandle( CFileHandle *pFileHandle )
 	m_Current_File_Handle = pFileHandle;
 
 	AddToSelectedFileHandleHistory(m_Current_File_Handle);
+
+	ParseCurFileHandlePaths(m_Current_File_Handle);
 }
 
 CListContainerElementOfFileList * CWndMainFrame::GetFileListItem( CFileHandle *pFileHandle )
@@ -1767,6 +1779,8 @@ void CWndMainFrame::OnClick_Btn_Forward( TNotifyUI &msg )
 
 	m_Current_File_Handle = *m_listHistoryIter;
 	SearchFileAddToFileList(m_Current_File_Handle);	
+
+	ParseCurFileHandlePaths(m_Current_File_Handle);
 }
 
 void CWndMainFrame::OnClick_Btn_Next( TNotifyUI &msg )
@@ -1780,6 +1794,8 @@ void CWndMainFrame::OnClick_Btn_Next( TNotifyUI &msg )
 
 	m_Current_File_Handle = *m_listHistoryIter;
 	SearchFileAddToFileList(m_Current_File_Handle);
+
+	ParseCurFileHandlePaths(m_Current_File_Handle);
 }
 
 void CWndMainFrame::OnClick_Btn_Search( TNotifyUI &msg )
@@ -2364,9 +2380,103 @@ void CWndMainFrame::ExecutCommand_Delete( CFileHandle *pFileHandle )
 
 void CWndMainFrame::ExecutCommand_Attribute( CFileHandle *pFileHandle )
 {
-	MessageBox(NULL, pFileHandle->GetFileName().c_str(), _T("ÊôÐÔ"), MB_OK);
+	if (pFileHandle == NULL)
+	{
+		MessageBox(NULL, m_Current_File_Handle->GetFileName().c_str(), _T("ÊôÐÔ"), MB_OK);
+	}
+	else
+	{
+		MessageBox(NULL, pFileHandle->GetFileName().c_str(), _T("ÊôÐÔ"), MB_OK);
+	}	
 }
 
+void CWndMainFrame::InitFilePath()
+{	
+	m_pHorFilePath->SetChildPadding(1);
+	ParseCurFileHandlePaths(CFileHandleManager::GetSingleInstance()->GetFileHandleTree());
+}
+
+void CWndMainFrame::AddFilePathMain(  )
+{
+	COptionPath *pPathUI = new COptionPath;
+	pPathUI->SetFileHandle(CFileHandleManager::GetSingleInstance()->GetFileHandleTree());
+	pPathUI->SetFixedWidth(22);
+	pPathUI->SetIsPathName(true);	
+	pPathUI->SetGroup(_T("file_path_UIs"));
+	pPathUI->SetAttribute(_T("endellipsis"), _T("true"));
+	pPathUI->SetAttribute(_T("normalimage"), _T("file=\'fold.png\'  dest=\'1,3,21,23\'"));
+	pPathUI->SetAttribute(_T("selectedimage"), _T("file=\'fold.png\' dest=\'1,3,21,23\'"));
+	m_pHorFilePath->Add(pPathUI);
+	m_listFilePathUIs.push_back(pPathUI);
+}
+
+void CWndMainFrame::AddFilePathPath( CFileHandle *pFileHandle )
+{
+	COptionPath *pPathUI = new COptionPath;
+	pPathUI->SetText(pFileHandle->GetFileName().c_str());
+
+	RECT rect = {0};
+	rect = CalTextRect(pFileHandle->GetFileName().c_str(), m_PaintManager.GetFont(pPathUI->GetFont()));
+	
+	pPathUI->SetFixedWidth(rect.right - rect.left + 4);	
+
+	pPathUI->SetFileHandle(pFileHandle);	
+	pPathUI->SetIsPathName(true);
+	pPathUI->SetHotTextColor(0xFFFF0000);
+	pPathUI->SetGroup(_T("file_path_UIs"));
+	pPathUI->SetAttribute(_T("endellipsis"), _T("true"));
+	
+	m_pHorFilePath->Add(pPathUI);
+	m_listFilePathUIs.push_back(pPathUI);
+}
+
+void CWndMainFrame::AddFilePathPullDownMenu(CFileHandle *pFileHandle)
+{
+	COptionPath *pPathUI = new COptionPath;
+	pPathUI->SetFileHandle(pFileHandle);
+	pPathUI->SetFixedWidth(20);
+	pPathUI->SetIsPathName(false);
+	pPathUI->SetGroup(_T("file_path_UIs"));
+	pPathUI->SetAttribute(_T("endellipsis"), _T("true"));
+	pPathUI->SetAttribute(_T("normalimage"), _T("file=\'NextBtn.png\' source=\'0,0,16,16\' dest=\'2,5,20,21\'"));
+	pPathUI->SetAttribute(_T("selectedimage"), _T("file=\'NextBtn.png\' source=\'16,0,32,16\' dest=\'2,5,20,21\'"));
+	m_pHorFilePath->Add(pPathUI);
+	m_listFilePathUIs.push_back(pPathUI);
+}
+
+void CWndMainFrame::EmptyFilePathUIs()
+{
+	m_pHorFilePath->RemoveAll();
+	m_listFilePathUIs.clear();
+}
+
+void CWndMainFrame::ParseCurFileHandlePaths( CFileHandle *pFileHandle )
+{
+	EmptyFilePathUIs();
+
+	list<CFileHandle*> ListTemp;
+
+	CFileHandle *pTempFileHandle = pFileHandle;
+
+	while(pTempFileHandle != NULL)
+	{
+		ListTemp.push_front(pTempFileHandle);
+		pTempFileHandle = static_cast<CFileHandle*>(pTempFileHandle->GetParentNode());
+	}
+
+	list<CFileHandle*>::iterator iter = ListTemp.begin();
+	for (iter; iter != ListTemp.end(); iter++)
+	{
+		pTempFileHandle = *iter;
+		if (StrCmp(pTempFileHandle->GetFileID().c_str(), _T("0")) == 0)
+		{
+			AddFilePathMain();			
+		}
+
+		AddFilePathPath(pTempFileHandle);
+		AddFilePathPullDownMenu(pTempFileHandle);
+	}
+}
 
 DWORD WINAPI _MoveThreadProc( LPVOID lpParam )
 {

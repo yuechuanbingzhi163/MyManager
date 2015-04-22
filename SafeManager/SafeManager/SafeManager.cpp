@@ -10,6 +10,9 @@
 
 void Exit_Function();
 
+#include "vld.h"
+#pragma comment(lib, "vld.lib")
+
 HINSTANCE g_Hinstance = NULL;
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,

@@ -925,6 +925,18 @@ BOOL IsUsbDev(LPTSTR lpFileName)
 	return bRet;
 }
 
+RECT CalTextRect( LPCTSTR lpText, HFONT hFont)
+{
+	RECT rect = {0};
+	HDC hDc = ::CreateCompatibleDC(NULL);
+	HFONT hOldFont = (HFONT)::SelectObject(hDc, hFont);
+	::DrawText(hDc, lpText, -1, &rect, DT_CALCRECT);
+	::SelectObject(hDc, hOldFont);
+	::DeleteDC(hDc);	
+
+	return rect;
+}
+
 
 
 
