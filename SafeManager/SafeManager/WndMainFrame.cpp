@@ -500,7 +500,7 @@ void CWndMainFrame::CreateFileList()
 	m_pFileListUI = pList;
 	pContainer->Add(pList);
 	pList->SetName(_T("list_file"));
-	pList->ApplyAttributeList(_T("bkcolor=\"#FFf4f3f3\" itemfont=\"2\" itemalign=\"center\" itembkcolor=\"#FFF4F3F3\" itemselectedbkcolor=\"#FFCBDDFF\" itemhotbkcolor=\"#FFCBDDFF\" itemaltbk=\"false\" vscrollbar=\"true\" hscrollbar=\"true\" headerbkimage=\"list_header_bg.png\""));
+	pList->ApplyAttributeList(_T("bkcolor=\"#FFf4f3f3\" itemfont=\"2\" itemalign=\"center\" itembkcolor=\"#FFF4F3F3\" itemselectedbkcolor=\"#FFCBDDFF\" itemhotimage=\"file='btn_hot.png' corner='2,2,2,2'\" itemaltbk=\"false\" vscrollbar=\"true\" hscrollbar=\"true\" headerbkimage=\"list_header_bg.png\""));
 	
 			CListHeaderUI *pHeader = pList->GetHeader();
 			pHeader->ApplyAttributeList(_T("height=\"25\" bkcolor=\"#FFf7f8f8\""));

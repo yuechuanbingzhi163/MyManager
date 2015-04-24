@@ -339,7 +339,7 @@ HBITMAP GetIconByFileType(LPCTSTR lpFileType, bool IsDirectory/* = false*/)
 			bmi.bmiHeader.biSizeImage = nWidth * nHeight * sizeof(DWORD);
 
 			BYTE *pvBits;          // pointer to DIB section
-			hRet = ::CreateDIBSection(NULL, &bmi, DIB_PAL_COLORS, (void **)&pvBits, NULL, 0);	
+			hRet = ::CreateDIBSection(NULL, &bmi, DIB_RGB_COLORS, (void **)&pvBits, NULL, 0);	
 
 			HDC dcRet;
 			dcRet = ::CreateCompatibleDC(NULL);
@@ -348,6 +348,8 @@ HBITMAP GetIconByFileType(LPCTSTR lpFileType, bool IsDirectory/* = false*/)
 
 			::BitBlt(dcRet, 0, 0, nWidth, nHeight, dcImage, 0, 0, SRCCOPY);			
 			::BitBlt(dcRet, 0, 0, nWidth, nHeight, dcMem, 0, 0, SRCINVERT);		
+
+			//::GetDIBits(dcRet, hRet, 0, nWidth, NULL, &bmi, DIB_RGB_COLORS);
 
 			::SelectObject(dcImage, hObjImage);
 			::SelectObject(dcRet, hObjRet);
