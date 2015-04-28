@@ -7,7 +7,7 @@
 
     <VerticalLayout bkimage="file='menu_bk.png' corner='26,2,2,2' source='6,6,44,24'"> 
 
-		<List name="menu_list" itemhotbkcolor="#FF98C8F9" itemdisabledbkcolor="#00FFFFFF">
+		<List name="menu_list" itemhotbkcolor="#FF98C8F9" itemdisabledbkcolor="#00FFFFFF" itemhotimage="file='btn_hot.png' corner='2,2,2,2'" itemselectedimage="file='btn_hot.png' corner='2,2,2,2'">
 												
 		</List>
 

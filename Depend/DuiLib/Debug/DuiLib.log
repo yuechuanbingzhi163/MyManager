@@ -1,5 +1,8 @@
-﻿生成启动时间为 2015/4/21/星期二 16:35:41。
+﻿生成启动时间为 2015/4/28/星期二 15:37:43。
 项目“D:\GitHub\MyManager\Depend\DuiLib\DuiLib.vcxproj”在节点 2 上(rebuild 个目标)。
+_PrepareForClean:
+  正在删除文件“..\DuiLib\Debug\DuiLib.lastbuildstate”。
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppClean.targets(74,5): warning : 文件“D:\GitHub\MyManager\Depend\DuiLib\Debug\cl.command.1.tlog”正由另一进程使用，因此该进程无法访问此文件。
 InitializeBuildStatus:
   正在创建“..\DuiLib\Debug\DuiLib.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
 ClCompile:
@@ -110,4 +113,4 @@ FinalizeBuildStatus:
 
 生成成功。
 
-已用时间 00:00:02.86
+已用时间 00:00:03.14

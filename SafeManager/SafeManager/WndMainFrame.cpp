@@ -500,7 +500,7 @@ void CWndMainFrame::CreateFileList()
 	m_pFileListUI = pList;
 	pContainer->Add(pList);
 	pList->SetName(_T("list_file"));
-	pList->ApplyAttributeList(_T("bkcolor=\"#FFf4f3f3\" itemfont=\"2\" itemalign=\"center\" itembkcolor=\"#FFF4F3F3\" itemselectedbkcolor=\"#FFCBDDFF\" itemhotimage=\"file='btn_hot.png' corner='2,2,2,2'\" itemaltbk=\"false\" vscrollbar=\"true\" hscrollbar=\"true\" headerbkimage=\"list_header_bg.png\""));
+	pList->ApplyAttributeList(_T("bkcolor=\"#FFf4f3f3\" itemfont=\"2\" itemalign=\"center\" itembkcolor=\"#FFF4F3F3\" itemselectedbkcolor=\"#FFCBDDFF\" itemhotimage=\"file='btn_hot.png' corner='2,2,2,2'\"  itemselectedimage=\"file='btn_hot.png' corner='2,2,2,2'\" itemaltbk=\"false\" vscrollbar=\"true\" hscrollbar=\"true\" headerbkimage=\"list_header_bg.png\""));
 	
 			CListHeaderUI *pHeader = pList->GetHeader();
 			pHeader->ApplyAttributeList(_T("height=\"25\" bkcolor=\"#FFf7f8f8\""));
@@ -2402,10 +2402,12 @@ void CWndMainFrame::AddFilePathMain(  )
 	pPathUI->SetFileHandle(CFileHandleManager::GetSingleInstance()->GetFileHandleTree());
 	pPathUI->SetFixedWidth(22);
 	pPathUI->SetIsPathName(true);	
-	pPathUI->SetGroup(_T("file_path_UIs"));
-	pPathUI->SetAttribute(_T("endellipsis"), _T("true"));
-	pPathUI->SetAttribute(_T("normalimage"), _T("file=\'fold.png\'  dest=\'1,3,21,23\'"));
-	pPathUI->SetAttribute(_T("selectedimage"), _T("file=\'fold.png\' dest=\'1,3,21,23\'"));
+	pPathUI->SetGroup(_T("file_path_UIs"));	
+	pPathUI->SetAttribute(_T("showhtml"), _T("true"));
+	pPathUI->SetAttribute(_T("text"), _T("{i fold.png}"));		
+	pPathUI->SetAttribute(_T("hotimage"), _T("file=\'btn_hot.png\'  corner=\'1,1,1,1\'"));
+	pPathUI->SetAttribute(_T("selectedimage"), _T("file=\'btn_hot.png\'  corner=\'1,1,1,1\'"));
+	
 	m_pHorFilePath->Add(pPathUI);
 	m_listFilePathUIs.push_back(pPathUI);
 }
@@ -2413,18 +2415,20 @@ void CWndMainFrame::AddFilePathMain(  )
 void CWndMainFrame::AddFilePathPath( CFileHandle *pFileHandle )
 {
 	COptionPath *pPathUI = new COptionPath;
-	pPathUI->SetText(pFileHandle->GetFileName().c_str());
 
 	RECT rect = {0};
-	rect = CalTextRect(pFileHandle->GetFileName().c_str(), m_PaintManager.GetFont(pPathUI->GetFont()));
-	
+	rect = CalTextRect(pFileHandle->GetFileName().c_str(), m_PaintManager.GetFont(pPathUI->GetFont()));	
+
 	pPathUI->SetFixedWidth(rect.right - rect.left + 4);	
 
+	pPathUI->SetText(pFileHandle->GetFileName().c_str());
+
 	pPathUI->SetFileHandle(pFileHandle);	
-	pPathUI->SetIsPathName(true);
-	pPathUI->SetHotTextColor(0xFFFF0000);
+	pPathUI->SetIsPathName(true);	
 	pPathUI->SetGroup(_T("file_path_UIs"));
 	pPathUI->SetAttribute(_T("endellipsis"), _T("true"));
+	pPathUI->SetAttribute(_T("hotimage"), _T("file=\'btn_hot.png\'  corner=\'1,1,1,1\'"));
+	pPathUI->SetAttribute(_T("selectedimage"), _T("file=\'btn_hot.png\'  corner=\'1,1,1,1\'"));	
 	
 	m_pHorFilePath->Add(pPathUI);
 	m_listFilePathUIs.push_back(pPathUI);
@@ -2436,10 +2440,11 @@ void CWndMainFrame::AddFilePathPullDownMenu(CFileHandle *pFileHandle)
 	pPathUI->SetFileHandle(pFileHandle);
 	pPathUI->SetFixedWidth(20);
 	pPathUI->SetIsPathName(false);
-	pPathUI->SetGroup(_T("file_path_UIs"));
-	pPathUI->SetAttribute(_T("endellipsis"), _T("true"));
-	pPathUI->SetAttribute(_T("normalimage"), _T("file=\'NextBtn.png\' source=\'0,0,16,16\' dest=\'2,5,20,21\'"));
-	pPathUI->SetAttribute(_T("selectedimage"), _T("file=\'NextBtn.png\' source=\'16,0,32,16\' dest=\'2,5,20,21\'"));
+	pPathUI->SetGroup(_T("file_path_UIs"));	
+	pPathUI->SetAttribute(_T("showhtml"), _T("true"));
+	pPathUI->SetAttribute(_T("text"), _T("<i NextBtn.png 3 2>"));		
+	pPathUI->SetAttribute(_T("selectedimage"), _T("file=\'btn_hot.png\'  corner=\'1,1,1,1\'"));
+	pPathUI->SetAttribute(_T("hotimage"), _T("file=\'btn_hot.png\'  corner=\'1,1,1,1\'"));
 	m_pHorFilePath->Add(pPathUI);
 	m_listFilePathUIs.push_back(pPathUI);
 }

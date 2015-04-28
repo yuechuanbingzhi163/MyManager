@@ -381,8 +381,14 @@ HBITMAP GetIconByFileType(LPCTSTR lpFileType, bool IsDirectory/* = false*/)
 				}
 			}
 
+			delete pvMaskBits;
+
 			::SelectObject(dcImage, hObjImage);
 			::SelectObject(dcRet, hObjRet);
+
+			::DeleteDC(dcImage);
+			::DeleteDC(dcMem);
+			::DeleteDC(dcRet);
 		}
 		
 
