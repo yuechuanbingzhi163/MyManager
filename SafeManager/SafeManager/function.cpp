@@ -343,8 +343,9 @@ HBITMAP GetIconByFileType(LPCTSTR lpFileType, bool IsDirectory/* = false*/)
 
 			HDC dcRet;
 			dcRet = ::CreateCompatibleDC(NULL);
+			::SetBkColor(dcRet, RGB(244,243,243));
 			HGDIOBJ hObjRet = ::SelectObject(dcRet, hRet);
-			//::SetBkColor(dcRet, RGB(0,0,0));
+			
 
 			::BitBlt(dcRet, 0, 0, nWidth, nHeight, dcImage, 0, 0, SRCCOPY);			
 			::BitBlt(dcRet, 0, 0, nWidth, nHeight, dcMem, 0, 0, SRCINVERT);		
