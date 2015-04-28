@@ -69,7 +69,7 @@ LRESULT CWndMoveOrPasteTo::OnCreate( UINT uMsg, WPARAM wParam, LPARAM lParam, BO
 			nWidth = bmp.bmWidth;
 			nHeight = bmp.bmHeight;
 
-			m_PaintManager.AddImage(strIconName.c_str(), hBmp, nWidth, nHeight, false);
+			m_PaintManager.AddImage(strIconName.c_str(), hBmp, nWidth, nHeight, true);
 		}	
 
 		Init();

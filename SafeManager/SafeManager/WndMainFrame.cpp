@@ -405,7 +405,7 @@ void CWndMainFrame::Init()
 	if (m_PaintManager.GetImage(strIconName.c_str()) == NULL)
 	{
 		hBmp = GetIconByFileType(NULL, true);
-		m_PaintManager.AddImage(strIconName.c_str(), hBmp, 16, 16, false);
+		m_PaintManager.AddImage(strIconName.c_str(), hBmp, 16, 16, true);
 	}
 
 	CTreeViewUI *pTreeView = static_cast<CTreeViewUI*>(m_PaintManager.FindControl(_T("tree_file")));
@@ -649,7 +649,7 @@ CListContainerElementOfFileList * CWndMainFrame::CreateFileListItem( CFileHandle
 			nWidth = bmp.bmWidth;
 			nHeight = bmp.bmHeight;
 
-			m_PaintManager.AddImage(strIconName.c_str(), hBmp, nWidth, nHeight, false);
+			m_PaintManager.AddImage(strIconName.c_str(), hBmp, nWidth, nHeight, true);
 		}			
 	}
 	else
@@ -673,7 +673,7 @@ CListContainerElementOfFileList * CWndMainFrame::CreateFileListItem( CFileHandle
 				nWidth = bmp.bmWidth;
 				nHeight = bmp.bmHeight;
 
-				m_PaintManager.AddImage(strIconName.c_str(), hBmp, nWidth, nHeight, false);
+				m_PaintManager.AddImage(strIconName.c_str(), hBmp, nWidth, nHeight, true);
 			}
 		}
 		else
@@ -690,7 +690,7 @@ CListContainerElementOfFileList * CWndMainFrame::CreateFileListItem( CFileHandle
 				nWidth = bmp.bmWidth;
 				nHeight = bmp.bmHeight;
 
-				m_PaintManager.AddImage(strIconName.c_str(), hBmp, nWidth, nHeight, false);
+				m_PaintManager.AddImage(strIconName.c_str(), hBmp, nWidth, nHeight, true);
 			}
 		}
 	}

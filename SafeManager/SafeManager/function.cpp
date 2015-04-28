@@ -320,13 +320,13 @@ HBITMAP GetIconByFileType(LPCTSTR lpFileType, bool IsDirectory/* = false*/)
 			nHeight = bmp.bmHeight;
 
 			HDC dcMem;
-			dcMem = ::CreateCompatibleDC(NULL);
+			dcMem = ::CreateCompatibleDC(NULL);			
 			HGDIOBJ hObMem = ::SelectObject(dcMem, iconInfo.hbmColor);				
 
 			HDC dcImage;
 			dcImage = ::CreateCompatibleDC(NULL);
-			HGDIOBJ hObjImage = ::SelectObject(dcImage, iconInfo.hbmMask);		
-			//::SetBkColor(dcImage, RGB(255, 255, 255));
+			::SetBkMode(dcMem, TRANSPARENT);
+			HGDIOBJ hObjImage = ::SelectObject(dcImage, iconInfo.hbmMask);				
 
 			BITMAPINFO bmi;
 			ZeroMemory(&bmi, sizeof(BITMAPINFO));
@@ -343,14 +343,43 @@ HBITMAP GetIconByFileType(LPCTSTR lpFileType, bool IsDirectory/* = false*/)
 
 			HDC dcRet;
 			dcRet = ::CreateCompatibleDC(NULL);
-			::SetBkColor(dcRet, RGB(244,243,243));
-			HGDIOBJ hObjRet = ::SelectObject(dcRet, hRet);
-			
+			//::SetBkColor(dcRet, RGB(255,255,255));
+			//::SetBkMode(dcRet, TRANSPARENT);
+			HGDIOBJ hObjRet = ::SelectObject(dcRet, hRet);			
 
 			::BitBlt(dcRet, 0, 0, nWidth, nHeight, dcImage, 0, 0, SRCCOPY);			
-			::BitBlt(dcRet, 0, 0, nWidth, nHeight, dcMem, 0, 0, SRCINVERT);		
+			::BitBlt(dcRet, 0, 0, nWidth, nHeight, dcMem, 0, 0, SRCINVERT);	
 
-			//::GetDIBits(dcRet, hRet, 0, nWidth, NULL, &bmi, DIB_RGB_COLORS);
+			BITMAPINFO MaskBmi;
+			ZeroMemory(&MaskBmi, sizeof(BITMAPINFO));
+			MaskBmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+			MaskBmi.bmiHeader.biWidth = nWidth;
+			MaskBmi.bmiHeader.biHeight = nHeight;
+			MaskBmi.bmiHeader.biPlanes = 1;
+			MaskBmi.bmiHeader.biBitCount = 32;         // four 8-bit components
+			MaskBmi.bmiHeader.biCompression = BI_RGB;
+			MaskBmi.bmiHeader.biSizeImage = nWidth * nHeight * sizeof(DWORD);
+
+			BYTE *pvMaskBits = new BYTE[nWidth * nHeight * sizeof(DWORD)];
+			::GetDIBits(dcImage, iconInfo.hbmMask, 0, nHeight, pvMaskBits, &MaskBmi, DIB_RGB_COLORS);
+
+			for (int i=0; i<nWidth * nHeight; i++)
+			{
+				if( *(DWORD*)(&pvMaskBits[i*4]) == 0xFFFFFF )
+				{
+					pvBits[i*4] = (BYTE)0;
+					pvBits[i*4 + 1] = (BYTE)0;
+					pvBits[i*4 + 2] = (BYTE)0; 
+					pvBits[i*4 + 3] = (BYTE)0;
+				}
+				else
+				{
+					//pvBits[i*4] = (BYTE)255;
+					//pvBits[i*4 + 1] = (BYTE)255;
+					//pvBits[i*4 + 2] = (BYTE)255; 
+					pvBits[i*4 + 3] = (BYTE)255;
+				}
+			}
 
 			::SelectObject(dcImage, hObjImage);
 			::SelectObject(dcRet, hObjRet);

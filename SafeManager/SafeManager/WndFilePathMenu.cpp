@@ -115,7 +115,7 @@ void CWndFilePathMenu::AddListItem( CFileHandle *pFileHandle )
 		nWidth = bmp.bmWidth;
 		nHeight = bmp.bmHeight;
 
-		m_PaintManager.AddImage(strIconName.c_str(), hBmp, nWidth, nHeight, false);
+		m_PaintManager.AddImage(strIconName.c_str(), hBmp, nWidth, nHeight, true);
 	}
 
 	const TImageInfo *pImgInfo = m_PaintManager.GetImage(strIconName.c_str());
