@@ -1,15 +1,15 @@
-﻿生成启动时间为 2015/4/28/星期二 15:37:43。
+﻿生成启动时间为 2015/4/29/星期三 9:36:40。
 项目“D:\GitHub\MyManager\Depend\DuiLib\DuiLib.vcxproj”在节点 2 上(rebuild 个目标)。
 _PrepareForClean:
   正在删除文件“..\DuiLib\Debug\DuiLib.lastbuildstate”。
-C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppClean.targets(74,5): warning : 文件“D:\GitHub\MyManager\Depend\DuiLib\Debug\cl.command.1.tlog”正由另一进程使用，因此该进程无法访问此文件。
 InitializeBuildStatus:
-  正在创建“..\DuiLib\Debug\DuiLib.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+  正在对“..\DuiLib\Debug\DuiLib.unsuccessfulbuild”执行 Touch 任务。
 ClCompile:
   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /Od /D WIN32 /D _DEBUG /D _WINDOWS /D UILIB_EXPORTS /D _VC80_UPGRADE=0x0600 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp".\Build\Debug/DuiLib.pch" /Fo"..\DuiLib\Debug\\" /Fd"..\DuiLib\Debug\vc100.pdb" /Gd /TP /errorReport:prompt StdAfx.cpp
   StdAfx.cpp
-  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /Od /D WIN32 /D _DEBUG /D _WINDOWS /D UILIB_EXPORTS /D _VC80_UPGRADE=0x0600 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp".\Build\Debug/DuiLib.pch" /Fo"..\DuiLib\Debug\\" /Fd"..\DuiLib\Debug\vc100.pdb" /Gd /TP /errorReport:prompt Control\UIGifAnim.cpp UIlib.cpp Utils\UIShadow.cpp Utils\WinImplBase.cpp Utils\UIDelegate.cpp Utils\Utils.cpp Core\UIBase.cpp Core\UIContainer.cpp Core\UIControl.cpp Core\UIDlgBuilder.cpp Core\UIManager.cpp Core\UIMarkup.cpp Core\UIRender.cpp Layout\UIChildLayout.cpp Layout\UIHorizontalLayout.cpp Layout\UITabLayout.cpp Layout\UITileLayout.cpp Layout\UIVerticalLayout.cpp Control\UIActiveX.cpp Control\UIButton.cpp Control\UICheckBox.cpp Control\UICombo.cpp Control\UIComboBox.cpp Control\UIDateTime.cpp Control\UIEdit.cpp Control\UIFlash.cpp Control\UILabel.cpp Control\UIList.cpp Control\UIOption.cpp Control\UIProgress.cpp Control\UIRichEdit.cpp Control\UIScrollBar.cpp Control\UISlider.cpp Control\UIText.cpp Control\UITreeView.cpp Control\UIWebBrowser.cpp
+  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /Od /D WIN32 /D _DEBUG /D _WINDOWS /D UILIB_EXPORTS /D _VC80_UPGRADE=0x0600 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp".\Build\Debug/DuiLib.pch" /Fo"..\DuiLib\Debug\\" /Fd"..\DuiLib\Debug\vc100.pdb" /Gd /TP /errorReport:prompt Control\UIGifAnim.cpp Control\UIMenu.cpp UIlib.cpp Utils\UIShadow.cpp Utils\WinImplBase.cpp Utils\UIDelegate.cpp Utils\Utils.cpp Core\UIBase.cpp Core\UIContainer.cpp Core\UIControl.cpp Core\UIDlgBuilder.cpp Core\UIManager.cpp Core\UIMarkup.cpp Core\UIRender.cpp Layout\UIChildLayout.cpp Layout\UIHorizontalLayout.cpp Layout\UITabLayout.cpp Layout\UITileLayout.cpp Layout\UIVerticalLayout.cpp Control\UIActiveX.cpp Control\UIButton.cpp Control\UICheckBox.cpp Control\UICombo.cpp Control\UIComboBox.cpp Control\UIDateTime.cpp Control\UIEdit.cpp Control\UIFlash.cpp Control\UILabel.cpp Control\UIList.cpp Control\UIOption.cpp Control\UIProgress.cpp Control\UIRichEdit.cpp Control\UIScrollBar.cpp Control\UISlider.cpp Control\UIText.cpp Control\UITreeView.cpp Control\UIWebBrowser.cpp
   UIGifAnim.cpp
+  UIMenu.cpp
   UIlib.cpp
   UIShadow.cpp
 Utils\UIShadow.cpp(78): warning C4244: “初始化”: 从“LONG_PTR”转换到“LONG”，可能丢失数据
@@ -38,9 +38,9 @@ Core\UIRender.cpp(2018): warning C4267: “参数”: 从“size_t”转换到�
   UITileLayout.cpp
   UIVerticalLayout.cpp
   UIActiveX.cpp
-  UIButton.cpp
   Generating Code...
   Compiling...
+  UIButton.cpp
   UICheckBox.cpp
   UICombo.cpp
   UIComboBox.cpp
@@ -67,6 +67,7 @@ Utils\stb_image.c(778): warning C4244: “初始化”: 从“__int64”转换�
 Utils\XUnzip.cpp(3458): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
 Lib:
   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\Lib.exe /OUT:"..\..\lib\debug\DuiLib_d.lib" /NOLOGO /MACHINE:X64 ..\DuiLib\Debug\UIGifAnim.obj
+  ..\DuiLib\Debug\UIMenu.obj
   ..\DuiLib\Debug\StdAfx.obj
   ..\DuiLib\Debug\UIlib.obj
   ..\DuiLib\Debug\UIShadow.obj
@@ -113,4 +114,4 @@ FinalizeBuildStatus:
 
 生成成功。
 
-已用时间 00:00:03.14
+已用时间 00:00:03.46
