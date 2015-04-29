@@ -188,9 +188,8 @@ void CWndMainFrame::Notify( TNotifyUI &msg )
 			else
 			{
 				if (pFileHandle->IsUploadOrDownLaodPre())
-				{
-						CListUI *pFileList = static_cast<CListUI*>(m_PaintManager.FindControl(_T("list_file")));
-						pFileList->Remove(pItem);
+				{					
+						m_pFileListUI->Remove(pItem);
 				}
 				else if (pFileHandle->IsUploadOrDownLoadRuning())
 				{
@@ -2481,6 +2480,36 @@ void CWndMainFrame::ParseCurFileHandlePaths( CFileHandle *pFileHandle )
 		AddFilePathPath(pTempFileHandle);
 		AddFilePathPullDownMenu(pTempFileHandle);
 	}
+}
+
+LRESULT CWndMainFrame::OnSysCommand( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled )
+{
+	if (wParam == SC_CLOSE)
+	{
+		bHandled = TRUE;
+		ShowWindow(false);
+		return 0;
+	}
+#if defined(WIN32) && !defined(UNDER_CE)
+	BOOL bZoomed = ::IsZoomed(*this);
+	LRESULT lRes = CWindowWnd::HandleMessage(uMsg, wParam, lParam);
+	if( ::IsZoomed(*this) != bZoomed )
+	{
+		CControlUI* pbtnMax     = static_cast<CControlUI*>(m_PaintManager.FindControl(_T("maxbtn")));       // 最大化按钮
+		CControlUI* pbtnRestore = static_cast<CControlUI*>(m_PaintManager.FindControl(_T("restorebtn")));   // 还原按钮
+
+		// 切换最大化按钮和还原按钮的状态
+		if (pbtnMax && pbtnRestore)
+		{
+			pbtnMax->SetVisible(TRUE == bZoomed);       // 此处用表达式是为了避免编译器BOOL转换的警告
+			pbtnRestore->SetVisible(FALSE == bZoomed);
+		}
+
+	}
+#else
+	LRESULT lRes = CWindowWnd::HandleMessage(uMsg, wParam, lParam);
+#endif
+	return lRes;
 }
 
 DWORD WINAPI _MoveThreadProc( LPVOID lpParam )
