@@ -13,6 +13,7 @@
 #include "WndProgress.h"
 #include "FileListUI.h"
 #include "WndFileListMenu.h"
+#include "WndFileListMenu2.h"
 
 HANDLE  hMoveOrCopyEvent = ::CreateEvent(0, FALSE, FALSE, 0);
 DWORD WINAPI _MoveThreadProc( LPVOID lpParam );
@@ -2004,35 +2005,20 @@ void CWndMainFrame::OrderFileList( int nIndex, bool bAscend /*= true*/ )
 
 void CWndMainFrame::PopFileListMenu( const POINT & pt, CFileHandle *pFileHandle)
 {
-	CWndFileListMenu *pWnd = new CWndFileListMenu;	
-	pWnd->Create(NULL, _T("FileListMenu"), UI_WNDSTYLE_DIALOG, WS_EX_TOOLWINDOW);		
-	pWnd->SetMainWnd(this);
-	pWnd->SetFileHandle(pFileHandle);
-	pWnd->ShowWindow();
+	CWndFileListMenu2 *pMenu = new CWndFileListMenu2;
 
-	HDC   hdc=::GetDC(NULL);   //获得屏幕设备描述表句柄   
-	int   ScrWidth=GetDeviceCaps(hdc,HORZRES);   //获取屏幕水平分辨率   
-	int   ScrHeight=GetDeviceCaps(hdc,VERTRES);     //获取屏幕垂直分辨率  
-	::ReleaseDC(NULL,hdc);   //释放屏幕设备描述表
-
-	SetForegroundWindow(pWnd->GetHWND());
-
-	CDuiRect rcWnd;
-	::GetWindowRect(pWnd->GetHWND(), &rcWnd);
-
-	POINT ptNew = pt;
-
-	if (pt.x + rcWnd.GetWidth() > ScrWidth)
+	if (pFileHandle == NULL)
 	{
-		ptNew.x = pt.x - rcWnd.GetWidth();			
+		pMenu->Init(NULL, _T("WndFileListBodyMenu.xml"), pt, &m_PaintManager, NULL);
 	}
-
-	if (pt.y + rcWnd.GetHeight() > ScrHeight)
+	else if (pFileHandle->GetFileType() == 0)
 	{
-		ptNew.y = pt.y - rcWnd.GetHeight();
+		pMenu->Init(NULL, _T("WndFileListDIrMenu.xml"), pt, &m_PaintManager, NULL);
 	}
-
-	::SetWindowPos(pWnd->GetHWND(), HWND_TOPMOST, ptNew.x, ptNew.y, rcWnd.GetWidth(), rcWnd.GetHeight(), SWP_SHOWWINDOW );
+	else
+	{
+		pMenu->Init(NULL, _T("WndFileListFileMenu.xml"), pt, &m_PaintManager, NULL);
+	}
 }
 
 void CWndMainFrame::ExecutCommand_Upload()

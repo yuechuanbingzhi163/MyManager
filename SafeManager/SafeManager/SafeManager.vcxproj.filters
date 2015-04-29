@@ -157,6 +157,9 @@
     <ClInclude Include="WndFilePathMenu.h">
       <Filter>wnd</Filter>
     </ClInclude>
+    <ClInclude Include="WndFileListMenu2.h">
+      <Filter>wnd</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -259,6 +262,9 @@
       <Filter>control</Filter>
     </ClCompile>
     <ClCompile Include="WndFilePathMenu.cpp">
+      <Filter>wnd</Filter>
+    </ClCompile>
+    <ClCompile Include="WndFileListMenu2.cpp">
       <Filter>wnd</Filter>
     </ClCompile>
   </ItemGroup>
