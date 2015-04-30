@@ -13,7 +13,7 @@
 #include "WndProgress.h"
 #include "FileListUI.h"
 #include "WndFileListMenu.h"
-#include "WndFileListMenu2.h"
+
 
 HANDLE  hMoveOrCopyEvent = ::CreateEvent(0, FALSE, FALSE, 0);
 DWORD WINAPI _MoveThreadProc( LPVOID lpParam );
@@ -45,7 +45,7 @@ void CWndMainFrame::Notify( TNotifyUI &msg )
 	}
 	else if (msg.sType == DUI_MSGTYPE_CLICK)
 	{
-		if (msg.pSender->GetName() == _T("btn_main_page"))
+		 if (msg.pSender->GetName() == _T("btn_main_page"))
 		{
 			OnClick_Btn_MainPage(msg);
 		}
@@ -207,10 +207,47 @@ void CWndMainFrame::Notify( TNotifyUI &msg )
 	}
 	else if (msg.sType == DUI_MSGTYPE_ITEMCLICK)
 	{
-		LPCTSTR str = msg.pSender->GetClass();
-		CDuiString str1 = msg.pSender->GetParent()->GetParent()->GetName();
-
-		if (StrCmp(msg.pSender->GetClass(), _T("ListContainerElementUI")) == 0  && 
+		if (msg.pSender->GetName() == _T("memu_item_upload"))
+		{
+			::PostMessage(GetHWND(), WM_COMMAND_UPLOAD, NULL, NULL);
+		}
+		else if (msg.pSender->GetName() == _T("memu_item_newfolder"))
+		{
+		::PostMessage(GetHWND(), WM_COMMAND_NEW_FOLDER, NULL, NULL);
+		}
+		else if (msg.pSender->GetName() == _T("memu_item_refresh"))
+		{
+			::PostMessage(GetHWND(), WM_COMMAND_REFRESH, NULL, NULL);
+		}
+		else if (msg.pSender->GetName() == _T("memu_item_dir_open") || msg.pSender->GetName() == _T("memu_item_file_open"))
+		{
+				::PostMessage(GetHWND(), WM_COMMAND_OPEN, (WPARAM)m_PopMenu_FileHandle, NULL);
+		}
+		else if (msg.pSender->GetName() == _T("memu_item_dir_copy") || msg.pSender->GetName() == _T("memu_item_file_copy"))
+		{
+			::PostMessage(GetHWND(), WM_COMMAND_COPY, (WPARAM)m_PopMenu_FileHandle, NULL);
+		}
+		else if (msg.pSender->GetName() == _T("memu_item_dir_move") || msg.pSender->GetName() == _T("memu_item_file_move"))
+		{
+			::PostMessage(GetHWND(), WM_COMMAND_MOVE, (WPARAM)m_PopMenu_FileHandle, NULL);
+		}
+		else if (msg.pSender->GetName() == _T("memu_item_dir_export") || msg.pSender->GetName() == _T("memu_item_file_export"))
+		{
+			::PostMessage(GetHWND(), WM_COMMAND_EXPORT, (WPARAM)m_PopMenu_FileHandle, NULL);
+		}
+		else if (msg.pSender->GetName() == _T("memu_item_dir_rename") || msg.pSender->GetName() == _T("memu_item_file_rename"))
+		{
+				::PostMessage(GetHWND(), WM_COMMAND_RENAME, (WPARAM)m_PopMenu_FileHandle, NULL);
+		}
+		else if (msg.pSender->GetName() == _T("memu_item_dir_remove") || msg.pSender->GetName() == _T("memu_item_file_remove"))
+		{
+			::PostMessage(GetHWND(), WM_COMMAND_DELETE, (WPARAM)m_PopMenu_FileHandle, NULL);
+		}
+		else if (msg.pSender->GetName() == _T("memu_item_dir_attr") || msg.pSender->GetName() == _T("memu_item_file_attri") || msg.pSender->GetName() == _T("memu_item_attribute"))
+		{
+			::PostMessage(GetHWND(), WM_COMMAND_ATTRIBUTE, (WPARAM)m_PopMenu_FileHandle, NULL);
+		}
+		else if (StrCmp(msg.pSender->GetClass(), _T("ListContainerElementUI")) == 0  && 
 			msg.pSender->GetParent() != NULL && 
 			msg.pSender->GetParent()->GetParent() != NULL &&
 			msg.pSender->GetParent()->GetParent()->GetName() == _T("list_file"))
@@ -1669,7 +1706,7 @@ void CWndMainFrame::OnClick_Btn_Export( TNotifyUI &msg )
 	{
 		SHGetPathFromIDList(lpDlist, szPathName);	
 
-		CListUI *pList = static_cast<CListUI*>(m_PaintManager.FindControl(_T("list_file")));
+		CListUI *pList =m_pFileListUI;
 
 		int count = pList->GetCount();
 		for (int i=0; i<count; i++)
@@ -2005,20 +2042,53 @@ void CWndMainFrame::OrderFileList( int nIndex, bool bAscend /*= true*/ )
 
 void CWndMainFrame::PopFileListMenu( const POINT & pt, CFileHandle *pFileHandle)
 {
-	CWndFileListMenu2 *pMenu = new CWndFileListMenu2;
+	//暂时有bug
+	//CMenuWnd *pMenu = new CMenuWnd;
 
-	if (pFileHandle == NULL)
+	//m_PopMenu_FileHandle = pFileHandle;
+
+	//if (pFileHandle == NULL)
+	//{
+	//	pMenu->Init(NULL, _T("WndFileListBodyMenu.xml"), pt, &m_PaintManager, NULL);
+	//}
+	//else if (pFileHandle->GetFileType() == 0)
+	//{
+	//	pMenu->Init(NULL, _T("WndFileListDIrMenu.xml"), pt, &m_PaintManager, NULL);
+	//}
+	//else
+	//{
+	//	pMenu->Init(NULL, _T("WndFileListFileMenu.xml"), pt, &m_PaintManager, NULL);
+	//}
+
+	CWndFileListMenu *pWnd = new CWndFileListMenu;	
+	pWnd->Create(NULL, _T("FileListMenu"), UI_WNDSTYLE_DIALOG, WS_EX_TOOLWINDOW);		
+	pWnd->SetMainWnd(this);
+	pWnd->SetFileHandle(pFileHandle);
+	pWnd->ShowWindow();
+
+	HDC   hdc=::GetDC(NULL);   //获得屏幕设备描述表句柄   
+	int   ScrWidth=GetDeviceCaps(hdc,HORZRES);   //获取屏幕水平分辨率   
+	int   ScrHeight=GetDeviceCaps(hdc,VERTRES);     //获取屏幕垂直分辨率  
+	::ReleaseDC(NULL,hdc);   //释放屏幕设备描述表
+
+	SetForegroundWindow(pWnd->GetHWND());
+
+	CDuiRect rcWnd;
+	::GetWindowRect(pWnd->GetHWND(), &rcWnd);
+
+	POINT ptNew = pt;
+
+	if (pt.x + rcWnd.GetWidth() > ScrWidth)
 	{
-		pMenu->Init(NULL, _T("WndFileListBodyMenu.xml"), pt, &m_PaintManager, NULL);
+		ptNew.x = pt.x - rcWnd.GetWidth();			
 	}
-	else if (pFileHandle->GetFileType() == 0)
+
+	if (pt.y + rcWnd.GetHeight() > ScrHeight)
 	{
-		pMenu->Init(NULL, _T("WndFileListDIrMenu.xml"), pt, &m_PaintManager, NULL);
+		ptNew.y = pt.y - rcWnd.GetHeight();
 	}
-	else
-	{
-		pMenu->Init(NULL, _T("WndFileListFileMenu.xml"), pt, &m_PaintManager, NULL);
-	}
+
+	::SetWindowPos(pWnd->GetHWND(), HWND_TOPMOST, ptNew.x, ptNew.y, rcWnd.GetWidth(), rcWnd.GetHeight(), SWP_SHOWWINDOW );
 }
 
 void CWndMainFrame::ExecutCommand_Upload()

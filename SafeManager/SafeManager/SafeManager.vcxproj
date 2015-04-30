@@ -179,7 +179,6 @@
     <ClInclude Include="WndAbout.h" />
     <ClInclude Include="WndConfig.h" />
     <ClInclude Include="WndFeedBack.h" />
-    <ClInclude Include="WndFileListMenu2.h" />
     <ClInclude Include="WndFilePathMenu.h" />
     <ClInclude Include="WndMainFrame.h" />
     <ClInclude Include="WndMessageBox.h" />
@@ -221,7 +220,6 @@
     <ClCompile Include="WndAbout.cpp" />
     <ClCompile Include="WndConfig.cpp" />
     <ClCompile Include="WndFeedBack.cpp" />
-    <ClCompile Include="WndFileListMenu2.cpp" />
     <ClCompile Include="WndFilePathMenu.cpp" />
     <ClCompile Include="WndMainFrame.cpp" />
     <ClCompile Include="WndMessageBox.cpp" />

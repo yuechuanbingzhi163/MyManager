@@ -138,5 +138,7 @@ private:
 
 	CHorizontalLayoutUI *m_pHorFilePath;
 	list<COptionPath*> m_listFilePathUIs;
+
+	CFileHandle *m_PopMenu_FileHandle;
 };	
 
