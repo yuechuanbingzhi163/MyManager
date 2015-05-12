@@ -64,8 +64,7 @@
 			<ListContainerElement name="menu_item_open_way" height="30">				
 				<HorizontalLayout>
 					<Control width="26" />
-					<Label text="打开方式" textpadding="10,0,0,0"/>
-					<Control width="26" bkimage="file='menu_expand.png' dest='9,10,18,19'" />
+					<Label text="打开方式..." textpadding="10,0,0,0"/>					
 				</HorizontalLayout>
 			</ListContainerElement>				
 			<ListContainerElement name="line_open_way" height="5" enabled="false">

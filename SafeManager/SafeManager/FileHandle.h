@@ -85,6 +85,9 @@ public:
 
 	void GetUploadOrDownLoadTaskIDs(vector<UINT> &vecIDs);
 
+	void SetExtrenTag(int tag = 0);
+	int GetExtrenTag();
+
 private:
 	STDBFILEBASEINFO    m_FileData;
 
@@ -93,5 +96,7 @@ private:
 	BOOL m_bLoadAllChildrenFile;
 
 	CRITICAL_SECTION  m_CriticalSection;
+
+	int m_Extren_tag;
 };
 

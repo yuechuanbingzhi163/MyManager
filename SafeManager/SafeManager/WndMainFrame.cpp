@@ -1041,6 +1041,13 @@ LRESULT CWndMainFrame::HandleCustomMessage( UINT uMsg, WPARAM wParam, LPARAM lPa
 {
 	switch(uMsg)
 	{
+	case WM_COMMAND_OPEN_STYLE:
+		{
+			CFileHandle *pFileHandle = (CFileHandle*)wParam;
+			ExecutCommand_OpenAs(pFileHandle);
+			break;
+		}
+
 	case WM_LOAD_NEW_FILE_HANDLE:
 		{
 			CFileHandle *pFileHandle = (CFileHandle*)wParam;
@@ -2203,6 +2210,13 @@ void CWndMainFrame::ExecutCommand_Refresh()
 	SearchFileAddToFileList(m_Current_File_Handle);
 }
 
+void CWndMainFrame::ExecutCommand_OpenAs( CFileHandle *pFileHandle )
+{
+	pFileHandle->SetExtrenTag(100);
+	HANDLE hThread = CreateThread(NULL, 0, _OpenFileThreadProc, pFileHandle, NULL, NULL);
+	CloseHandle(hThread);	
+}
+
 void CWndMainFrame::ExecutCommand_Open( CFileHandle *pFileHandle )
 {
 	if (pFileHandle->GetFileType() == 0)
@@ -2568,6 +2582,7 @@ LRESULT CWndMainFrame::OnSysCommand( UINT uMsg, WPARAM wParam, LPARAM lParam, BO
 	return lRes;
 }
 
+
 DWORD WINAPI _MoveThreadProc( LPVOID lpParam )
 {
 	WaitForSingleObject(hMoveOrCopyEvent, INFINITE);
@@ -2645,7 +2660,25 @@ DWORD WINAPI _OpenFileThreadProc( LPVOID lpParam )
 		pParentFileHandle = static_cast<CFileHandle*>(pParentFileHandle->GetParentNode());
 	}
 
-	HINSTANCE hInstance = ShellExecute(NULL, _T("open"), szSavePath, NULL, NULL, SW_SHOWDEFAULT);	
+
+	if (pFileHandle->GetExtrenTag() == 100)
+	{	
+		OPENASINFO info;
+		ZeroMemory(&info, sizeof(OPENASINFO));
+
+		info.pcszFile = szSavePath;
+		info.pcszClass = NULL;
+
+		info.oaifInFlags = OAIF_HIDE_REGISTRATION | OAIF_EXEC; 
+
+		HRESULT hRet = SHOpenWithDialog(NULL, &info);	
+
+		int i = 0;
+	}
+	else
+	{
+		HINSTANCE hInstance = ShellExecute(NULL, _T("open"), szSavePath, NULL, NULL, SW_SHOWDEFAULT);	
+	}	
 	
 	Sleep(10000);
 	while(!DeleteFile(szSavePath))

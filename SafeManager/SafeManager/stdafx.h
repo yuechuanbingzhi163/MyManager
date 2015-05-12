@@ -72,14 +72,15 @@ using namespace DuiLib;
 #define	WM_COMMAND_NEW_FOLDER						(WM_USER + 0X828)
 #define  WM_COMMAND_REFRESH								(WM_USER + 0X829)
 #define  WM_COMMAND_OPEN										(WM_USER + 0X830)
-#define  WM_COMMAND_COPY										(WM_USER + 0X831)
-#define  WM_COMMAND_MOVE										(WM_USER + 0X832)
-#define  WM_COMMAND_EXPORT									(WM_USER + 0X833)
-#define  WM_COMMAND_RENAME								(WM_USER + 0X834)
-#define  WM_COMMAND_DELETE									(WM_USER + 0X835)
-#define  WM_COMMAND_ATTRIBUTE							(WM_USER + 0X836)
+#define  WM_COMMAND_OPEN_STYLE							(WM_USER + 0X831)
+#define  WM_COMMAND_COPY										(WM_USER + 0X832)
+#define  WM_COMMAND_MOVE										(WM_USER + 0X833)
+#define  WM_COMMAND_EXPORT									(WM_USER + 0X834)
+#define  WM_COMMAND_RENAME								(WM_USER + 0X835)
+#define  WM_COMMAND_DELETE									(WM_USER + 0X836)
+#define  WM_COMMAND_ATTRIBUTE							(WM_USER + 0X837)
 
-#define  WM_LOAD_NEW_FILE_HANDLE						(WM_USER + 0X837)
+#define  WM_LOAD_NEW_FILE_HANDLE						(WM_USER + 0X838)
 
 
 

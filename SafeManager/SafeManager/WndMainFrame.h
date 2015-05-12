@@ -57,6 +57,7 @@ public:
 	void ExecutCommand_Refresh();
 	void ExecutCommand_NewFolder();
 	void ExecutCommand_Attribute(CFileHandle *pFileHandle);
+	void ExecutCommand_OpenAs(CFileHandle *pFileHandle);
 	void ExecutCommand_Open(CFileHandle *pFileHandle);
 	void ExecutCommand_Copy(CFileHandle *pFileHandle);
 	void ExecutCommand_Move(CFileHandle *pFileHandle);

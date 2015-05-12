@@ -9,29 +9,29 @@
 <Default name="ExplandIcon" value="menu_expand.png" />
 
 <Menu>
-    <MenuElement text="打  开" >     	 
+    <MenuElement name="memu_item_dir_open" text="打  开" >     	 
     </MenuElement>
 	
 	<MenuElement linetype="true" />
 	
-    <MenuElement name="Menu_Test1" text="复   制" />
-	<MenuElement name="Menu_Test2" text="移   动" />
+    <MenuElement name="memu_item_dir_copy" text="复   制" />
+	<MenuElement name="memu_item_dir_move" text="移   动" />
 	
 	<MenuElement linetype="true" />
 	
-	<MenuElement name="Menu_Test2" text="导   出" />
+	<MenuElement name="memu_item_dir_export" text="导   出" />
 	
 	<MenuElement linetype="true" />
 	
-	<MenuElement name="Menu_Test2" text="重命名" />
+	<MenuElement name="memu_item_dir_rename" text="重命名" />
 	
 	<MenuElement linetype="true" />
 	
-	<MenuElement name="Menu_Test2" text="删   除" />
+	<MenuElement name="memu_item_dir_remove" text="删   除" />
 	
 	<MenuElement linetype="true" />
 	
-	<MenuElement name="Menu_Test2" text="属   性" />
+	<MenuElement name="memu_item_dir_attr" text="属   性" />
 
 </Menu>
 </Window>

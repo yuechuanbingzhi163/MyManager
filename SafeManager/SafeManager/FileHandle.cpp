@@ -4,7 +4,7 @@
 #include "Single.h"
 
 
-CFileHandle::CFileHandle(void):m_bLoadAllChildrenFile(False)
+CFileHandle::CFileHandle(void):m_bLoadAllChildrenFile(False),m_Extren_tag(0)
 {
 	 InitializeCriticalSection(&m_CriticalSection);
 
@@ -549,6 +549,16 @@ void CFileHandle::AutoDecreaseHandleFileNum( UINT nTaskID )
 int CFileHandle::GetTaskCount()
 {
 	return m_vecAllTaskInfo.size();
+}
+
+void CFileHandle::SetExtrenTag( int tag /*= 0*/ )
+{
+	m_Extren_tag =tag;
+}
+
+int CFileHandle::GetExtrenTag()
+{
+	return m_Extren_tag;
 }
 
 

@@ -24,16 +24,15 @@ LRESULT CWndFileListMenu::OnCreate( UINT uMsg, WPARAM wParam, LPARAM lParam, BOO
 void CWndFileListMenu::Notify( TNotifyUI &msg )
 {
 	__super::Notify(msg);
-	if (msg.sType == DUI_MSGTYPE_SETFOCUS)
+
+	if (msg.sType == DUI_MSGTYPE_ITEMCLICK)
 	{
 		if (msg.pSender->GetName() == _T("menu_item_open_way"))
 		{
-			int i = 0;								
+			Close();
+			::PostMessage(m_pMainWnd->GetHWND(), WM_COMMAND_OPEN_STYLE, (WPARAM)m_pFileHandle, NULL);						
 		}
-	}
-	else if (msg.sType == DUI_MSGTYPE_ITEMCLICK)
-	{
-		if (msg.pSender->GetName() == _T("menu_item_upload"))
+		else if (msg.pSender->GetName() == _T("menu_item_upload"))
 		{
 			Close();
 			::PostMessage(m_pMainWnd->GetHWND(), WM_COMMAND_UPLOAD, NULL, NULL);						

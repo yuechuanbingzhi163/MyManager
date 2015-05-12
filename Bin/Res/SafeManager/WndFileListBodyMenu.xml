@@ -9,21 +9,21 @@
 <Default name="ExplandIcon" value="menu_expand.png" />
 
 <Menu>
-    <MenuElement text="上传文件..." >     	 
+    <MenuElement name="memu_item_upload" text="上传文件..." >     	 
     </MenuElement>
 	
 	<MenuElement linetype="true" />
 	
-	 <MenuElement text="新建文件夹" > 			
+	 <MenuElement name="memu_item_newfolder"  text="新建文件夹" > 			
     </MenuElement>
 
 	<MenuElement linetype="true" />
 	
-    <MenuElement name="Menu_Test1" text="刷  新" />	
+    <MenuElement name="memu_item_refresh" text="刷  新" />	
 	
 	<MenuElement linetype="true" />
 	
-	<MenuElement name="Menu_Test2" text="属   性" />
+	<MenuElement name="memu_item_attribute"  text="属   性" />
 
 </Menu>
 </Window>
